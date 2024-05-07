@@ -1,0 +1,18 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy 
+metadata:
+  name: httpbin-trafficpolicy
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: httpbin
+    namespace: default
+  rateLimit:
+    type: Global
+    global:
+      rules:
+      - limit:
+          requests: 3
+          unit: Minute

@@ -1,3 +1,112 @@
 # Rate limiting
 
-TODO: tbd
+!!! warning
+
+    If during [setup](setup.md) you chose to install Envoy Gateway, then before you proceed with this lab, you will need to deploy Redis, and reconfigure Envoy Gateway with rate limiting pointing to the the url of the redis instance you deployed.
+
+    The details instructions are available [here](https://gateway.envoyproxy.io/v1.0.1/tasks/traffic/global-rate-limit/).
+
+
+Similar to [retries](retries.md),
+rate limiting is not part of the Kubernetes Gateway API specification,
+and is configured through Envoy Gateway's [BackendTrafficPolicy](https://gateway.envoyproxy.io/v1.0.1/api/extension_types/#backendtrafficpolicy) resource.
+
+The rate limit is associated with the HTTPRoute you wish to limit.
+
+## Simple example
+
+Configure access to `httpbin` to be limited to three requests per minute:
+
+```yaml linenums="1"
+--8<-- "ratelimit/simple.yaml"
+```
+
+```shell
+kubectl apply -f simple.yaml
+```
+
+### :white_check_mark: Test it
+
+Send four requests in succession, the fourth should be rate-limited:
+
+```shell
+for i in {1..4}; do curl --insecure --head https://httpbin.esuez.org/; done
+```
+
+Here is the captured output:
+
+```console
+HTTP/2 200
+server: gunicorn/19.9.0
+date: Tue, 07 May 2024 22:33:12 GMT
+content-type: text/html; charset=utf-8
+content-length: 9593
+access-control-allow-origin: *
+access-control-allow-credentials: true
+x-ratelimit-limit: 3, 3;w=60
+x-ratelimit-remaining: 2
+x-ratelimit-reset: 48
+
+HTTP/2 200
+server: gunicorn/19.9.0
+date: Tue, 07 May 2024 22:33:12 GMT
+content-type: text/html; charset=utf-8
+content-length: 9593
+access-control-allow-origin: *
+access-control-allow-credentials: true
+x-ratelimit-limit: 3, 3;w=60
+x-ratelimit-remaining: 1
+x-ratelimit-reset: 48
+
+HTTP/2 200
+server: gunicorn/19.9.0
+date: Tue, 07 May 2024 22:33:12 GMT
+content-type: text/html; charset=utf-8
+content-length: 9593
+access-control-allow-origin: *
+access-control-allow-credentials: true
+x-ratelimit-limit: 3, 3;w=60
+x-ratelimit-remaining: 0
+x-ratelimit-reset: 48
+
+HTTP/2 429
+x-envoy-ratelimited: true
+x-ratelimit-limit: 3, 3;w=60
+x-ratelimit-remaining: 0
+x-ratelimit-reset: 48
+date: Tue, 07 May 2024 22:33:12 GMT
+```
+
+Above, note the `x-ratelimit-*` headers that inform us of the limit, the number of requests remaining, and the amount of time (in seconds) until the corresponding counter is reset.
+
+## Rate limit distinct users
+
+It is more common for individual users to each have their own limit.
+
+The below example adds a [rate limit selection condition](https://gateway.envoyproxy.io/latest/api/extension_types/#ratelimitselectcondition) to distinguish between users by http header name of `x-user-id`:
+
+```yaml linenums="1" hl_lines="16-19"
+--8<-- "ratelimit/distinct-users.yaml"
+```
+
+```shell
+kubectl apply -f distinct-users.yaml
+```
+
+### :white_check_mark: Test it
+
+Sending multiple requests for the same user in succession will produce a result similar to the above simple example:
+
+```shell
+for i in {1..4}; do
+  curl --insecure --head -H "x-user-id: eitan" https://httpbin.esuez.org/
+done
+```
+
+Following that up with another set of requests from a different user demonstrates that each user has their own, separate rate limiting counter:
+
+```shell
+for i in {1..4}; do
+  curl --insecure --head -H "x-user-id: johndoe" https://httpbin.esuez.org/
+done
+```
