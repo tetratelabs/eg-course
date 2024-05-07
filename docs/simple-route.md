@@ -17,7 +17,7 @@ kubectl apply -f apps/httpbin.yaml
 ```
 
 ```shell
-kubectl apply -f httpbin-route.yaml
+kubectl apply -f simple-route/httpbin-route.yaml
 ```
 
 ---

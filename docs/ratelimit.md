@@ -22,7 +22,7 @@ Configure access to `httpbin` to be limited to three requests per minute:
 ```
 
 ```shell
-kubectl apply -f simple.yaml
+kubectl apply -f ratelimit/simple.yaml
 ```
 
 ### :white_check_mark: Test it
@@ -90,7 +90,7 @@ The below example adds a [rate limit selection condition](https://gateway.envoyp
 ```
 
 ```shell
-kubectl apply -f distinct-users.yaml
+kubectl apply -f ratelimit/distinct-users.yaml
 ```
 
 ### :white_check_mark: Test it

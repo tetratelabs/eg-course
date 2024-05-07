@@ -34,11 +34,11 @@ gateway.networking.k8s.io/v1alpha2   UDPRoute
 ## Use [BackendTrafficPolicy](https://gateway.envoyproxy.io/v1.0.1/api/extension_types/#backendtrafficpolicy) to configure retries
 
 ```yaml linenums="1" hl_lines="12-24"
---8<-- "retries/retry-policy.yaml"
+--8<-- "retries/httpbin-policy.yaml"
 ```
 
 ```shell
-kubectl apply -f retry-policy.yaml
+kubectl apply -f retries/httpbin-policy.yaml
 ```
 
 ---

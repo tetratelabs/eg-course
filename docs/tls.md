@@ -29,7 +29,7 @@ helm upgrade --install --create-namespace --namespace cert-manager \
 ```
 
 ```shell
-kubectl apply -f selfsigned-issuer.yaml
+kubectl apply -f tls/selfsigned-issuer.yaml
 ```
 
 ---
@@ -43,7 +43,7 @@ Add an HTTPS listener for `httpbin.esuez.org` hostname on the gateway, configure
 ```
 
 ```shell
-kubectl apply -f gateway-add-https.yaml
+kubectl apply -f tls/gateway-add-https.yaml
 ```
 
 ---

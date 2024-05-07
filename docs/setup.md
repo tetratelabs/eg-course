@@ -37,7 +37,7 @@
 ## Install `external-dns`
 
 ```shell
-kubectl apply -f external-dns.yaml
+kubectl apply -f setup/external-dns.yaml
 ```
 
 ---
@@ -49,7 +49,7 @@ kubectl apply -f external-dns.yaml
 ```
 
 ```shell
-kubectl apply -f gateway-class.yaml
+kubectl apply -f setup/gateway-class.yaml
 ```
 
 ---
@@ -61,7 +61,7 @@ kubectl apply -f gateway-class.yaml
 ```
 
 ```shell
-kubectl apply -f gateway-http.yaml
+kubectl apply -f setup/gateway-http.yaml
 ```
 
 ---

@@ -17,7 +17,7 @@ kubectl apply -f apps/customers.yaml -f apps/web-frontend.yaml
 ```
 
 ```shell
-kubectl apply -f web-frontend-route.yaml
+kubectl apply -f shared-gw/web-frontend-route.yaml
 ```
 
 ---

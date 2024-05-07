@@ -5,11 +5,11 @@
 ## Configure redirection
 
 ```yaml linenums="1" hl_lines="11 28"
---8<-- "redirect/httpbin-redirect-https.yaml"
+--8<-- "redirect/httpbin-to-https.yaml"
 ```
 
 ```shell
-kubectl apply -f httpbin-redirect-https.yaml
+kubectl apply -f redirect/httpbin-to-https.yaml
 ```
 
 ---
