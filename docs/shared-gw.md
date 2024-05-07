@@ -41,4 +41,31 @@ egctl config envoy-proxy route -n envoy-gateway-system \
   -o yaml | bat -l yaml
 ```
 
-TODO: capture console output to show Envoy route config
+Here is a slightly sanitized copy of the captured output:
+
+```yaml
+envoy-gateway-system:
+  envoy-default-eg-e41e7b31-59b4dd766f-sf78k:
+    dynamicRouteConfigs:
+    - routeConfig:
+        name: default/eg/http
+        virtualHosts:
+        - domains:
+          - httpbin.esuez.org
+          name: default/eg/http/httpbin_esuez_org
+          routes:
+          - match:
+              prefix: /
+            name: httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org
+            route:
+              cluster: httproute/default/httpbin/rule/0
+        - domains:
+          - customers-frontend.esuez.org
+          name: default/eg/http/customers-frontend_esuez_org
+          routes:
+          - match:
+              prefix: /
+            name: httproute/default/web-frontend/rule/0/match/0/customers-frontend_esuez_org
+            route:
+              cluster: httproute/default/web-frontend/rule/0
+```

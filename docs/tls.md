@@ -1,6 +1,6 @@
 # TLS
 
-The objective here is to serve `httpbin` over TLS.
+The objective is to configure the Gateway to serve `httpbin` over TLS.
 
 ---
 
@@ -38,7 +38,7 @@ kubectl apply -f selfsigned-issuer.yaml
 
 Add an HTTPS listener for `httpbin.esuez.org` hostname on the gateway, configured to terminate TLS:
 
-```yaml linenums="1"
+```yaml linenums="1" hl_lines="7 18-21"
 --8<-- "tls/gateway-add-https.yaml"
 ```
 
@@ -49,6 +49,8 @@ kubectl apply -f gateway-add-https.yaml
 ---
 
 ## :white_check_mark: Test it
+
+[Access httpbin over TLS](https://httpbin.esuez.org/):
 
 ```shell
 curl --insecure -v --head https://httpbin.esuez.org/
