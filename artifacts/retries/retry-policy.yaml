@@ -1,0 +1,24 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: retry-for-route
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: httpbin
+    namespace: default
+  retry:
+    numRetries: 5
+    perRetry:
+      backOff:
+        baseInterval: 100ms
+        maxInterval: 10s
+      timeout: 250ms
+    retryOn:
+      httpStatusCodes:
+        - 500
+      triggers:
+        - connect-failure
+        - retriable-status-codes
