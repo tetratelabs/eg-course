@@ -154,5 +154,5 @@ envoy-gateway-system:
 ## Summary
 
 To configure retries, we had to resort to a BackingTrafficPolicy, an extension to the Gateway API.
-In contrast, compare with the [configuration of timeouts](https://gateway.envoyproxy.io/latest/tasks/traffic/http-timeouts/), 
-which is configured directly on the HTTPRoute resource, since timeouts are a part of the Kubernetes Gateway API specification.
+In contrast, compare with [timeouts](https://gateway-api.sigs.k8s.io/api-types/httproute/?h=#timeouts-optional),
+which are configured directly on the HTTPRoute resource, since timeouts are a part of the Kubernetes Gateway API specification.

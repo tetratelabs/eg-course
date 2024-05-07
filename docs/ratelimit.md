@@ -110,3 +110,41 @@ for i in {1..4}; do
   curl --insecure --head -H "x-user-id: johndoe" https://httpbin.esuez.org/
 done
 ```
+
+The curious may wish to inspect the translated configuration at the Envoy proxy:
+
+```shell
+egctl config envoy-proxy route -n envoy-gateway-system \
+  -l gateway.envoyproxy.io/owning-gateway-name=eg \
+  -l gateway.envoyproxy.io/owning-gateway-namespace=default \
+  -o yaml | bat -l yaml
+```
+
+Here is a sanitized copy of the captured output:
+
+```yaml linenums="1" hl_lines="17-24"
+envoy-gateway-system:
+  envoy-default-eg-e41e7b31-c7657fcf5-gsgvs:
+    dynamicRouteConfigs:
+    - ...
+    - routeConfig:
+        name: default/eg/https
+        virtualHosts:
+        - domains:
+          - httpbin.esuez.org
+          name: default/eg/https/httpbin_esuez_org
+          routes:
+          - match:
+              prefix: /
+            name: httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org
+            route:
+              cluster: httproute/default/httpbin/rule/0
+              rateLimits:
+              - actions:
+                - genericKey:
+                    descriptorKey: httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org
+                    descriptorValue: httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org
+                - requestHeaders:
+                    descriptorKey: rule-0-match-0
+                    headerName: x-user-id
+```
