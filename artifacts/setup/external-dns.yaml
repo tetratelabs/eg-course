@@ -59,3 +59,4 @@ spec:
         - --provider=google
         - --registry=txt
         - --txt-owner-id=eitan-gke-cluster
+        - --interval=30s
