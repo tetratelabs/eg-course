@@ -24,12 +24,12 @@ helm upgrade --install --create-namespace --namespace cert-manager \
 
 ## Create a self-signed issuer
 
-```shell
-kubectl apply -f selfsigned-issuer.yaml
-```
-
 ```yaml linenums="1"
 --8<-- "tls/selfsigned-issuer.yaml"
+```
+
+```shell
+kubectl apply -f selfsigned-issuer.yaml
 ```
 
 ---
@@ -38,12 +38,12 @@ kubectl apply -f selfsigned-issuer.yaml
 
 Add an HTTPS listener for `httpbin.esuez.org` hostname on the gateway, configured to terminate TLS:
 
-```shell
-kubectl apply -f gateway-add-https.yaml
-```
-
 ```yaml linenums="1"
 --8<-- "tls/gateway-add-https.yaml"
+```
+
+```shell
+kubectl apply -f gateway-add-https.yaml
 ```
 
 ---

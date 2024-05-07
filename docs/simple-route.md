@@ -24,7 +24,7 @@ kubectl apply -f httpbin-route.yaml
 
 ## :white_check_mark: Verify
 
-After the DNS entry is created for the hostname specified in the HTTPRoute, try to access the app:
+After the DNS entry is created for the hostname specified in the HTTPRoute, try to [access the app](http://httpbin.esuez.org/):
 
 ```shell
 curl http://httpbin.esuez.org/

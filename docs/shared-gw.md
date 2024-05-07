@@ -12,19 +12,19 @@ kubectl apply -f apps/customers.yaml -f apps/web-frontend.yaml
 
 ## Configure the route
 
-```shell
-kubectl apply -f web-frontend-route.yaml
-```
-
 ```yaml linenums="1"
 --8<-- "shared-gw/web-frontend-route.yaml"
+```
+
+```shell
+kubectl apply -f web-frontend-route.yaml
 ```
 
 ---
 
 ## :white_check_mark: Verify
 
-After the DNS entry is created, verify that the route is reachable:
+After the DNS entry is created, verify that [the route is reachable](http://customers-frontend.esuez.org/):
 
 ```shell
 curl http://customers-frontend.esuez.org/
