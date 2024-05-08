@@ -2,9 +2,9 @@
 
 !!! warning
 
-    If during [setup](setup.md) you chose to install Envoy Gateway, then before you proceed with this lab, you will need to deploy Redis, and reconfigure Envoy Gateway with rate limiting pointing to the the url of the redis instance you deployed.
+    If during [setup](setup.md) you chose to install Envoy Gateway, then before you proceed with this lab, you will need to deploy Redis, and reconfigure Envoy Gateway with rate limiting pointing to the URL of the Redis instance you deployed.
 
-    The details instructions are available [here](https://gateway.envoyproxy.io/v1.0.1/tasks/traffic/global-rate-limit/).
+    Detailed instructions are available [here](https://gateway.envoyproxy.io/v1.0.1/tasks/traffic/global-rate-limit/).
 
 
 Similar to [retries](retries.md),

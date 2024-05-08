@@ -27,6 +27,6 @@ kubectl apply -f simple-route/httpbin-route.yaml
 After the DNS entry is created for the hostname specified in the HTTPRoute, try to [access the app](http://httpbin.esuez.org/):
 
 ```shell
-curl http://httpbin.esuez.org/
+curl http://httpbin.esuez.org/json
 ```
 
