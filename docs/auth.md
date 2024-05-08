@@ -36,9 +36,18 @@ The value of the `name` field on line 13 refers a secret containing an [`htpassw
 
 1. Request without credentials return a 401 (Forbidden)
 
-    ```shell
-    curl --insecure --head https://httpbin.esuez.org/
-    ```
+    === "Using DNS resolution"
+
+        ```shell
+        curl --insecure --head https://httpbin.esuez.org/
+        ```
+
+    === "Using `curl` name resolve flag"
+
+        ```shell
+        curl --insecure --head https://httpbin.esuez.org/ \
+          --resolve httpbin.esuez.org:443:$GATEWAY_IP
+        ```
 
     ```console
     HTTP/2 401
@@ -49,9 +58,18 @@ The value of the `name` field on line 13 refers a secret containing an [`htpassw
 
 1. Authenticated requests succeed:
 
-    ```shell
-    curl --insecure --head --user eitan:correctpassword https://httpbin.esuez.org/
-    ```
+    === "Using DNS resolution"
+
+        ```shell
+        curl --insecure --head --user eitan:correctpassword https://httpbin.esuez.org/
+        ```
+
+    === "Using `curl` name resolve flag"
+
+        ```shell
+        curl --insecure --head --user eitan:correctpassword https://httpbin.esuez.org/ \
+          --resolve httpbin.esuez.org:443:$GATEWAY_IP
+        ```
 
     ```console
     HTTP/2 200
@@ -65,9 +83,18 @@ The value of the `name` field on line 13 refers a secret containing an [`htpassw
 
 1. Bad credentials produce a 401 (Forbidden):
 
-    ```shell
-    curl --insecure --head --user eitan:wrongpassword https://httpbin.esuez.org/
-    ```
+    === "Using DNS resolution"
+
+        ```shell
+        curl --insecure --head --user eitan:wrongpassword https://httpbin.esuez.org/
+        ```
+
+    === "Using `curl` name resolve flag"
+
+        ```shell
+        curl --insecure --head --user eitan:wrongpassword https://httpbin.esuez.org/ \
+          --resolve httpbin.esuez.org:443:$GATEWAY_IP
+        ```
 
     ```console
     HTTP/2 401

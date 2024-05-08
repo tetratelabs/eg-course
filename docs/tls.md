@@ -52,6 +52,16 @@ kubectl apply -f tls/gateway-add-https.yaml
 
 [Access httpbin over TLS](https://httpbin.esuez.org/):
 
-```shell
-curl --insecure -v --head https://httpbin.esuez.org/
-```
+
+=== "Using DNS resolution"
+
+    ```shell
+    curl --insecure -v --head https://httpbin.esuez.org/
+    ```
+
+=== "Using `curl` name resolve flag"
+
+    ```shell
+    curl --insecure -v --head https://httpbin.esuez.org/ \
+       --resolve httpbin.esuez.org:443:$GATEWAY_IP
+    ```

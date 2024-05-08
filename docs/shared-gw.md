@@ -26,9 +26,18 @@ kubectl apply -f shared-gw/web-frontend-route.yaml
 
 After the DNS entry is created, verify that [the route is reachable](http://customers-frontend.esuez.org/):
 
-```shell
-curl http://customers-frontend.esuez.org/
-```
+
+=== "Using DNS resolution"
+
+    ```shell
+    curl http://customers-frontend.esuez.org/
+    ```
+
+=== "Using `curl` name resolve flag"
+
+    ```shell
+    curl http://customers-frontend.esuez.org/ --resolve customers-frontend.esuez.org:80:$GATEWAY_IP
+    ```
 
 ---
 

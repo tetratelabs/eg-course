@@ -29,9 +29,21 @@ kubectl apply -f ratelimit/simple.yaml
 
 Send four requests in succession, the fourth should be rate-limited:
 
-```shell
-for i in {1..4}; do curl --insecure --head https://httpbin.esuez.org/; done
-```
+=== "Using DNS resolution"
+
+    ```shell
+    for i in {1..4}; do
+      curl --insecure --head https://httpbin.esuez.org/
+    done
+    ```
+
+=== "Using `curl` name resolve flag"
+
+    ```shell
+    for i in {1..4}; do
+      curl --insecure --head https://httpbin.esuez.org/ --resolve httpbin.esuez.org:443:$GATEWAY_IP
+    done
+    ```
 
 Here is the captured output:
 
@@ -97,19 +109,41 @@ kubectl apply -f ratelimit/distinct-users.yaml
 
 Sending multiple requests for the same user in succession will produce a result similar to the above simple example:
 
-```shell
-for i in {1..4}; do
-  curl --insecure --head -H "x-user-id: eitan" https://httpbin.esuez.org/
-done
-```
+=== "Using DNS resolution"
+
+    ```shell
+    for i in {1..4}; do
+      curl --insecure --head -H "x-user-id: eitan" https://httpbin.esuez.org/
+    done
+    ```
+
+=== "Using `curl` name resolve flag"
+
+    ```shell
+    for i in {1..4}; do
+      curl --insecure --head -H "x-user-id: eitan" https://httpbin.esuez.org/ \
+        --resolve httpbin.esuez.org:443:$GATEWAY_IP
+    done
+    ```
 
 Following that up with another set of requests from a different user demonstrates that each user has their own, separate rate limiting counter:
 
-```shell
-for i in {1..4}; do
-  curl --insecure --head -H "x-user-id: johndoe" https://httpbin.esuez.org/
-done
-```
+=== "Using DNS resolution"
+
+    ```shell
+    for i in {1..4}; do
+      curl --insecure --head -H "x-user-id: johndoe" https://httpbin.esuez.org/
+    done
+    ```
+
+=== "Using `curl` name resolve flag"
+
+    ```shell
+    for i in {1..4}; do
+      curl --insecure --head -H "x-user-id: johndoe" https://httpbin.esuez.org/ \
+        --resolve httpbin.esuez.org:443:$GATEWAY_IP
+    done
+    ```
 
 The curious may wish to inspect the translated configuration at the Envoy proxy:
 

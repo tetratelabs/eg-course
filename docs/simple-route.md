@@ -26,7 +26,15 @@ kubectl apply -f simple-route/httpbin-route.yaml
 
 After the DNS entry is created for the hostname specified in the HTTPRoute, try to [access the app](http://httpbin.esuez.org/):
 
-```shell
-curl http://httpbin.esuez.org/json
-```
+=== "Using DNS resolution"
+
+    ```shell
+    curl http://httpbin.esuez.org/json
+    ```
+
+=== "Using `curl` name resolve flag"
+
+    ```shell
+    curl http://httpbin.esuez.org/json --resolve httpbin.esuez.org:80:$GATEWAY_IP
+    ```
 

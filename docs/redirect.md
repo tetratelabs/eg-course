@@ -18,9 +18,17 @@ kubectl apply -f redirect/httpbin-to-https.yaml
 
 Verify that you get a [301 response](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301) when curling the http endpoint:
 
-```shell
-curl -v http://httpbin.esuez.org/
-```
+=== "Using DNS resolution"
+
+    ```shell
+    curl -v http://httpbin.esuez.org/
+    ```
+
+=== "Using `curl` name resolve flag"
+
+    ```shell
+    curl -v http://httpbin.esuez.org/ --resolve httpbin.esuez.org:80:$GATEWAY_IP
+    ```
 
 Here is a copy of the captured output:
 
