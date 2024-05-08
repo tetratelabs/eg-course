@@ -23,6 +23,8 @@ nav:
   - retries.md
   - ratelimit.md
   - auth.md
+  - Reference:
+    - snippets.md
 markdown_extensions:
   - admonition
   - pymdownx.details
