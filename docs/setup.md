@@ -1,16 +1,27 @@
 # Setup
 
----
-
 ## Provision a cluster
 
-```shell
---8<-- "setup/make-gke-cluster"
-```
+===+ "On GCP"
 
-```shell
-./setup/make-gke-cluster
-```
+    ```shell
+    --8<-- "setup/make-gke-cluster"
+    ```
+
+    ```shell
+    ./setup/make-gke-cluster
+    ```
+
+=== "Locally with k3d"
+
+    ```shell
+    k3d cluster create my-k8s-cluster \
+      --k3s-arg "--disable=traefik@server:0" \
+      --port 80:80@loadbalancer \
+      --port 443:443@loadbalancer
+    ```
+
+    [About k3d](https://k3d.io/v5.6.3/).
 
 ---
 
@@ -26,7 +37,7 @@ TEG installs Redis and the Envoy rate limit service, meaning that it's pre-confi
       -n envoy-gateway-system --create-namespace
     ```
 
-=== "Install TEG"
+===+ "Install TEG"
 
     ```shell
     helm install teg oci://docker.io/tetrate/teg-envoy-gateway-helm \
@@ -36,9 +47,13 @@ TEG installs Redis and the Envoy rate limit service, meaning that it's pre-confi
 
 ---
 
-## Install `external-dns`
+## Install [`external-dns`](https://kubernetes-sigs.github.io/external-dns/)
 
 A convenience that automatically configures DNS for routes.
+
+!!! warning
+
+    This will not work locally, and requires edits to point to your DNS zone and provider.
 
 ```shell
 kubectl apply -f setup/external-dns.yaml
@@ -72,9 +87,19 @@ kubectl apply -f setup/gateway-http.yaml
 
 ## :white_check_mark: Test it
 
-```shell
-export GATEWAY_IP=$(kubectl get gtw eg -o jsonpath='{.status.addresses[0].value}')
-```
+===+ "Obtain Gateway IP"
+
+    ```shell
+    export GATEWAY_IP=$(kubectl get gtw eg -o jsonpath='{.status.addresses[0].value}')
+    ```
+
+=== "Using a local k3d cluster"
+
+    For `k3d`, use 127.0.0.1 as your GATEWAY_IP
+
+    ```shell
+    export GATEWAY_IP=127.0.0.1
+    ```
 
 ```shell
 curl -v http://$GATEWAY_IP/
