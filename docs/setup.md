@@ -9,12 +9,14 @@
 ```
 
 ```shell
-./make-gke-cluster
+./setup/make-gke-cluster
 ```
 
 ---
 
-## Install EG or TEG
+## Install [EG](https://gateway.envoyproxy.io/) or [TEG](https://docs.tetrate.io/envoy-gateway/)
+
+TEG installs Redis and the Envoy rate limit service, meaning that it's pre-configured for rate-limiting.
 
 === "Install Envoy Gateway"
 
@@ -35,6 +37,8 @@
 ---
 
 ## Install `external-dns`
+
+A convenience that automatically configures DNS for routes.
 
 ```shell
 kubectl apply -f setup/external-dns.yaml
