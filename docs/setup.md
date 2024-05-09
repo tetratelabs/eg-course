@@ -45,6 +45,14 @@ TEG installs Redis and the Envoy rate limit service, meaning that it's pre-confi
       -n envoy-gateway-system --create-namespace
     ```
 
+    Study the deployments in `envoy-gateway-system`:
+
+    ```shell
+    kubectl get deploy -n envoy-gateway-system
+    ```
+
+    See [architecture](https://docs.tetrate.io/envoy-gateway/introduction/architecture).
+
 ---
 
 ## Install [`external-dns`](https://kubernetes-sigs.github.io/external-dns/)

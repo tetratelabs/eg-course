@@ -75,14 +75,12 @@ In another terminal, call a failing endpoint
 ## :white_check_mark: Verify: Tail the gateway logs
 
 ```shell
-kubectl logs --follow -n envoy-gateway-system \
+kubectl logs --tail 1 -n envoy-gateway-system \
   -l gateway.envoyproxy.io/owning-gateway-name=eg \
-  -l gateway.envoyproxy.io/owning-gateway-namespace=default
+  -l gateway.envoyproxy.io/owning-gateway-namespace=default | jq
 ```
 
 Below is a copy of the prettified JSON log line:
-
-
 
 ```json linenums="1" hl_lines="7"
 {

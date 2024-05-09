@@ -91,6 +91,49 @@ date: Tue, 07 May 2024 22:33:12 GMT
 
 Above, note the `x-ratelimit-*` headers that inform us of the limit, the number of requests remaining, and the amount of time (in seconds) until the corresponding counter is reset.
 
+---
+
+## :white_check_mark: Verify: Tail the gateway logs
+
+```shell
+kubectl logs --tail 1 -n envoy-gateway-system \
+  -l gateway.envoyproxy.io/owning-gateway-name=eg \
+  -l gateway.envoyproxy.io/owning-gateway-namespace=default | jq
+```
+
+Below is a copy of the prettified JSON log line:
+
+```json linenums="1" hl_lines="6-7"
+{
+  "start_time": "2024-05-09T00:44:06.909Z",
+  "method": "HEAD",
+  "x-envoy-origin-path": "/",
+  "protocol": "HTTP/2",
+  "response_code": "429",
+  "response_flags": "RL",
+  "response_code_details": "request_rate_limited",
+  "connection_termination_details": "-",
+  "upstream_transport_failure_reason": "-",
+  "bytes_received": "0",
+  "bytes_sent": "0",
+  "duration": "3",
+  "x-envoy-upstream-service-time": "-",
+  "x-forwarded-for": "172.19.0.4",
+  "user-agent": "curl/8.7.1",
+  "x-request-id": "a5216e48-3243-42d7-b3f4-8af119efd232",
+  ":authority": "httpbin.esuez.org",
+  "upstream_host": "-",
+  "upstream_cluster": "httproute/default/httpbin/rule/0",
+  "upstream_local_address": "-",
+  "downstream_local_address": "10.42.0.21:10443",
+  "downstream_remote_address": "172.19.0.4:59056",
+  "requested_server_name": "httpbin.esuez.org",
+  "route_name": "httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org"
+}
+```
+
+Note the [Envoy response flag](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#config-access-log-format-response-flags) is RL: RateLimited.
+
 ## Rate limit distinct users
 
 It is more common for individual users to each have their own limit.
