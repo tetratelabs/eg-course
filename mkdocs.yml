@@ -25,6 +25,7 @@ nav:
   - auth.md
   - Reference:
     - snippets.md
+    - artifacts.md
 markdown_extensions:
   - admonition
   - pymdownx.details
