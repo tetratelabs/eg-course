@@ -23,6 +23,7 @@ nav:
   - retries.md
   - ratelimit.md
   - auth.md
+  - takeaways.md
   - Reference:
     - snippets.md
     - artifacts.md
