@@ -542,27 +542,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../artifacts/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Artifacts
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -775,128 +754,135 @@
 </div>
 </div>
 <hr />
-<h2 id="verify-tail-the-gateway-logs"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Verify: Tail the gateway logs<a class="headerlink" href="#verify-tail-the-gateway-logs" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
+<p>Another convenient way to get at the stats exposed by the Envoy proxy is through the <a href="https://www.envoyproxy.io/docs/envoy/latest/operations/admin">Envoy admin interface</a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>egctl<span class="w"> </span>x<span class="w"> </span>dashboard<span class="w"> </span>envoy-proxy<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>default<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>default
+</code></pre></div>
+<p>Click on the <code>stats</code> endpoint and look for metrics with "retry" in their name.</p>
+<hr />
+<h2 id="verify-tail-the-gateway-logs"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Verify: Tail the gateway logs<a class="headerlink" href="#verify-tail-the-gateway-logs" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>default<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
 </code></pre></div>
 <p>Below is a copy of the prettified JSON log line:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-8-10">10</a></span>
-<span class="normal"><a href="#__codelineno-8-11">11</a></span>
-<span class="normal"><a href="#__codelineno-8-12">12</a></span>
-<span class="normal"><a href="#__codelineno-8-13">13</a></span>
-<span class="normal"><a href="#__codelineno-8-14">14</a></span>
-<span class="normal"><a href="#__codelineno-8-15">15</a></span>
-<span class="normal"><a href="#__codelineno-8-16">16</a></span>
-<span class="normal"><a href="#__codelineno-8-17">17</a></span>
-<span class="normal"><a href="#__codelineno-8-18">18</a></span>
-<span class="normal"><a href="#__codelineno-8-19">19</a></span>
-<span class="normal"><a href="#__codelineno-8-20">20</a></span>
-<span class="normal"><a href="#__codelineno-8-21">21</a></span>
-<span class="normal"><a href="#__codelineno-8-22">22</a></span>
-<span class="normal"><a href="#__codelineno-8-23">23</a></span>
-<span class="normal"><a href="#__codelineno-8-24">24</a></span>
-<span class="normal"><a href="#__codelineno-8-25">25</a></span>
-<span class="normal"><a href="#__codelineno-8-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="p">{</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">    </span><span class="nt">&quot;start_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-05-07T21:28:06.447Z&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HEAD&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">    </span><span class="nt">&quot;x-envoy-origin-path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/status/500&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span><span class="nt">&quot;protocol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HTTP/2&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span><span class="nt">&quot;response_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;500&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="hll"><span class="w">    </span><span class="nt">&quot;response_flags&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;URX&quot;</span><span class="p">,</span>
-</span><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">    </span><span class="nt">&quot;response_code_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;via_upstream&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">    </span><span class="nt">&quot;connection_termination_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">    </span><span class="nt">&quot;upstream_transport_failure_reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">    </span><span class="nt">&quot;bytes_received&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">    </span><span class="nt">&quot;bytes_sent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="w">    </span><span class="nt">&quot;duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1837&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="w">    </span><span class="nt">&quot;x-envoy-upstream-service-time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="w">    </span><span class="nt">&quot;x-forwarded-for&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;136.49.247.103&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="w">    </span><span class="nt">&quot;user-agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;curl/8.7.1&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="w">    </span><span class="nt">&quot;x-request-id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;f8d9ee84-0f3b-4bc8-a8b7-a023226704b9&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="w">    </span><span class="nt">&quot;:authority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httpbin.esuez.org&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-19" name="__codelineno-8-19"></a><span class="w">    </span><span class="nt">&quot;upstream_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.48.2.12:8080&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-20" name="__codelineno-8-20"></a><span class="w">    </span><span class="nt">&quot;upstream_cluster&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httproute/default/httpbin/rule/0&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-21" name="__codelineno-8-21"></a><span class="w">    </span><span class="nt">&quot;upstream_local_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.48.0.13:36898&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-22" name="__codelineno-8-22"></a><span class="w">    </span><span class="nt">&quot;downstream_local_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.48.0.13:10443&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-23" name="__codelineno-8-23"></a><span class="w">    </span><span class="nt">&quot;downstream_remote_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;136.49.247.103:52999&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-24" name="__codelineno-8-24"></a><span class="w">    </span><span class="nt">&quot;requested_server_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httpbin.esuez.org&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-25" name="__codelineno-8-25"></a><span class="w">    </span><span class="nt">&quot;route_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org&quot;</span>
-<a id="__codelineno-8-26" name="__codelineno-8-26"></a><span class="p">}</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">    </span><span class="nt">&quot;start_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-05-07T21:28:06.447Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HEAD&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">    </span><span class="nt">&quot;x-envoy-origin-path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/status/500&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">    </span><span class="nt">&quot;protocol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HTTP/2&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">    </span><span class="nt">&quot;response_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;500&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="hll"><span class="w">    </span><span class="nt">&quot;response_flags&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;URX&quot;</span><span class="p">,</span>
+</span><a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">    </span><span class="nt">&quot;response_code_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;via_upstream&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">    </span><span class="nt">&quot;connection_termination_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="w">    </span><span class="nt">&quot;upstream_transport_failure_reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="w">    </span><span class="nt">&quot;bytes_received&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="w">    </span><span class="nt">&quot;bytes_sent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="w">    </span><span class="nt">&quot;duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1837&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="w">    </span><span class="nt">&quot;x-envoy-upstream-service-time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="w">    </span><span class="nt">&quot;x-forwarded-for&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;136.49.247.103&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="w">    </span><span class="nt">&quot;user-agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;curl/8.7.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="w">    </span><span class="nt">&quot;x-request-id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;f8d9ee84-0f3b-4bc8-a8b7-a023226704b9&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="w">    </span><span class="nt">&quot;:authority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httpbin.esuez.org&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="w">    </span><span class="nt">&quot;upstream_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.48.2.12:8080&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a><span class="w">    </span><span class="nt">&quot;upstream_cluster&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httproute/default/httpbin/rule/0&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a><span class="w">    </span><span class="nt">&quot;upstream_local_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.48.0.13:36898&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a><span class="w">    </span><span class="nt">&quot;downstream_local_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.48.0.13:10443&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23"></a><span class="w">    </span><span class="nt">&quot;downstream_remote_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;136.49.247.103:52999&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24"></a><span class="w">    </span><span class="nt">&quot;requested_server_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httpbin.esuez.org&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25"></a><span class="w">    </span><span class="nt">&quot;route_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org&quot;</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Note the <a href="https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#config-access-log-format-response-flags">Envoy response flag</a> is URX: UpstreamRetryLimitExceeded.</p>
 <h2 id="verify-review-the-proxy-configuration"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Verify: Review the proxy configuration<a class="headerlink" href="#verify-review-the-proxy-configuration" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>egctl<span class="w"> </span>config<span class="w"> </span>envoy-proxy<span class="w"> </span>route<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>default<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span>-o<span class="w"> </span>yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>bat<span class="w"> </span>-l<span class="w"> </span>yaml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>egctl<span class="w"> </span>config<span class="w"> </span>envoy-proxy<span class="w"> </span>route<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>default<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>-o<span class="w"> </span>yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>bat<span class="w"> </span>-l<span class="w"> </span>yaml
 </code></pre></div>
 <p>Confirm that the routing configuration has been updated with the retry rule.</p>
 <p>Here is a sanitized copy of the captured output:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-10-10">10</a></span>
-<span class="normal"><a href="#__codelineno-10-11">11</a></span>
-<span class="normal"><a href="#__codelineno-10-12">12</a></span>
-<span class="normal"><a href="#__codelineno-10-13">13</a></span>
-<span class="normal"><a href="#__codelineno-10-14">14</a></span>
-<span class="normal"><a href="#__codelineno-10-15">15</a></span>
-<span class="normal"><a href="#__codelineno-10-16">16</a></span>
-<span class="normal"><a href="#__codelineno-10-17">17</a></span>
-<span class="normal"><a href="#__codelineno-10-18">18</a></span>
-<span class="normal"><a href="#__codelineno-10-19">19</a></span>
-<span class="normal"><a href="#__codelineno-10-20">20</a></span>
-<span class="normal"><a href="#__codelineno-10-21">21</a></span>
-<span class="normal"><a href="#__codelineno-10-22">22</a></span>
-<span class="normal"><a href="#__codelineno-10-23">23</a></span>
-<span class="normal"><a href="#__codelineno-10-24">24</a></span>
-<span class="normal"><a href="#__codelineno-10-25">25</a></span>
-<span class="normal"><a href="#__codelineno-10-26">26</a></span>
-<span class="normal"><a href="#__codelineno-10-27">27</a></span>
-<span class="normal"><a href="#__codelineno-10-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nt">envoy-gateway-system</span><span class="p">:</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">  </span><span class="nt">envoy-default-eg-e41e7b31-c7657fcf5-gsgvs</span><span class="p">:</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">    </span><span class="nt">dynamicRouteConfigs</span><span class="p">:</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">routeConfig</span><span class="p">:</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default/eg/https</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="w">        </span><span class="nt">virtualHosts</span><span class="p">:</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">domains</span><span class="p">:</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin.esuez.org</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default/eg/https/httpbin_esuez_org</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="w">          </span><span class="nt">routes</span><span class="p">:</span>
-<a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
-<a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="w">              </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
-<a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org</span>
-<a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="w">            </span><span class="nt">route</span><span class="p">:</span>
-<a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="w">              </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/default/httpbin/rule/0</span>
-<a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="hll"><span class="w">              </span><span class="nt">retryPolicy</span><span class="p">:</span>
-</span><a id="__codelineno-10-18" name="__codelineno-10-18"></a><span class="hll"><span class="w">                </span><span class="nt">hostSelectionRetryMaxAttempts</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;5&quot;</span>
-</span><a id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="hll"><span class="w">                </span><span class="nt">numRetries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-</span><a id="__codelineno-10-20" name="__codelineno-10-20"></a><span class="hll"><span class="w">                </span><span class="nt">perTryTimeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.250s</span>
-</span><a id="__codelineno-10-21" name="__codelineno-10-21"></a><span class="hll"><span class="w">                </span><span class="nt">retriableStatusCodes</span><span class="p">:</span>
-</span><a id="__codelineno-10-22" name="__codelineno-10-22"></a><span class="hll"><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
-</span><a id="__codelineno-10-23" name="__codelineno-10-23"></a><span class="hll"><span class="w">                </span><span class="nt">retryBackOff</span><span class="p">:</span>
-</span><a id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="hll"><span class="w">                  </span><span class="nt">baseInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.100s</span>
-</span><a id="__codelineno-10-25" name="__codelineno-10-25"></a><span class="hll"><span class="w">                  </span><span class="nt">maxInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
-</span><a id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="hll"><span class="w">                </span><span class="nt">retryHostPredicate</span><span class="p">:</span>
-</span><a id="__codelineno-10-27" name="__codelineno-10-27"></a><span class="hll"><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">envoy.retry_host_predicates.previous_hosts</span>
-</span><a id="__codelineno-10-28" name="__codelineno-10-28"></a><span class="hll"><span class="w">                </span><span class="nt">retryOn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connect-failure,retriable-status-codes</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span>
+<span class="normal"><a href="#__codelineno-11-16">16</a></span>
+<span class="normal"><a href="#__codelineno-11-17">17</a></span>
+<span class="normal"><a href="#__codelineno-11-18">18</a></span>
+<span class="normal"><a href="#__codelineno-11-19">19</a></span>
+<span class="normal"><a href="#__codelineno-11-20">20</a></span>
+<span class="normal"><a href="#__codelineno-11-21">21</a></span>
+<span class="normal"><a href="#__codelineno-11-22">22</a></span>
+<span class="normal"><a href="#__codelineno-11-23">23</a></span>
+<span class="normal"><a href="#__codelineno-11-24">24</a></span>
+<span class="normal"><a href="#__codelineno-11-25">25</a></span>
+<span class="normal"><a href="#__codelineno-11-26">26</a></span>
+<span class="normal"><a href="#__codelineno-11-27">27</a></span>
+<span class="normal"><a href="#__codelineno-11-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="nt">envoy-gateway-system</span><span class="p">:</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="w">  </span><span class="nt">envoy-default-eg-e41e7b31-c7657fcf5-gsgvs</span><span class="p">:</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w">    </span><span class="nt">dynamicRouteConfigs</span><span class="p">:</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">routeConfig</span><span class="p">:</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default/eg/https</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="w">        </span><span class="nt">virtualHosts</span><span class="p">:</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">domains</span><span class="p">:</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin.esuez.org</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default/eg/https/httpbin_esuez_org</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="w">          </span><span class="nt">routes</span><span class="p">:</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="w">              </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15"></a><span class="w">            </span><span class="nt">route</span><span class="p">:</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16"></a><span class="w">              </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/default/httpbin/rule/0</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17"></a><span class="hll"><span class="w">              </span><span class="nt">retryPolicy</span><span class="p">:</span>
+</span><a id="__codelineno-11-18" name="__codelineno-11-18"></a><span class="hll"><span class="w">                </span><span class="nt">hostSelectionRetryMaxAttempts</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;5&quot;</span>
+</span><a id="__codelineno-11-19" name="__codelineno-11-19"></a><span class="hll"><span class="w">                </span><span class="nt">numRetries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</span><a id="__codelineno-11-20" name="__codelineno-11-20"></a><span class="hll"><span class="w">                </span><span class="nt">perTryTimeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.250s</span>
+</span><a id="__codelineno-11-21" name="__codelineno-11-21"></a><span class="hll"><span class="w">                </span><span class="nt">retriableStatusCodes</span><span class="p">:</span>
+</span><a id="__codelineno-11-22" name="__codelineno-11-22"></a><span class="hll"><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+</span><a id="__codelineno-11-23" name="__codelineno-11-23"></a><span class="hll"><span class="w">                </span><span class="nt">retryBackOff</span><span class="p">:</span>
+</span><a id="__codelineno-11-24" name="__codelineno-11-24"></a><span class="hll"><span class="w">                  </span><span class="nt">baseInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.100s</span>
+</span><a id="__codelineno-11-25" name="__codelineno-11-25"></a><span class="hll"><span class="w">                  </span><span class="nt">maxInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+</span><a id="__codelineno-11-26" name="__codelineno-11-26"></a><span class="hll"><span class="w">                </span><span class="nt">retryHostPredicate</span><span class="p">:</span>
+</span><a id="__codelineno-11-27" name="__codelineno-11-27"></a><span class="hll"><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">envoy.retry_host_predicates.previous_hosts</span>
+</span><a id="__codelineno-11-28" name="__codelineno-11-28"></a><span class="hll"><span class="w">                </span><span class="nt">retryOn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connect-failure,retriable-status-codes</span>
 </span></code></pre></div></td></tr></table></div>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>To configure retries, we had to resort to a BackingTrafficPolicy, an extension to the Gateway API.
