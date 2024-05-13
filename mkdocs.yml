@@ -26,7 +26,6 @@ nav:
   - takeaways.md
   - Reference:
     - snippets.md
-    - artifacts.md
 markdown_extensions:
   - admonition
   - pymdownx.details
