@@ -72,6 +72,18 @@ In another terminal, call a failing endpoint
 
 ---
 
+Another convenient way to get at the stats exposed by the Envoy proxy is through the [Envoy admin interface](https://www.envoyproxy.io/docs/envoy/latest/operations/admin):
+
+```shell
+egctl x dashboard envoy-proxy -n envoy-gateway-system \
+  -l gateway.envoyproxy.io/owning-gateway-name=eg \
+  -l gateway.envoyproxy.io/owning-gateway-namespace=default
+```
+
+Click on the `stats` endpoint and look for metrics with "retry" in their name.
+
+---
+
 ## :white_check_mark: Verify: Tail the gateway logs
 
 ```shell
