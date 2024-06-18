@@ -77,11 +77,11 @@ http://prometheus-server.monitoring.svc.cluster.local/
 
 ## Import dashboards
 
-- [Envoy Global](https://raw.githubusercontent.com/envoyproxy/gateway/main/examples/grafana/dashboards/envoy-global.json)
+- [Envoy Global](https://raw.githubusercontent.com/envoyproxy/gateway/main/charts/gateway-addons-helm/dashboards/envoy-global.json)
 
-- [Envoy Clusters](https://raw.githubusercontent.com/envoyproxy/gateway/main/examples/grafana/dashboards/envoy-clusters.json)
+- [Envoy Clusters](https://raw.githubusercontent.com/envoyproxy/gateway/main/charts/gateway-addons-helm/dashboards/envoy-clusters.json)
 
-- [Envoy Pod Resources](https://raw.githubusercontent.com/envoyproxy/gateway/main/examples/grafana/dashboards/envoy-pod-resource.json)
+- [Envoy Pod Resources](https://raw.githubusercontent.com/envoyproxy/gateway/main/charts/gateway-addons-helm/dashboards/envoy-pod-resource.json)
 
 ## Visit the dashboards
 
