@@ -761,10 +761,10 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>grafana<span class="w"> </span>grafana/grafana<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/envoyproxy/gateway/latest/examples/grafana/helm-values.yaml<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>--create-namespace
 </code></pre></div>
 <p>Expose the Grafana dashboard:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>port-forward<span class="w"> </span>svc/grafana<span class="w"> </span><span class="m">8080</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>port-forward<span class="w"> </span>deploy/grafana<span class="w"> </span><span class="m">3000</span>
 </code></pre></div>
 <h2 id="configure-grafana">Configure Grafana<a class="headerlink" href="#configure-grafana" title="Permanent link">&para;</a></h2>
-<p>Visit <a href="http://localhost:8080">localhost:8080</a> and login to grafana using <code>admin:admin</code>.</p>
+<p>Visit <a href="http://localhost:3000">localhost:3000</a> and login to grafana using <code>admin:admin</code>.</p>
 <p>Configure the prometheus data source, using the service URL:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>http://prometheus-server.monitoring.svc.cluster.local/
 </code></pre></div>
