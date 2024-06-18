@@ -1,6 +1,6 @@
 # Observability
 
-The following content is distilled from the [Envoy Gateway docs](https://gateway.envoyproxy.io/v1.0.1/tasks/observability/grafana-integration/).
+The following content is distilled from the [Envoy Gateway docs](https://gateway.envoyproxy.io/v1.0.2/tasks/observability/grafana-integration/).
 
 The objective is to collect Gateway metrics with Prometheus and expose them through Grafana dashboards.
 

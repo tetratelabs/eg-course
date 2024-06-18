@@ -4,7 +4,7 @@ Envoy Gateway supports a number of [distinct authentication mechanisms](https://
 
 In this exercise, we keep things simple and demonstrate basic auth.
 
-Once more, we are dealing with a feature that is outside the current Gateway API specification, and so we use a [SecurityPolicy](https://gateway.envoyproxy.io/v1.0.1/api/extension_types/#securitypolicy) attachment against the route we wish to protect, which in this case is the `httpbin` route.
+Once more, we are dealing with a feature that is outside the current Gateway API specification, and so we use a [SecurityPolicy](https://gateway.envoyproxy.io/v1.0.2/api/extension_types/#securitypolicy) attachment against the route we wish to protect, which in this case is the `httpbin` route.
 
 ```yaml linenums="1" hl_lines="13"
 --8<-- "auth/basic.yaml"
