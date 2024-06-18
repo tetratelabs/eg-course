@@ -33,7 +33,7 @@ helm upgrade --install prometheus prometheus-community/prometheus -n monitoring 
 Expose the prometheus dashboard:
 
 ```shell
-kubectl -n monitoring port-forward deploy prometheus-server 9090
+kubectl -n monitoring port-forward deploy/prometheus-server 9090
 ```
 
 ## Query metrics
