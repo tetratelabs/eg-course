@@ -719,11 +719,11 @@
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If during <a href="../setup/">setup</a> you chose to install Envoy Gateway, then before you proceed with this lab, you will need to deploy Redis, and reconfigure Envoy Gateway with rate limiting pointing to the URL of the Redis instance you deployed.</p>
-<p>Detailed instructions are available <a href="https://gateway.envoyproxy.io/v1.0.1/tasks/traffic/global-rate-limit/">here</a>.</p>
+<p>Detailed instructions are available <a href="https://gateway.envoyproxy.io/v1.0.2/tasks/traffic/global-rate-limit/">here</a>.</p>
 </div>
 <p>Similar to <a href="../retries/">retries</a>,
 rate limiting is not part of the Kubernetes Gateway API specification,
-and is configured through Envoy Gateway's <a href="https://gateway.envoyproxy.io/v1.0.1/api/extension_types/#backendtrafficpolicy">BackendTrafficPolicy</a> resource.</p>
+and is configured through Envoy Gateway's <a href="https://gateway.envoyproxy.io/v1.0.2/api/extension_types/#backendtrafficpolicy">BackendTrafficPolicy</a> resource.</p>
 <p>The rate limit is associated with the HTTPRoute you wish to limit.</p>
 <h2 id="simple-example">Simple example<a class="headerlink" href="#simple-example" title="Permanent link">&para;</a></h2>
 <p>Configure access to <code>httpbin</code> to be limited to three requests per minute:</p>
