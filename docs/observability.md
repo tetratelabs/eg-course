@@ -62,12 +62,12 @@ helm upgrade --install grafana grafana/grafana -f https://raw.githubusercontent.
 Expose the Grafana dashboard:
 
 ```shell
-kubectl -n monitoring port-forward svc/grafana 8080
+kubectl -n monitoring port-forward deploy/grafana 3000
 ```
 
 ## Configure Grafana
 
-Visit [localhost:8080](http://localhost:8080) and login to grafana using `admin:admin`.
+Visit [localhost:3000](http://localhost:3000) and login to grafana using `admin:admin`.
 
 Configure the prometheus data source, using the service URL:
 
