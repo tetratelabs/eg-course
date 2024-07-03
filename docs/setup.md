@@ -45,7 +45,7 @@ TEG installs Redis and the Envoy rate limit service, meaning that it's pre-confi
 
     ```shell
     helm install teg oci://docker.io/tetrate/teg-envoy-gateway-helm \
-      --version v1.0.0 \
+      --version v1.0.1 \
       -n envoy-gateway-system --create-namespace
     ```
 
