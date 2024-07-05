@@ -1,0 +1,21 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: ext-authz-policy
+spec:
+  targetRefs:
+  - group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: httpbin
+  extAuth:
+    http:
+      backendRefs:
+      - group: ""
+        kind: Service
+        name: ext-authz
+        port: 8000
+    headersToExtAuth:
+    - x-ext-authz
+
+

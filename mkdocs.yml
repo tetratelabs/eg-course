@@ -24,6 +24,9 @@ nav:
   - ratelimit.md
   - auth.md
   - Additional:
+    - traffic-split.md
+    - wasm.md
+    - ext-authz.md
     - observability.md
   - takeaways.md
   - Reference:
