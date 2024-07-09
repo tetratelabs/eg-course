@@ -15,8 +15,8 @@ helm repo update
 
 ```shell
 helm upgrade --install --create-namespace --namespace cert-manager \
-  --set installCRDs=true \
-  --set featureGates=ExperimentalGatewayAPISupport=true \
+  --set crds.enabled=true \
+  --set "extraArgs={--enable-gateway-api}" \
   cert-manager jetstack/cert-manager
 ```
 
