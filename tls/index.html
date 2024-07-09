@@ -745,8 +745,8 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>helm<span class="w"> </span>repo<span class="w"> </span>update
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>--create-namespace<span class="w"> </span>--namespace<span class="w"> </span>cert-manager<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--set<span class="w"> </span><span class="nv">installCRDs</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--set<span class="w"> </span><span class="nv">featureGates</span><span class="o">=</span><span class="nv">ExperimentalGatewayAPISupport</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--set<span class="w"> </span>crds.enabled<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--set<span class="w"> </span><span class="s2">&quot;extraArgs={--enable-gateway-api}&quot;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>cert-manager<span class="w"> </span>jetstack/cert-manager
 </code></pre></div>
 <hr />
