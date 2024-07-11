@@ -1,0 +1,18 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: oidc-example
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: httpbin
+  oidc:
+    provider:
+      issuer: "$ISSUER"
+    clientID: "$CLIENT_ID"
+    clientSecret:
+      name: httpbin-client-secret
+    redirectURL: "https://httpbin.esuez.org/oauth2/callback"
+    logoutPath: "/logout"

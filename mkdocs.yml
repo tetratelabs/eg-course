@@ -28,6 +28,7 @@ nav:
     - wasm.md
     - ext-authz.md
     - observability.md
+    - oidc.md
   - takeaways.md
   - Reference:
     - snippets.md
