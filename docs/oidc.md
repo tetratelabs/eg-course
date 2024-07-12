@@ -30,7 +30,7 @@ kubectl create secret generic httpbin-client-secret \
 Review the following security policy specification:
 
 ```yaml linenums="1"
---8<-- "oidc/security-policy.yaml"
+--8<-- "oidc/oidc-policy.yaml"
 ```
 
 We are basically configuring OIDC authentication for the route for the httpbin application.
@@ -38,7 +38,7 @@ We are basically configuring OIDC authentication for the route for the httpbin a
 Apply the policy, with variable substitution:
 
 ```shell
-envsubst < oidc/security-policy.yaml | kubectl apply -f -
+envsubst < oidc/oidc-policy.yaml | kubectl apply -f -
 ```
 
 ### Test it
