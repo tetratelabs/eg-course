@@ -1,0 +1,30 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: httpbin-security-policy
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: httpbin
+  oidc:
+    provider:
+      issuer: "$ISSUER"
+    clientID: "$CLIENT_ID"
+    clientSecret:
+      name: httpbin-client-secret
+    redirectURL: "https://httpbin.esuez.org/oauth2/callback"
+    logoutPath: "/logout"
+  jwt:
+    providers:
+    - name: okta
+      issuer: "$ISSUER"
+      recomputeRoute: true
+      claimToHeaders:
+      - claim: sub
+        header: x-sub
+      - claim: isadmin
+        header: x-admin
+      remoteJWKS:
+        uri: "$ISSUER/v1/keys"
