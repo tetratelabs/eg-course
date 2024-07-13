@@ -969,15 +969,7 @@
 <span class="normal"><a href="#__codelineno-6-26">26</a></span>
 <span class="normal"><a href="#__codelineno-6-27">27</a></span>
 <span class="normal"><a href="#__codelineno-6-28">28</a></span>
-<span class="normal"><a href="#__codelineno-6-29">29</a></span>
-<span class="normal"><a href="#__codelineno-6-30">30</a></span>
-<span class="normal"><a href="#__codelineno-6-31">31</a></span>
-<span class="normal"><a href="#__codelineno-6-32">32</a></span>
-<span class="normal"><a href="#__codelineno-6-33">33</a></span>
-<span class="normal"><a href="#__codelineno-6-34">34</a></span>
-<span class="normal"><a href="#__codelineno-6-35">35</a></span>
-<span class="normal"><a href="#__codelineno-6-36">36</a></span>
-<span class="normal"><a href="#__codelineno-6-37">37</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nn">---</span>
+<span class="normal"><a href="#__codelineno-6-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nn">---</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1006,24 +998,17 @@
 <a id="__codelineno-6-27" name="__codelineno-6-27"></a><span class="w">    </span><span class="nt">backendRefs</span><span class="p">:</span>
 <a id="__codelineno-6-28" name="__codelineno-6-28"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
 <a id="__codelineno-6-29" name="__codelineno-6-29"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000</span>
-<a id="__codelineno-6-30" name="__codelineno-6-30"></a><span class="w">  </span><span class="c1"># catch-all</span>
-<a id="__codelineno-6-31" name="__codelineno-6-31"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matches</span><span class="p">:</span>
-<a id="__codelineno-6-32" name="__codelineno-6-32"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
-<a id="__codelineno-6-33" name="__codelineno-6-33"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PathPrefix</span>
-<a id="__codelineno-6-34" name="__codelineno-6-34"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
-<a id="__codelineno-6-35" name="__codelineno-6-35"></a><span class="w">    </span><span class="nt">backendRefs</span><span class="p">:</span>
-<a id="__codelineno-6-36" name="__codelineno-6-36"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backend-invalid</span>
-<a id="__codelineno-6-37" name="__codelineno-6-37"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
 </code></pre></div></td></tr></table></div>
 <p>Above:</p>
 <ul>
 <li>We give access to the exact endpoint (path) <code>/json</code> to all users.</li>
 <li>For <strong>any other path</strong> (path prefix of /), we match only if the header <code>x-admin</code> is <code>true</code>.</li>
-<li>Non-administrators will then match the catch-all route, which is invalid.</li>
+<li>Non-administrators will not match any rules, and so Envoy's response should be a 404 (not found).</li>
 </ul>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://gateway.envoyproxy.io/latest/tasks/security/oidc/">Envoy Gateway OIDC Authentication Task</a></li>
+<li><a href="https://gateway.envoyproxy.io/docs/tasks/traffic/http-routing/#jwt-claims-based-routing">JWT claims-based routing</a></li>
 </ul>
 
 
