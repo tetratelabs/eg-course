@@ -2,7 +2,7 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
-  name: oidc-example
+  name: httpbin-security-policy
 spec:
   targetRef:
     group: gateway.networking.k8s.io
