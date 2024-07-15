@@ -77,9 +77,20 @@ Next, let's expose the "admin" routes only to administrators:
 
 Above:
 
-- We give access to the exact endpoint (path) `/json` to all users.
+- We give access to the exact endpoint (path) `/headers` to all users.
 - For **any other path** (path prefix of /), we match only if the header `x-admin` is `true`.
-- Non-administrators will not match any rules, and so Envoy's response should be a 404 (not found).
+- Non-administrators will not match any rules, and so Envoy's response should be a 500 type error.
+
+Apply the claim-based routing policy:
+
+```shell
+kubectl apply -f oidc/authz-route.yaml
+```
+
+To test the policy:
+
+- Sign in as a non-admin user and verify that you can access the `/headers` endpoint but no other `httpbin` application endpoints.
+- Sign in as an admin user and verify that this user has access to all of the `httpbin` app endpoints.
 
 
 ## References

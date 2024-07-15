@@ -13,7 +13,13 @@ spec:
   - matches:
     - path:
         type: Exact
-        value: /json
+        value: /headers
+    - path:
+        type: Exact
+        value: /oauth2/callback
+    - path:
+        type: Exact
+        value: /logout
     backendRefs:
     - name: httpbin
       port: 8000
@@ -27,3 +33,6 @@ spec:
     backendRefs:
     - name: httpbin
       port: 8000
+  - backendRefs:
+    - name: invalid-backend
+      port: 8080
