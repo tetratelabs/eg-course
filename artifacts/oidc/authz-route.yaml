@@ -27,12 +27,3 @@ spec:
     backendRefs:
     - name: httpbin
       port: 8000
-  # catch-all
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /
-    backendRefs:
-    - name: backend-invalid
-      port: 8080
-

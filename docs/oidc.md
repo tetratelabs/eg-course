@@ -79,9 +79,10 @@ Above:
 
 - We give access to the exact endpoint (path) `/json` to all users.
 - For **any other path** (path prefix of /), we match only if the header `x-admin` is `true`.
-- Non-administrators will then match the catch-all route, which is invalid.
+- Non-administrators will not match any rules, and so Envoy's response should be a 404 (not found).
 
 
 ## References
 
 - [Envoy Gateway OIDC Authentication Task](https://gateway.envoyproxy.io/latest/tasks/security/oidc/)
+- [JWT claims-based routing](https://gateway.envoyproxy.io/docs/tasks/traffic/http-routing/#jwt-claims-based-routing)
