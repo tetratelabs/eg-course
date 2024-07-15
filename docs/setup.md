@@ -49,7 +49,7 @@ TEG installs Redis and the Envoy rate limit service, meaning that it's pre-confi
       -n envoy-gateway-system --create-namespace
     ```
 
-    Study the deployments in `envoy-gateway-system`:
+    Review the deployments in `envoy-gateway-system`:
 
     ```shell
     kubectl get deploy -n envoy-gateway-system
@@ -93,6 +93,12 @@ kubectl apply -f setup/gateway-class.yaml
 
 ```shell
 kubectl apply -f setup/gateway-http.yaml
+```
+
+Wait for the gateway to become available:
+
+```shell
+kubectl wait gtw/eg --for=condition=Programmed
 ```
 
 ---
