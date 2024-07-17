@@ -28,8 +28,8 @@ spec:
         type: PathPrefix
         value: /
       headers:
-      - name: x-admin
-        value: "true"
+      - name: x-access
+        value: "privileged"
     backendRefs:
     - name: httpbin
       port: 8000

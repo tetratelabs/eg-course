@@ -24,7 +24,7 @@ spec:
       claimToHeaders:
       - claim: sub
         header: x-sub
-      - claim: isadmin
-        header: x-admin
+      - claim: access
+        header: x-access
       remoteJWKS:
         uri: "$ISSUER/v1/keys"
