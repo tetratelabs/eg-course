@@ -873,7 +873,7 @@
 <ul>
 <li>Create an administrators group</li>
 <li>Have two users, where only one is a member of the admin group</li>
-<li>Configure the authorization server to set claim "isadmin" to <code>true</code> or <code>false</code> as a function of the user's group membership</li>
+<li>Configure the authorization server to set claim "access" to <code>default</code> or <code>privileged</code> as a function of the user's group membership</li>
 </ul>
 <p>Review the following augmented security policy specification:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
@@ -931,16 +931,16 @@
 </span><a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="hll"><span class="w">      </span><span class="nt">claimToHeaders</span><span class="p">:</span>
 </span><a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">claim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub</span>
 </span><a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="hll"><span class="w">        </span><span class="nt">header</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-sub</span>
-</span><a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">claim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">isadmin</span>
-</span><a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="hll"><span class="w">        </span><span class="nt">header</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-admin</span>
+</span><a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">claim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">access</span>
+</span><a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="hll"><span class="w">        </span><span class="nt">header</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-access</span>
 </span><a id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="hll"><span class="w">      </span><span class="nt">remoteJWKS</span><span class="p">:</span>
 </span><a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="hll"><span class="w">        </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$ISSUER/v1/keys&quot;</span>
 </span></code></pre></div></td></tr></table></div>
-<p>We are adding a jwt provider that will populate the header <code>x-admin</code> with the value from the <code>isadmin</code> claim (true or false).</p>
+<p>We are adding a JWT provider that will populate the header <code>x-access</code> with the value from the <code>access</code> claim (default or privileged).</p>
 <p>Apply the policy, with variable substitution:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>envsubst<span class="w"> </span>&lt;<span class="w"> </span>oidc/security-policy.yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-
 </code></pre></div>
-<p>Next, let's expose the "admin" routes only to administrators:</p>
+<p>Next, let's expose the "admin" routes only to privileged users:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
@@ -1008,8 +1008,8 @@
 <a id="__codelineno-6-28" name="__codelineno-6-28"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PathPrefix</span>
 <a id="__codelineno-6-29" name="__codelineno-6-29"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
 <a id="__codelineno-6-30" name="__codelineno-6-30"></a><span class="w">      </span><span class="nt">headers</span><span class="p">:</span>
-<a id="__codelineno-6-31" name="__codelineno-6-31"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-admin</span>
-<a id="__codelineno-6-32" name="__codelineno-6-32"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-access</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32"></a><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;privileged&quot;</span>
 <a id="__codelineno-6-33" name="__codelineno-6-33"></a><span class="w">    </span><span class="nt">backendRefs</span><span class="p">:</span>
 <a id="__codelineno-6-34" name="__codelineno-6-34"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
 <a id="__codelineno-6-35" name="__codelineno-6-35"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000</span>
@@ -1020,16 +1020,16 @@
 <p>Above:</p>
 <ul>
 <li>We give access to the exact endpoint (path) <code>/headers</code> to all authenticated users.</li>
-<li>For <strong>any other path</strong> (path prefix of /), we match only if the header <code>x-admin</code> is <code>true</code>.</li>
+<li>For <strong>any other path</strong> (path prefix of /), we match only if the header <code>x-access</code> is <code>privileged</code>.</li>
 </ul>
-<p>Other than the <code>/headers</code> (and oauth) endpoints, non-administrators will not have any routes to any of the other endpoints of the <code>httpbin</code> application.</p>
+<p>Other than the <code>/headers</code> (and oauth) endpoints, non-privileged users will not have routes to any of the other endpoints of the <code>httpbin</code> application.</p>
 <p>Apply the claim-based routing policy:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>oidc/authz-route.yaml
 </code></pre></div>
 <p>To test the policy:</p>
 <ul>
-<li>Sign in as a non-admin user and verify that you can access the <code>/headers</code> endpoint but no other <code>httpbin</code> application endpoints.</li>
-<li>Sign in as an admin user and verify that this user has access to all of the <code>httpbin</code> app endpoints.</li>
+<li>Sign in as a non-privileged user and verify that you can access the <code>/headers</code> endpoint but no other <code>httpbin</code> application endpoints.</li>
+<li>Sign in as a privileged user and verify that this user has access to all of the <code>httpbin</code> app endpoints.</li>
 </ul>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
