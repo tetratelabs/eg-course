@@ -77,9 +77,10 @@ Next, let's expose the "admin" routes only to administrators:
 
 Above:
 
-- We give access to the exact endpoint (path) `/headers` to all users.
+- We give access to the exact endpoint (path) `/headers` to all authenticated users.
 - For **any other path** (path prefix of /), we match only if the header `x-admin` is `true`.
-- Non-administrators will not match any rules, and so Envoy's response should be a 500 type error.
+
+Other than the `/headers` (and oauth) endpoints, non-administrators will not have any routes to any of the other endpoints of the `httpbin` application.
 
 Apply the claim-based routing policy:
 
