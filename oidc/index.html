@@ -20,7 +20,7 @@
     
     
       
-        <title>OIDC - Exploring Envoy Gateway</title>
+        <title>OIDC with Okta - Exploring Envoy Gateway</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#oidc" class="md-skip">
+        <a href="#oidc-with-okta" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              OIDC
+              OIDC with Okta
             
           </span>
         </div>
@@ -511,7 +511,7 @@
           
   
   <span class="md-ellipsis">
-    OIDC
+    OIDC with Okta
   </span>
   
 
@@ -522,7 +522,7 @@
         
   
   <span class="md-ellipsis">
-    OIDC
+    OIDC with Okta
   </span>
   
 
@@ -542,6 +542,66 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#okta-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Okta configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Okta configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Groups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure the Application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-authorization-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure the Authorization Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-the-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test the token
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#configuring-authentication" class="md-nav__link">
@@ -731,6 +791,66 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#okta-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Okta configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Okta configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Groups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure the Application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-authorization-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure the Authorization Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-the-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test the token
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuring-authentication" class="md-nav__link">
     <span class="md-ellipsis">
       Configuring Authentication
@@ -805,14 +925,82 @@
                   
 
 
-<h1 id="oidc">OIDC<a class="headerlink" href="#oidc" title="Permanent link">&para;</a></h1>
+<h1 id="oidc-with-okta">OIDC with Okta<a class="headerlink" href="#oidc-with-okta" title="Permanent link">&para;</a></h1>
 <p>We wish to protect the <code>httpbin</code> application with OpenID Connect authentication.</p>
-<p>For this example, the assumption is that we've pre-configured an openid connect authorization server.</p>
+<p>Once authentication is established, we demonstrate how to configure authorization policies for routes based on JWT claims from the user's access token.</p>
+<p>This example uses Okta as the identity provider where we define our users and their level of access to the application.</p>
+<h2 id="okta-configuration">Okta configuration<a class="headerlink" href="#okta-configuration" title="Permanent link">&para;</a></h2>
+<p>You will configure two users, one will be a default user with standard access to the application, the other will be a privileged user with access to additional endpoints in the application.</p>
+<h3 id="configure-groups">Configure Groups<a class="headerlink" href="#configure-groups" title="Permanent link">&para;</a></h3>
+<p>Create a group named <em>admin</em>.</p>
+<p>In Okta:</p>
+<ul>
+<li>Navigate to <em>Directory</em> and then to <em>Groups</em>.</li>
+<li>Click the button <em>Add group</em>.</li>
+<li>Enter the group name.</li>
+</ul>
+<h3 id="configure-users">Configure Users<a class="headerlink" href="#configure-users" title="Permanent link">&para;</a></h3>
+<p>Create a user with username <em>johndoe@example.com</em> and another with username <em>zeboss@example.com</em>.</p>
+<p>In Okta:</p>
+<ul>
+<li>Navigate to <em>Directory</em> and then to <em>People</em>.</li>
+<li>Click the button <em>Add person</em>.</li>
+<li>Enter the details:  user type (User), first and last names, the username (above email address).</li>
+<li>Check <em>I will set the password</em>.</li>
+<li>Enter a password.</li>
+<li>Uncheck <em>User must change password on first login</em>.</li>
+<li>For the <em>zeboss</em> user, also associate them to the group <em>admin</em> via the <em>Groups</em> field.</li>
+<li>Click <em>Save</em>.</li>
+</ul>
+<h3 id="configure-the-application">Configure the Application<a class="headerlink" href="#configure-the-application" title="Permanent link">&para;</a></h3>
+<p>The following instructions are for the hostname <code>httpbin.esuez.org</code>.</p>
+<p>Edit this value for your specific domain.</p>
+<p>In Okta:</p>
+<ul>
+<li>Navigate to <em>Applications</em> and then to <em>Application</em>.</li>
+<li>Click the button <em>Create App Integration</em>.</li>
+<li>Select <em>OIDC</em> as the sign-in method, and <em>Web Application</em> for the application type, and click <em>Next</em>.</li>
+<li>For <em>App integration name</em>, enter <code>httpbin.esuez.org</code>.</li>
+<li>Specify <code>https://httpbin.esuez.org/oauth2/callback</code> for the <em>Sign-in redirect URIs</em> field.</li>
+<li>Enter <code>https://httpbin.esuez.org/logout</code> for the <em>Sign-out redirect URIs</em> field.</li>
+<li>Click <em>Save</em>.</li>
+</ul>
+<p>Edit the application as follows:</p>
+<ul>
+<li>Select the tab named <em>Assignments</em>.</li>
+<li>Click the <em>Assign</em> button.</li>
+<li>Select <em>Assign to People</em> and assign both users to the application.</li>
+<li>Select <em>Assign to Groups</em> and assign the admin group to the application.</li>
+</ul>
+<p>In the <em>General</em> tab, make note of the client id and client secret.
+You will need both to configure the environment variables CLIENT_ID and CLIENT_SECRET.</p>
+<h3 id="configure-the-authorization-server">Configure the Authorization Server<a class="headerlink" href="#configure-the-authorization-server" title="Permanent link">&para;</a></h3>
+<p>In Okta:</p>
+<ul>
+<li>Navigate to <em>Security</em> and then to <em>API</em>.</li>
+<li>Under <em>Authorization Servers</em> select the existing <em>default</em> authorization server.</li>
+<li>Make note of the issuer URL to set the ISSUER environment variable.</li>
+<li>Select the <em>Claims</em> tab.</li>
+<li>Click the button <em>Add Claim</em>.</li>
+<li>Set the claim name to <em>access</em>.</li>
+<li>Keep the defaults: include in token type "Access Token", and value type of "Expression".</li>
+<li>For the expression value, enter:  <code>(user == null) ? "default" : user.isMemberOfGroupName("admin") ? "privileged" : "default"</code></li>
+<li>Click <em>Create</em>.</li>
+</ul>
+<p>The above expression translates <em>admin</em> group membership to the value "privileged"; absence of membership results in the value "default."</p>
+<h3 id="test-the-token">Test the token<a class="headerlink" href="#test-the-token" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Select the tab <em>Token Preview</em></li>
+<li>Select the httpbin app integration, the grant type of authorization code, one of the two users, the the scope named <em>openid</em></li>
+<li>Select <em>Preview Token</em></li>
+<li>Select the tab named <em>token</em> (that would be the access token)</li>
+<li>Verify that the payload has a claim named <em>access</em> with value of <em>privileged</em> for the admin user and <em>default</em> for the other user.</li>
+</ul>
 <h2 id="configuring-authentication">Configuring Authentication<a class="headerlink" href="#configuring-authentication" title="Permanent link">&para;</a></h2>
 <p>Before proceeding, configure your issuer URL, client id, and client secret.</p>
 <p>For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ISSUER</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CLIENT_ID</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ISSUER</span><span class="o">=</span><span class="s2">&quot;https://dev-*****.okta.com/oauth2/default&quot;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CLIENT_ID</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CLIENT_SECRET</span><span class="o">=</span><span class="s2">&quot;*****&quot;</span>
 </code></pre></div>
 <h3 id="kubernetes-secret">Kubernetes secret<a class="headerlink" href="#kubernetes-secret" title="Permanent link">&para;</a></h3>
@@ -870,11 +1058,6 @@
     You will be redirected back to the target application.</li>
 </ol>
 <h2 id="authorization">Authorization<a class="headerlink" href="#authorization" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Create an administrators group</li>
-<li>Have two users, where only one is a member of the admin group</li>
-<li>Configure the authorization server to set claim "access" to <code>default</code> or <code>privileged</code> as a function of the user's group membership</li>
-</ul>
 <p>Review the following augmented security policy specification:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
@@ -940,7 +1123,7 @@
 <p>Apply the policy, with variable substitution:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>envsubst<span class="w"> </span>&lt;<span class="w"> </span>oidc/security-policy.yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-
 </code></pre></div>
-<p>Next, let's expose the "admin" routes only to privileged users:</p>
+<p>Next, expose the "admin" routes only to privileged users:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
