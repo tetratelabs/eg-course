@@ -597,71 +597,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
-        
-          
-          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Reference
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_12">
-            <span class="md-nav__icon md-icon"></span>
-            Reference
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../snippets/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Snippets
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -722,13 +657,8 @@
 
 
 <h1 id="webassembly">WebAssembly<a class="headerlink" href="#webassembly" title="Permanent link">&para;</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The ability to specify wasm extensions will be released in versions 1.1 of Envoy Gateway.</p>
-<p>You can test it today by ensuring you install Envoy Gateway version "v0.0.0-latest" in <a href="../setup/#install-eg-or-teg">Setup</a>.</p>
-</div>
 <p>In this scenario we demonstrate how to apply a wasm extension to an HttpRoute.</p>
-<p>You will apply an <a href="https://gateway.envoyproxy.io/latest/api/extension_types/#envoyextensionpolicy">extension policy</a> that references a simple, pre-built wasm plugin to the HttpRoute for the <code>httpbin</code> sample application.</p>
+<p>You will apply an <a href="https://gateway.envoyproxy.io/docs/api/extension_types/#envoyextensionpolicy">extension policy</a> that references a simple, pre-built wasm plugin to the HttpRoute for the <code>httpbin</code> sample application.</p>
 <p>The basic logic of the plugin is to inject arbitrary, configurable headers into HTTP responses on the associated route.</p>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p><code>httpbin</code> is already deployed to the <code>default</code> namespace and the <a href="../simple-route/">simple HttpRoute</a> is already defined for it.</p>
@@ -785,8 +715,8 @@
 </li>
 <li>
 <p>Repeat the request:</p>
-<p><code>shell
- curl -v http://httpbin.esuez.org/json --resolve httpbin.esuez.org:80:$GATEWAY_IP</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-v<span class="w"> </span>http://httpbin.esuez.org/json<span class="w"> </span>--resolve<span class="w"> </span>httpbin.esuez.org:80:<span class="nv">$GATEWAY_IP</span>
+</code></pre></div>
 <p>Note the response headers contain extra headers from the configuration of the wasm plugin.</p>
 </li>
 </ol>

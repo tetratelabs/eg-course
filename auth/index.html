@@ -597,71 +597,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
-        
-          
-          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Reference
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_12">
-            <span class="md-nav__icon md-icon"></span>
-            Reference
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../snippets/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Snippets
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -722,9 +657,9 @@
 
 
 <h1 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h1>
-<p>Envoy Gateway supports a number of <a href="https://gateway.envoyproxy.io/latest/api/extension_types/#securitypolicyspec">distinct authentication mechanisms</a>, including JWT, OIDC, external authorization, and basic auth.</p>
+<p>Envoy Gateway supports a number of <a href="https://gateway.envoyproxy.io/docs/api/extension_types/#securitypolicyspec">distinct authentication mechanisms</a>, including JWT, OIDC, external authorization, and basic auth.</p>
 <p>In this exercise, we keep things simple and demonstrate basic auth.</p>
-<p>Once more, we are dealing with a feature that is outside the current Gateway API specification, and so we use a <a href="https://gateway.envoyproxy.io/v1.0.2/api/extension_types/#securitypolicy">SecurityPolicy</a> attachment against the route we wish to protect, which in this case is the <code>httpbin</code> route.</p>
+<p>Once more, we are dealing with a feature that is outside the current Gateway API specification, and so we use a <a href="https://gateway.envoyproxy.io/docs/api/extension_types/#securitypolicy">SecurityPolicy</a> attachment against the route we wish to protect, which in this case is the <code>httpbin</code> route.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -743,8 +678,8 @@
 <a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="nt">metadata</span><span class="p">:</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin-basicauth</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">  </span><span class="nt">targetRef</span><span class="p">:</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">  </span><span class="nt">targetRefs</span><span class="p">:</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">  </span><span class="nt">basicAuth</span><span class="p">:</span>
@@ -936,7 +871,8 @@ Since the authentication rule is applied at the route level, we need to look at 
 <span class="normal"><a href="#__codelineno-16-19">19</a></span>
 <span class="normal"><a href="#__codelineno-16-20">20</a></span>
 <span class="normal"><a href="#__codelineno-16-21">21</a></span>
-<span class="normal"><a href="#__codelineno-16-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="nt">envoy-gateway-system</span><span class="p">:</span>
+<span class="normal"><a href="#__codelineno-16-22">22</a></span>
+<span class="normal"><a href="#__codelineno-16-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="nt">envoy-gateway-system</span><span class="p">:</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="w">  </span><span class="nt">envoy-default-eg-e41e7b31-c7657fcf5-tmsdt</span><span class="p">:</span>
 <a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">    </span><span class="nt">dynamicRouteConfigs</span><span class="p">:</span>
 <a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
@@ -955,9 +891,10 @@ Since the authentication rule is applied at the route level, we need to look at 
 <a id="__codelineno-16-17" name="__codelineno-16-17"></a><span class="w">              </span><span class="nt">rateLimits</span><span class="p">:</span>
 <a id="__codelineno-16-18" name="__codelineno-16-18"></a><span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <a id="__codelineno-16-19" name="__codelineno-16-19"></a><span class="hll"><span class="w">            </span><span class="nt">typedPerFilterConfig</span><span class="p">:</span>
-</span><a id="__codelineno-16-20" name="__codelineno-16-20"></a><span class="hll"><span class="w">              </span><span class="nt">envoy.filters.http.basic_auth_httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org</span><span class="p">:</span>
-</span><a id="__codelineno-16-21" name="__codelineno-16-21"></a><span class="hll"><span class="w">                </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type.googleapis.com/envoy.config.route.v3.FilterConfig</span>
-</span><a id="__codelineno-16-22" name="__codelineno-16-22"></a><span class="hll"><span class="w">                </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span><a id="__codelineno-16-20" name="__codelineno-16-20"></a><span class="hll"><span class="w">              </span><span class="nt">envoy.filters.http.basic_auth</span><span class="p">:</span>
+</span><a id="__codelineno-16-21" name="__codelineno-16-21"></a><span class="hll"><span class="w">                </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type.googleapis.com/envoy.extensions.filters.http.basic_auth.v3.BasicAuthPerRoute</span>
+</span><a id="__codelineno-16-22" name="__codelineno-16-22"></a><span class="hll"><span class="w">                </span><span class="nt">users</span><span class="p">:</span>
+</span><a id="__codelineno-16-23" name="__codelineno-16-23"></a><span class="hll"><span class="w">                  </span><span class="nt">inlineBytes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">W3JlZGFjdGVkXQ==</span>
 </span></code></pre></div></td></tr></table></div>
 
 

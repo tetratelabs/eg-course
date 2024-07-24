@@ -606,71 +606,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
-        
-          
-          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Reference
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_12">
-            <span class="md-nav__icon md-icon"></span>
-            Reference
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../snippets/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Snippets
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -751,7 +686,7 @@
 <p>The absence of the header, or the header with a value other than <code>allow</code> will be denied (403).</p>
 <h2 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h2>
 <p>Make sure that the <code>httpbin</code> service is deployed, and a simple route is defined from the gateway to the service.</p>
-<p>Review the following <a href="https://gateway.envoyproxy.io/v1.0.2/api/extension_types/#securitypolicy">security policy</a>:</p>
+<p>Review the following <a href="https://gateway.envoyproxy.io/docs/api/extension_types/#securitypolicy">security policy</a>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
@@ -791,11 +726,11 @@
 <a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-ext-authz</span>
 </code></pre></div></td></tr></table></div>
 <p>Apply the policy:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>security-policy.yaml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>ext-authz/security-policy.yaml
 </code></pre></div>
 <p>Send a test request:</p>
-<p><code>shell
- curl -v -H "x-ext-authz: allow" http://httpbin.esuez.org/json --resolve httpbin.esuez.org:80:$GATEWAY_IP</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-v<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;x-ext-authz: allow&quot;</span><span class="w"> </span>http://httpbin.esuez.org/json<span class="w"> </span>--resolve<span class="w"> </span>httpbin.esuez.org:80:<span class="nv">$GATEWAY_IP</span>
+</code></pre></div>
 <p>The above request should succeed.</p>
 <p>Absence of the header, or header value that is not "allow" will return a 403.</p>
 

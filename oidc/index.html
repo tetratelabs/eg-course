@@ -699,71 +699,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
-        
-          
-          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Reference
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_12">
-            <span class="md-nav__icon md-icon"></span>
-            Reference
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../snippets/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Snippets
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -1033,8 +968,8 @@ You will need both to configure the environment variables CLIENT_ID and CLIENT_S
 <a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="nt">metadata</span><span class="p">:</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin-security-policy</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span><span class="nt">targetRef</span><span class="p">:</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span><span class="nt">targetRefs</span><span class="p">:</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
 <a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">  </span><span class="nt">oidc</span><span class="p">:</span>
@@ -1094,8 +1029,8 @@ You will need both to configure the environment variables CLIENT_ID and CLIENT_S
 <a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="nt">metadata</span><span class="p">:</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin-security-policy</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">  </span><span class="nt">targetRef</span><span class="p">:</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">  </span><span class="nt">targetRefs</span><span class="p">:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
 <a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
 <a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
 <a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">  </span><span class="nt">oidc</span><span class="p">:</span>
@@ -1216,7 +1151,7 @@ You will need both to configure the environment variables CLIENT_ID and CLIENT_S
 </ul>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://gateway.envoyproxy.io/latest/tasks/security/oidc/">Envoy Gateway OIDC Authentication Task</a></li>
+<li><a href="https://gateway.envoyproxy.io/docs/tasks/security/oidc/">Envoy Gateway OIDC Authentication Task</a></li>
 <li><a href="https://gateway.envoyproxy.io/docs/tasks/traffic/http-routing/#jwt-claims-based-routing">JWT claims-based routing</a></li>
 </ul>
 

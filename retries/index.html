@@ -633,71 +633,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
-        
-          
-          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Reference
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_12">
-            <span class="md-nav__icon md-icon"></span>
-            Reference
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../snippets/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Snippets
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -813,23 +748,29 @@
 <span class="normal"><a href="#__codelineno-1-11">11</a></span>
 <span class="normal"><a href="#__codelineno-1-12">12</a></span>
 <span class="normal"><a href="#__codelineno-1-13">13</a></span>
-<span class="normal"><a href="#__codelineno-1-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       BackendTrafficPolicy</span>
-</span><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       ClientTrafficPolicy</span>
-</span><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       EnvoyPatchPolicy</span>
-</span><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       EnvoyProxy</span>
-</span><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       SecurityPolicy</span>
-</span><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="go">gateway.networking.k8s.io/v1alpha2   BackendTLSPolicy</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="go">gateway.networking.k8s.io/v1         GatewayClass</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="go">gateway.networking.k8s.io/v1         Gateway</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="go">gateway.networking.k8s.io/v1alpha2   GRPCRoute</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="go">gateway.networking.k8s.io/v1         HTTPRoute</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="go">gateway.networking.k8s.io/v1beta1    ReferenceGrant</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="go">gateway.networking.k8s.io/v1alpha2   TCPRoute</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="go">gateway.networking.k8s.io/v1alpha2   TLSRoute</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="go">gateway.networking.k8s.io/v1alpha2   UDPRoute</span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       Backend</span>
+</span><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       BackendTrafficPolicy</span>
+</span><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       ClientTrafficPolicy</span>
+</span><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       EnvoyExtensionPolicy</span>
+</span><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       EnvoyPatchPolicy</span>
+</span><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       EnvoyProxy</span>
+</span><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       SecurityPolicy</span>
+</span><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="go">gateway.networking.k8s.io/v1alpha2   BackendLBPolicy</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="go">gateway.networking.k8s.io/v1alpha3   BackendTLSPolicy</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="go">gateway.networking.k8s.io/v1         GatewayClass</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="go">gateway.networking.k8s.io/v1         Gateway</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="go">gateway.networking.k8s.io/v1         GRPCRoute</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="go">gateway.networking.k8s.io/v1         HTTPRoute</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="go">gateway.networking.k8s.io/v1beta1    ReferenceGrant</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="go">gateway.networking.k8s.io/v1alpha2   TCPRoute</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="go">gateway.networking.k8s.io/v1alpha2   TLSRoute</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="go">gateway.networking.k8s.io/v1alpha2   UDPRoute</span>
 </code></pre></div></td></tr></table></div>
 <hr />
-<h2 id="use-backendtrafficpolicy-to-configure-retries">Use <a href="https://gateway.envoyproxy.io/v1.0.2/api/extension_types/#backendtrafficpolicy">BackendTrafficPolicy</a> to configure retries<a class="headerlink" href="#use-backendtrafficpolicy-to-configure-retries" title="Permanent link">&para;</a></h2>
+<h2 id="use-backendtrafficpolicy-to-configure-retries">Use <a href="https://gateway.envoyproxy.io/docs/api/extension_types/#backendtrafficpolicy">BackendTrafficPolicy</a> to configure retries<a class="headerlink" href="#use-backendtrafficpolicy-to-configure-retries" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
@@ -852,31 +793,29 @@
 <span class="normal"><a href="#__codelineno-2-20">20</a></span>
 <span class="normal"><a href="#__codelineno-2-21">21</a></span>
 <span class="normal"><a href="#__codelineno-2-22">22</a></span>
-<span class="normal"><a href="#__codelineno-2-23">23</a></span>
-<span class="normal"><a href="#__codelineno-2-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nn">---</span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nn">---</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.envoyproxy.io/v1alpha1</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BackendTrafficPolicy</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="nt">metadata</span><span class="p">:</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin-trafficpolicy</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span><span class="nt">targetRef</span><span class="p">:</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span><span class="nt">targetRefs</span><span class="p">:</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="hll"><span class="w">  </span><span class="nt">retry</span><span class="p">:</span>
-</span><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="hll"><span class="w">    </span><span class="nt">numRetries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-</span><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="hll"><span class="w">    </span><span class="nt">perRetry</span><span class="p">:</span>
-</span><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="hll"><span class="w">      </span><span class="nt">backOff</span><span class="p">:</span>
-</span><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="hll"><span class="w">        </span><span class="nt">baseInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100ms</span>
-</span><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="hll"><span class="w">        </span><span class="nt">maxInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
-</span><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="hll"><span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">250ms</span>
-</span><a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="hll"><span class="w">    </span><span class="nt">retryOn</span><span class="p">:</span>
-</span><a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="hll"><span class="w">      </span><span class="nt">httpStatusCodes</span><span class="p">:</span>
-</span><a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="hll"><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
-</span><a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="hll"><span class="w">      </span><span class="nt">triggers</span><span class="p">:</span>
-</span><a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="hll"><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connect-failure</span>
-</span><a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="hll"><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">retriable-status-codes</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">  </span><span class="nt">retry</span><span class="p">:</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="hll"><span class="w">    </span><span class="nt">numRetries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</span><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="hll"><span class="w">    </span><span class="nt">perRetry</span><span class="p">:</span>
+</span><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="hll"><span class="w">      </span><span class="nt">backOff</span><span class="p">:</span>
+</span><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="hll"><span class="w">        </span><span class="nt">baseInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100ms</span>
+</span><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="hll"><span class="w">        </span><span class="nt">maxInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+</span><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="hll"><span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">250ms</span>
+</span><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="hll"><span class="w">    </span><span class="nt">retryOn</span><span class="p">:</span>
+</span><a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="hll"><span class="w">      </span><span class="nt">httpStatusCodes</span><span class="p">:</span>
+</span><a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="hll"><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+</span><a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="hll"><span class="w">      </span><span class="nt">triggers</span><span class="p">:</span>
+</span><a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="hll"><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connect-failure</span>
+</span><a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="hll"><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">retriable-status-codes</span>
 </span></code></pre></div></td></tr></table></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>retries/httpbin-policy.yaml
 </code></pre></div>
@@ -888,7 +827,7 @@
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="s1">  -l gateway.envoyproxy.io/owning-gateway-namespace=default \</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="s1">  | grep &quot;envoy_cluster_upstream_rq_retry{envoy_cluster_name=\&quot;httproute/default/httpbin/rule/0\&quot;}&quot;&#39;</span>
 </code></pre></div>
-<p>In another terminal, call a failing endpoint</p>
+<p>In another terminal, call a failing endpoint:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Using DNS resolution</label><label for="__tabbed_1_2">Using <code>curl</code> name resolve flag</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
