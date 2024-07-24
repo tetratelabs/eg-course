@@ -30,8 +30,6 @@ nav:
     - observability.md
     - oidc.md
   - takeaways.md
-  - Reference:
-    - snippets.md
 markdown_extensions:
   - admonition
   - pymdownx.details
