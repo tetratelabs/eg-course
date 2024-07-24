@@ -1,10 +1,10 @@
 # Authentication
 
-Envoy Gateway supports a number of [distinct authentication mechanisms](https://gateway.envoyproxy.io/latest/api/extension_types/#securitypolicyspec), including JWT, OIDC, external authorization, and basic auth.
+Envoy Gateway supports a number of [distinct authentication mechanisms](https://gateway.envoyproxy.io/docs/api/extension_types/#securitypolicyspec), including JWT, OIDC, external authorization, and basic auth.
 
 In this exercise, we keep things simple and demonstrate basic auth.
 
-Once more, we are dealing with a feature that is outside the current Gateway API specification, and so we use a [SecurityPolicy](https://gateway.envoyproxy.io/v1.0.2/api/extension_types/#securitypolicy) attachment against the route we wish to protect, which in this case is the `httpbin` route.
+Once more, we are dealing with a feature that is outside the current Gateway API specification, and so we use a [SecurityPolicy](https://gateway.envoyproxy.io/docs/api/extension_types/#securitypolicy) attachment against the route we wish to protect, which in this case is the `httpbin` route.
 
 ```yaml linenums="1" hl_lines="13"
 --8<-- "auth/basic.yaml"
@@ -161,7 +161,7 @@ egctl config envoy-proxy route -n envoy-gateway-system \
 
 Here is the salient part of the output:
 
-```yaml linenums="1" hl_lines="19-22"
+```yaml linenums="1" hl_lines="19-23"
 envoy-gateway-system:
   envoy-default-eg-e41e7b31-c7657fcf5-tmsdt:
     dynamicRouteConfigs:
@@ -181,7 +181,8 @@ envoy-gateway-system:
               rateLimits:
               ...
             typedPerFilterConfig:
-              envoy.filters.http.basic_auth_httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org:
-                '@type': type.googleapis.com/envoy.config.route.v3.FilterConfig
-                config: {}
+              envoy.filters.http.basic_auth:
+                '@type': type.googleapis.com/envoy.extensions.filters.http.basic_auth.v3.BasicAuthPerRoute
+                users:
+                  inlineBytes: W3JlZGFjdGVkXQ==
 ```

@@ -1,6 +1,6 @@
 # Observability
 
-The following content is distilled from the [Envoy Gateway docs](https://gateway.envoyproxy.io/v1.0.2/tasks/observability/grafana-integration/).
+The following content is distilled from the [Envoy Gateway docs](https://gateway.envoyproxy.io/docs/tasks/observability/grafana-integration/).
 
 The objective is to collect Gateway metrics with Prometheus and expose them through Grafana dashboards.
 
@@ -17,72 +17,55 @@ done
 
 ---
 
-## Deploy Prometheus
+## Deploy Observability tools
+
+The following command will deploy all necessary observability tools to the `monitoring` namespace, including prometheus and grafana:
 
 ```shell
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo update
+helm install eg-addons oci://docker.io/envoyproxy/gateway-addons-helm \
+  --version v1.1.0 \
+  --set opentelemetry-collector.enabled=true \
+  -n monitoring --create-namespace
 ```
 
-Then:
+Confirm that Prometheus, Grafana, and other observability tools (loki, tempo, fluent-bit) are running in the `monitoring` namespace.
+
+---
+
+## Monitor Envoy
+
+A LoadBalancer type service is already defined for Grafana in the `monitoring` namespace.
+
+If you're running locally or don't have a public IP address associated with the service, you can use the `kubectl port-forward` command:
 
 ```shell
-helm upgrade --install prometheus prometheus-community/prometheus -n monitoring --create-namespace
+kubectl -n monitoring port-forward svc/grafana 3000:80
 ```
 
-Expose the prometheus dashboard:
+Visit [localhost:3000](http://localhost:3000) and login to grafana using `admin:admin`.
+
+- The prometheus data source is already configured.
+- Several Envoy monitoring dashboards have already be imported and can be seen in the `envoy-gateway` folder.
+
+You will find four distinct dashboards:
+
+- envoy global: monitor envoy proxy
+- envoy gateway global: monitor envoy gateway
+- envoy clusters: envoy proxy metrics with cluster/service-level granularity
+- resources monitor: monitor resource utilization of Envoy and Envoy Gateway
+
+## Ad-hoc query metrics
+
+A LoadBalancer type service is already defined for Prometheus in the `monitoring` namespace.
+
+If you're running locally or don't have a public IP address associated with the service, you can use the `kubectl port-forward` command:
 
 ```shell
-kubectl -n monitoring port-forward deploy/prometheus-server 9090
+kubectl -n monitoring port-forward svc/prometheus 9090:80
 ```
-
-## Query metrics
 
 Visit [localhost:9090](http://localhost:9090) and look for the retry metric from the [retries](retries.md/#review-the-proxys-stats) lab:
 
 ```promql
 envoy_cluster_upstream_rq_retry{envoy_cluster_name="httproute/default/httpbin/rule/0"}
 ```
-
----
-
-## Install Grafana
-
-```shell
-helm repo add grafana https://grafana.github.io/helm-charts
-helm repo update
-```
-
-Then:
-
-```shell
-helm upgrade --install grafana grafana/grafana -f https://raw.githubusercontent.com/envoyproxy/gateway/latest/examples/grafana/helm-values.yaml -n monitoring --create-namespace
-```
-
-Expose the Grafana dashboard:
-
-```shell
-kubectl -n monitoring port-forward deploy/grafana 3000
-```
-
-## Configure Grafana
-
-Visit [localhost:3000](http://localhost:3000) and login to grafana using `admin:admin`.
-
-Configure the prometheus data source, using the service URL:
-
-```
-http://prometheus-server.monitoring.svc.cluster.local/
-```
-
-## Import dashboards
-
-- [Envoy Global](https://raw.githubusercontent.com/envoyproxy/gateway/main/charts/gateway-addons-helm/dashboards/envoy-global.json)
-
-- [Envoy Clusters](https://raw.githubusercontent.com/envoyproxy/gateway/main/charts/gateway-addons-helm/dashboards/envoy-clusters.json)
-
-- [Envoy Pod Resources](https://raw.githubusercontent.com/envoyproxy/gateway/main/charts/gateway-addons-helm/dashboards/envoy-pod-resource.json)
-
-## Visit the dashboards
-
-Monitor your gateways in style.

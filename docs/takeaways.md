@@ -11,7 +11,7 @@
 - There's *a lot* of goodness to unpack.
 
     We scratched the surface exploring only a few example scenarios.
-    The Envoy Gateway [tasks section](https://gateway.envoyproxy.io/latest/tasks/) provides recipes for dozens of traffic management and security scenarios.
+    The Envoy Gateway [tasks section](https://gateway.envoyproxy.io/docs/tasks/) provides recipes for dozens of traffic management and security scenarios.
 
 - This was only an introduction to Envoy Gateway.
 

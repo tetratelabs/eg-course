@@ -173,5 +173,5 @@ To test the policy:
 
 ## References
 
-- [Envoy Gateway OIDC Authentication Task](https://gateway.envoyproxy.io/latest/tasks/security/oidc/)
+- [Envoy Gateway OIDC Authentication Task](https://gateway.envoyproxy.io/docs/tasks/security/oidc/)
 - [JWT claims-based routing](https://gateway.envoyproxy.io/docs/tasks/traffic/http-routing/#jwt-claims-based-routing)

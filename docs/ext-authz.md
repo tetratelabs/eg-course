@@ -22,7 +22,7 @@ The absence of the header, or the header with a value other than `allow` will be
 
 Make sure that the `httpbin` service is deployed, and a simple route is defined from the gateway to the service.
 
-Review the following [security policy](https://gateway.envoyproxy.io/v1.0.2/api/extension_types/#securitypolicy):
+Review the following [security policy](https://gateway.envoyproxy.io/docs/api/extension_types/#securitypolicy):
 
 ```yaml linenums="1"
 --8<-- "ext-authz/security-policy.yaml"
@@ -31,13 +31,13 @@ Review the following [security policy](https://gateway.envoyproxy.io/v1.0.2/api/
 Apply the policy:
 
 ```shell
-kubectl apply -f security-policy.yaml
+kubectl apply -f ext-authz/security-policy.yaml
 ```
 
 Send a test request:
 
- ```shell
- curl -v -H "x-ext-authz: allow" http://httpbin.esuez.org/json --resolve httpbin.esuez.org:80:$GATEWAY_IP
+```shell
+curl -v -H "x-ext-authz: allow" http://httpbin.esuez.org/json --resolve httpbin.esuez.org:80:$GATEWAY_IP
 ```
 
 The above request should succeed.

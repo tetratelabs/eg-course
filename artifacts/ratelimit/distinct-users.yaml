@@ -4,11 +4,10 @@ kind: BackendTrafficPolicy
 metadata:
   name: httpbin-trafficpolicy
 spec:
-  targetRef:
-    group: gateway.networking.k8s.io
+  targetRefs:
+  - group: gateway.networking.k8s.io
     kind: HTTPRoute
     name: httpbin
-    namespace: default
   rateLimit:
     type: Global
     global:

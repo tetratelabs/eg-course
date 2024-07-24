@@ -4,12 +4,12 @@
 
     If during [setup](setup.md) you chose to install Envoy Gateway, then before you proceed with this lab, you will need to deploy Redis, and reconfigure Envoy Gateway with rate limiting pointing to the URL of the Redis instance you deployed.
 
-    Detailed instructions are available [here](https://gateway.envoyproxy.io/v1.0.2/tasks/traffic/global-rate-limit/).
+    Detailed instructions are available [here](https://gateway.envoyproxy.io/docs/tasks/traffic/global-rate-limit/).
 
 
 Similar to [retries](retries.md),
 rate limiting is not part of the Kubernetes Gateway API specification,
-and is configured through Envoy Gateway's [BackendTrafficPolicy](https://gateway.envoyproxy.io/v1.0.2/api/extension_types/#backendtrafficpolicy) resource.
+and is configured through Envoy Gateway's [BackendTrafficPolicy](https://gateway.envoyproxy.io/docs/api/extension_types/#backendtrafficpolicy) resource.
 
 The rate limit is associated with the HTTPRoute you wish to limit.
 
@@ -138,7 +138,7 @@ Note the [Envoy response flag](https://www.envoyproxy.io/docs/envoy/latest/confi
 
 It is more common for individual users to each have their own limit.
 
-The below example adds a [rate limit selection condition](https://gateway.envoyproxy.io/latest/api/extension_types/#ratelimitselectcondition) to distinguish between users by http header name of `x-user-id`:
+The below example adds a [rate limit selection condition](https://gateway.envoyproxy.io/docs/api/extension_types/#ratelimitselectcondition) to distinguish between users by http header name of `x-user-id`:
 
 ```yaml linenums="1" hl_lines="16-19"
 --8<-- "ratelimit/distinct-users.yaml"

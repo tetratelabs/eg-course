@@ -12,16 +12,19 @@ kubectl api-resources | grep gateway
 
 Here is a slightly sanitized copy of the captured output:
 
-```console linenums="1" hl_lines="1-5"
+```console linenums="1" hl_lines="1-7"
+gateway.envoyproxy.io/v1alpha1       Backend
 gateway.envoyproxy.io/v1alpha1       BackendTrafficPolicy
 gateway.envoyproxy.io/v1alpha1       ClientTrafficPolicy
+gateway.envoyproxy.io/v1alpha1       EnvoyExtensionPolicy
 gateway.envoyproxy.io/v1alpha1       EnvoyPatchPolicy
 gateway.envoyproxy.io/v1alpha1       EnvoyProxy
 gateway.envoyproxy.io/v1alpha1       SecurityPolicy
-gateway.networking.k8s.io/v1alpha2   BackendTLSPolicy
+gateway.networking.k8s.io/v1alpha2   BackendLBPolicy
+gateway.networking.k8s.io/v1alpha3   BackendTLSPolicy
 gateway.networking.k8s.io/v1         GatewayClass
 gateway.networking.k8s.io/v1         Gateway
-gateway.networking.k8s.io/v1alpha2   GRPCRoute
+gateway.networking.k8s.io/v1         GRPCRoute
 gateway.networking.k8s.io/v1         HTTPRoute
 gateway.networking.k8s.io/v1beta1    ReferenceGrant
 gateway.networking.k8s.io/v1alpha2   TCPRoute
@@ -31,7 +34,7 @@ gateway.networking.k8s.io/v1alpha2   UDPRoute
 
 ---
 
-## Use [BackendTrafficPolicy](https://gateway.envoyproxy.io/v1.0.2/api/extension_types/#backendtrafficpolicy) to configure retries
+## Use [BackendTrafficPolicy](https://gateway.envoyproxy.io/docs/api/extension_types/#backendtrafficpolicy) to configure retries
 
 ```yaml linenums="1" hl_lines="12-24"
 --8<-- "retries/httpbin-policy.yaml"
@@ -54,8 +57,7 @@ watch 'egctl x stats envoy-proxy -n envoy-gateway-system \
   | grep "envoy_cluster_upstream_rq_retry{envoy_cluster_name=\"httproute/default/httpbin/rule/0\"}"'
 ```
 
-In another terminal, call a failing endpoint
-
+In another terminal, call a failing endpoint:
 
 === "Using DNS resolution"
 

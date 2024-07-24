@@ -1,14 +1,8 @@
 # WebAssembly
 
-!!! warning
-
-    The ability to specify wasm extensions will be released in versions 1.1 of Envoy Gateway.
-
-    You can test it today by ensuring you install Envoy Gateway version "v0.0.0-latest" in [Setup](setup.md#install-eg-or-teg).
-
 In this scenario we demonstrate how to apply a wasm extension to an HttpRoute.
 
-You will apply an [extension policy](https://gateway.envoyproxy.io/latest/api/extension_types/#envoyextensionpolicy) that references a simple, pre-built wasm plugin to the HttpRoute for the `httpbin` sample application.
+You will apply an [extension policy](https://gateway.envoyproxy.io/docs/api/extension_types/#envoyextensionpolicy) that references a simple, pre-built wasm plugin to the HttpRoute for the `httpbin` sample application.
 
 The basic logic of the plugin is to inject arbitrary, configurable headers into HTTP responses on the associated route.
 
@@ -42,8 +36,8 @@ The basic logic of the plugin is to inject arbitrary, configurable headers into 
 
 1. Repeat the request:
 
-     ```shell
-     curl -v http://httpbin.esuez.org/json --resolve httpbin.esuez.org:80:$GATEWAY_IP
+    ```shell
+    curl -v http://httpbin.esuez.org/json --resolve httpbin.esuez.org:80:$GATEWAY_IP
     ```
 
     Note the response headers contain extra headers from the configuration of the wasm plugin.
