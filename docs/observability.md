@@ -23,7 +23,7 @@ The following command will deploy all necessary observability tools to the `moni
 
 ```shell
 helm install eg-addons oci://docker.io/envoyproxy/gateway-addons-helm \
-  --version v1.1.0 \
+  --version v{{eg.version}} \
   --set opentelemetry-collector.enabled=true \
   -n monitoring --create-namespace
 ```

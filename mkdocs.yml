@@ -60,3 +60,6 @@ markdown_extensions:
 plugins:
   - search
   - macros # https://mkdocs-macros-plugin.readthedocs.io/en/latest/
+extra:
+  eg:
+    version: 1.1.0
