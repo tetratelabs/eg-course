@@ -4,7 +4,7 @@ kind: Gateway
 metadata:
   name: eg
   annotations:
-    cert-manager.io/cluster-issuer: selfsigned
+    cert-manager.io/cluster-issuer: self-signed
 spec:
   gatewayClassName: eg
   listeners:
