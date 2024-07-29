@@ -962,7 +962,8 @@ You will need both to configure the environment variables CLIENT_ID and CLIENT_S
 <span class="normal"><a href="#__codelineno-2-15">15</a></span>
 <span class="normal"><a href="#__codelineno-2-16">16</a></span>
 <span class="normal"><a href="#__codelineno-2-17">17</a></span>
-<span class="normal"><a href="#__codelineno-2-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nn">---</span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nn">---</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.envoyproxy.io/v1alpha1</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SecurityPolicy</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -980,6 +981,7 @@ You will need both to configure the environment variables CLIENT_ID and CLIENT_S
 <a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin-client-secret</span>
 <a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">    </span><span class="nt">redirectURL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.esuez.org/oauth2/callback&quot;</span>
 <a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">    </span><span class="nt">logoutPath</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/logout&quot;</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">    </span><span class="nt">forwardOriginalToken</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div></td></tr></table></div>
 <p>We are basically configuring OIDC authentication for the route for the httpbin application.</p>
 <p>Apply the policy, with variable substitution:</p>
@@ -1023,7 +1025,8 @@ You will need both to configure the environment variables CLIENT_ID and CLIENT_S
 <span class="normal"><a href="#__codelineno-4-27">27</a></span>
 <span class="normal"><a href="#__codelineno-4-28">28</a></span>
 <span class="normal"><a href="#__codelineno-4-29">29</a></span>
-<span class="normal"><a href="#__codelineno-4-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nn">---</span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nn">---</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.envoyproxy.io/v1alpha1</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SecurityPolicy</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1041,19 +1044,20 @@ You will need both to configure the environment variables CLIENT_ID and CLIENT_S
 <a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin-client-secret</span>
 <a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">    </span><span class="nt">redirectURL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.esuez.org/oauth2/callback&quot;</span>
 <a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="w">    </span><span class="nt">logoutPath</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/logout&quot;</span>
-<a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="hll"><span class="w">  </span><span class="nt">jwt</span><span class="p">:</span>
-</span><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="hll"><span class="w">    </span><span class="nt">providers</span><span class="p">:</span>
-</span><a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">okta</span>
-</span><a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="hll"><span class="w">      </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$ISSUER&quot;</span>
-</span><a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="hll"><span class="w">      </span><span class="nt">recomputeRoute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="hll"><span class="w">      </span><span class="nt">claimToHeaders</span><span class="p">:</span>
-</span><a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">claim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub</span>
-</span><a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="hll"><span class="w">        </span><span class="nt">header</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-sub</span>
-</span><a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">claim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">access</span>
-</span><a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="hll"><span class="w">        </span><span class="nt">header</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-access</span>
-</span><a id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="hll"><span class="w">      </span><span class="nt">remoteJWKS</span><span class="p">:</span>
-</span><a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="hll"><span class="w">        </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$ISSUER/v1/keys&quot;</span>
-</span></code></pre></div></td></tr></table></div>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="hll"><span class="w">    </span><span class="nt">forwardOriginalToken</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="hll"><span class="w">  </span><span class="nt">jwt</span><span class="p">:</span>
+</span><a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="hll"><span class="w">    </span><span class="nt">providers</span><span class="p">:</span>
+</span><a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">okta</span>
+</span><a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="hll"><span class="w">      </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$ISSUER&quot;</span>
+</span><a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="hll"><span class="w">      </span><span class="nt">recomputeRoute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="hll"><span class="w">      </span><span class="nt">claimToHeaders</span><span class="p">:</span>
+</span><a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">claim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub</span>
+</span><a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="hll"><span class="w">        </span><span class="nt">header</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-sub</span>
+</span><a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">claim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">access</span>
+</span><a id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="hll"><span class="w">        </span><span class="nt">header</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-access</span>
+</span><a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="hll"><span class="w">      </span><span class="nt">remoteJWKS</span><span class="p">:</span>
+</span><a id="__codelineno-4-31" name="__codelineno-4-31"></a><span class="w">        </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$ISSUER/v1/keys&quot;</span>
+</code></pre></div></td></tr></table></div>
 <p>We are adding a JWT provider that will populate the header <code>x-access</code> with the value from the <code>access</code> claim (default or privileged).</p>
 <p>Apply the policy, with variable substitution:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>envsubst<span class="w"> </span>&lt;<span class="w"> </span>oidc/security-policy.yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-
