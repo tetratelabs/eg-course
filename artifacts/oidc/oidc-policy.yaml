@@ -16,3 +16,4 @@ spec:
       name: httpbin-client-secret
     redirectURL: "https://httpbin.esuez.org/oauth2/callback"
     logoutPath: "/logout"
+    forwardOriginalToken: true
