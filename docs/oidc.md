@@ -134,7 +134,7 @@ envsubst < oidc/oidc-policy.yaml | kubectl apply -f -
 
 Review the following augmented security policy specification:
 
-```yaml linenums="1" hl_lines="19-30"
+```yaml linenums="1" hl_lines="20-31"
 --8<-- "oidc/security-policy.yaml"
 ```
 
