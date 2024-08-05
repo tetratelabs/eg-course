@@ -140,7 +140,7 @@ It is more common for individual users to each have their own limit.
 
 The below example adds a [rate limit selection condition](https://gateway.envoyproxy.io/docs/api/extension_types/#ratelimitselectcondition) to distinguish between users by http header name of `x-user-id`:
 
-```yaml linenums="1" hl_lines="16-19"
+```yaml linenums="1" hl_lines="15-18"
 --8<-- "ratelimit/distinct-users.yaml"
 ```
 
