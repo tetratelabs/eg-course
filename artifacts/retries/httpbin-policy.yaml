@@ -17,7 +17,7 @@ spec:
       timeout: 250ms
     retryOn:
       httpStatusCodes:
-        - 500
+      - 500
       triggers:
-        - connect-failure
-        - retriable-status-codes
+      - connect-failure
+      - retriable-status-codes
