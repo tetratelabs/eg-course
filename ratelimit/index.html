@@ -939,12 +939,12 @@ and is configured through Envoy Gateway's <a href="https://gateway.envoyproxy.io
 <a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Global</span>
 <a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="w">    </span><span class="nt">global</span><span class="p">:</span>
 <a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="w">      </span><span class="nt">rules</span><span class="p">:</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">clientSelectors</span><span class="p">:</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="hll"><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">headers</span><span class="p">:</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">clientSelectors</span><span class="p">:</span>
+</span><a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="hll"><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">headers</span><span class="p">:</span>
 </span><a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="hll"><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Distinct</span>
 </span><a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="hll"><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-user-id</span>
-</span><a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="hll"><span class="w">        </span><span class="nt">limit</span><span class="p">:</span>
-</span><a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="w">          </span><span class="nt">requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="w">        </span><span class="nt">limit</span><span class="p">:</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="w">          </span><span class="nt">requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 <a id="__codelineno-7-21" name="__codelineno-7-21"></a><span class="w">          </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Minute</span>
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>ratelimit/distinct-users.yaml
