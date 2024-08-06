@@ -19,10 +19,11 @@ Download all yaml artifacts referenced in all scenarios as a single .tgz file [h
 === "Locally with k3d"
 
     ```shell
-    k3d cluster create my-k8s-cluster \
-      --k3s-arg "--disable=traefik@server:0" \
-      --port 80:80@loadbalancer \
-      --port 443:443@loadbalancer
+    --8<-- "setup/make-local-k3d-cluster"
+    ```
+
+    ```shell
+    ./setup/make-local-k3d-cluster
     ```
 
     [About k3d](https://k3d.io/v5.6.3/).
