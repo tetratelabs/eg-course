@@ -746,30 +746,7 @@
 <span class="normal"><a href="#__codelineno-4-18">18</a></span>
 <span class="normal"><a href="#__codelineno-4-19">19</a></span>
 <span class="normal"><a href="#__codelineno-4-20">20</a></span>
-<span class="normal"><a href="#__codelineno-4-21">21</a></span>
-<span class="normal"><a href="#__codelineno-4-22">22</a></span>
-<span class="normal"><a href="#__codelineno-4-23">23</a></span>
-<span class="normal"><a href="#__codelineno-4-24">24</a></span>
-<span class="normal"><a href="#__codelineno-4-25">25</a></span>
-<span class="normal"><a href="#__codelineno-4-26">26</a></span>
-<span class="normal"><a href="#__codelineno-4-27">27</a></span>
-<span class="normal"><a href="#__codelineno-4-28">28</a></span>
-<span class="normal"><a href="#__codelineno-4-29">29</a></span>
-<span class="normal"><a href="#__codelineno-4-30">30</a></span>
-<span class="normal"><a href="#__codelineno-4-31">31</a></span>
-<span class="normal"><a href="#__codelineno-4-32">32</a></span>
-<span class="normal"><a href="#__codelineno-4-33">33</a></span>
-<span class="normal"><a href="#__codelineno-4-34">34</a></span>
-<span class="normal"><a href="#__codelineno-4-35">35</a></span>
-<span class="normal"><a href="#__codelineno-4-36">36</a></span>
-<span class="normal"><a href="#__codelineno-4-37">37</a></span>
-<span class="normal"><a href="#__codelineno-4-38">38</a></span>
-<span class="normal"><a href="#__codelineno-4-39">39</a></span>
-<span class="normal"><a href="#__codelineno-4-40">40</a></span>
-<span class="normal"><a href="#__codelineno-4-41">41</a></span>
-<span class="normal"><a href="#__codelineno-4-42">42</a></span>
-<span class="normal"><a href="#__codelineno-4-43">43</a></span>
-<span class="normal"><a href="#__codelineno-4-44">44</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nn">---</span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nn">---</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gateway</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -782,38 +759,15 @@
 <a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
 <a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTP</span>
 <a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">    </span><span class="nt">allowedRoutes</span><span class="p">:</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">      </span><span class="nt">namespaces</span><span class="p">:</span>
-<a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">        </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Same</span>
-<a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https-httpbin</span>
-<a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="hll"><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPS</span>
-</span><a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="hll"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
-</span><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="hll"><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin.esuez.org</span>
-</span><a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="hll"><span class="w">    </span><span class="nt">tls</span><span class="p">:</span>
-</span><a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Terminate</span>
-<a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">      </span><span class="nt">certificateRefs</span><span class="p">:</span>
-<a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin-cert</span>
-<a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="w">    </span><span class="nt">allowedRoutes</span><span class="p">:</span>
-<a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="w">      </span><span class="nt">namespaces</span><span class="p">:</span>
-<a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="w">        </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Selector</span>
-<a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="w">        </span><span class="nt">selector</span><span class="p">:</span>
-<a id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="w">          </span><span class="nt">matchLabels</span><span class="p">:</span>
-<a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="w">            </span><span class="nt">self-serve-ingress</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
-<a id="__codelineno-4-31" name="__codelineno-4-31"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https-customers</span>
-<a id="__codelineno-4-32" name="__codelineno-4-32"></a><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPS</span>
-<a id="__codelineno-4-33" name="__codelineno-4-33"></a><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
-<a id="__codelineno-4-34" name="__codelineno-4-34"></a><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">customers-frontend.esuez.org</span>
-<a id="__codelineno-4-35" name="__codelineno-4-35"></a><span class="w">    </span><span class="nt">tls</span><span class="p">:</span>
-<a id="__codelineno-4-36" name="__codelineno-4-36"></a><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Terminate</span>
-<a id="__codelineno-4-37" name="__codelineno-4-37"></a><span class="w">      </span><span class="nt">certificateRefs</span><span class="p">:</span>
-<a id="__codelineno-4-38" name="__codelineno-4-38"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">customers-cert</span>
-<a id="__codelineno-4-39" name="__codelineno-4-39"></a><span class="w">    </span><span class="nt">allowedRoutes</span><span class="p">:</span>
-<a id="__codelineno-4-40" name="__codelineno-4-40"></a><span class="w">      </span><span class="nt">namespaces</span><span class="p">:</span>
-<a id="__codelineno-4-41" name="__codelineno-4-41"></a><span class="w">        </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Selector</span>
-<a id="__codelineno-4-42" name="__codelineno-4-42"></a><span class="w">        </span><span class="nt">selector</span><span class="p">:</span>
-<a id="__codelineno-4-43" name="__codelineno-4-43"></a><span class="w">          </span><span class="nt">matchLabels</span><span class="p">:</span>
-<a id="__codelineno-4-44" name="__codelineno-4-44"></a><span class="w">            </span><span class="nt">self-serve-ingress</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
-</code></pre></div></td></tr></table></div>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPS</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin.esuez.org</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="hll"><span class="w">    </span><span class="nt">tls</span><span class="p">:</span>
+</span><a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="hll"><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Terminate</span>
+</span><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="hll"><span class="w">      </span><span class="nt">certificateRefs</span><span class="p">:</span>
+</span><a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin-cert</span>
+</span></code></pre></div></td></tr></table></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>tls/gateway-add-https.yaml
 </code></pre></div>
 <hr />
