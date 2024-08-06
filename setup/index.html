@@ -766,10 +766,14 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>k3d<span class="w"> </span>cluster<span class="w"> </span>create<span class="w"> </span>my-k8s-cluster<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--k3s-arg<span class="w"> </span><span class="s2">&quot;--disable=traefik@server:0&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--port<span class="w"> </span><span class="m">80</span>:80@loadbalancer<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--port<span class="w"> </span><span class="m">443</span>:443@loadbalancer
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="ch">#!/bin/sh</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>k3d<span class="w"> </span>cluster<span class="w"> </span>create<span class="w"> </span>my-k8s-cluster<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--k3s-arg<span class="w"> </span><span class="s2">&quot;--disable=traefik@server:0&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--port<span class="w"> </span><span class="m">80</span>:80@loadbalancer<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>--port<span class="w"> </span><span class="m">443</span>:443@loadbalancer
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./setup/make-local-k3d-cluster
 </code></pre></div>
 <p><a href="https://k3d.io/v5.6.3/">About k3d</a>.</p>
 </div>
@@ -781,18 +785,18 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input checked="checked" id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Install Envoy Gateway</label><label for="__tabbed_2_2">Install TEG</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>helm<span class="w"> </span>install<span class="w"> </span>eg<span class="w"> </span>oci://docker.io/envoyproxy/gateway-helm<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--version<span class="w"> </span>v1.1.0<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span>--create-namespace
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>helm<span class="w"> </span>install<span class="w"> </span>eg<span class="w"> </span>oci://docker.io/envoyproxy/gateway-helm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--version<span class="w"> </span>v1.1.0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span>--create-namespace
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>helm<span class="w"> </span>install<span class="w"> </span>teg<span class="w"> </span>oci://docker.io/tetrate/teg-envoy-gateway-helm<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--version<span class="w"> </span>v1.0.1<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span>--create-namespace
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>helm<span class="w"> </span>install<span class="w"> </span>teg<span class="w"> </span>oci://docker.io/tetrate/teg-envoy-gateway-helm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--version<span class="w"> </span>v1.0.1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span>--create-namespace
 </code></pre></div>
 <p>Review the deployments in <code>envoy-gateway-system</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deploy<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deploy<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system
 </code></pre></div>
 <p>See <a href="https://docs.tetrate.io/envoy-gateway/introduction/architecture">architecture</a>.</p>
 </div>
@@ -805,109 +809,109 @@
 <p class="admonition-title">Warning</p>
 <p>This will not work locally, and requires edits to point to your DNS zone and provider.</p>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>setup/external-dns.yaml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>setup/external-dns.yaml
 </code></pre></div>
 <hr />
 <h2 id="define-a-gatewayclass">Define a <a href="https://gateway-api.sigs.k8s.io/api-types/gatewayclass/">GatewayClass</a>:<a class="headerlink" href="#define-a-gatewayclass" title="Permanent link">&para;</a></h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
-<span class="normal"><a href="#__codelineno-7-2">2</a></span>
-<span class="normal"><a href="#__codelineno-7-3">3</a></span>
-<span class="normal"><a href="#__codelineno-7-4">4</a></span>
-<span class="normal"><a href="#__codelineno-7-5">5</a></span>
-<span class="normal"><a href="#__codelineno-7-6">6</a></span>
-<span class="normal"><a href="#__codelineno-7-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nn">---</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GatewayClass</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="nt">metadata</span><span class="p">:</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">  </span><span class="nt">controllerName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.envoyproxy.io/gatewayclass-controller</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span>
+<span class="normal"><a href="#__codelineno-8-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nn">---</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GatewayClass</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">  </span><span class="nt">controllerName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.envoyproxy.io/gatewayclass-controller</span>
 </code></pre></div></td></tr></table></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>setup/gateway-class.yaml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>setup/gateway-class.yaml
 </code></pre></div>
 <hr />
 <h2 id="deploy-a-gateway">Deploy a <a href="https://gateway-api.sigs.k8s.io/api-types/gateway/">Gateway</a><a class="headerlink" href="#deploy-a-gateway" title="Permanent link">&para;</a></h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-9-10">10</a></span>
-<span class="normal"><a href="#__codelineno-9-11">11</a></span>
-<span class="normal"><a href="#__codelineno-9-12">12</a></span>
-<span class="normal"><a href="#__codelineno-9-13">13</a></span>
-<span class="normal"><a href="#__codelineno-9-14">14</a></span>
-<span class="normal"><a href="#__codelineno-9-15">15</a></span>
-<span class="normal"><a href="#__codelineno-9-16">16</a></span>
-<span class="normal"><a href="#__codelineno-9-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="nn">---</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gateway</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="nt">metadata</span><span class="p">:</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">  </span><span class="nt">gatewayClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">  </span><span class="nt">listeners</span><span class="p">:</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
-<a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTP</span>
-<a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
-<a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="w">    </span><span class="nt">allowedRoutes</span><span class="p">:</span>
-<a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="w">      </span><span class="nt">namespaces</span><span class="p">:</span>
-<a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="w">        </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Selector</span>
-<a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="w">        </span><span class="nt">selector</span><span class="p">:</span>
-<a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="w">          </span><span class="nt">matchLabels</span><span class="p">:</span>
-<a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="w">            </span><span class="nt">self-serve-ingress</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span>
+<span class="normal"><a href="#__codelineno-10-16">16</a></span>
+<span class="normal"><a href="#__codelineno-10-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nn">---</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gateway</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="w">  </span><span class="nt">gatewayClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="w">  </span><span class="nt">listeners</span><span class="p">:</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTP</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="w">    </span><span class="nt">allowedRoutes</span><span class="p">:</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="w">      </span><span class="nt">namespaces</span><span class="p">:</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="w">        </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Selector</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="w">        </span><span class="nt">selector</span><span class="p">:</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="w">          </span><span class="nt">matchLabels</span><span class="p">:</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="w">            </span><span class="nt">self-serve-ingress</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
 </code></pre></div></td></tr></table></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>setup/gateway-http.yaml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>setup/gateway-http.yaml
 </code></pre></div>
 <p>Wait for the gateway to become available:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>gtw/eg<span class="w"> </span>--for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span>Programmed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>gtw/eg<span class="w"> </span>--for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span>Programmed
 </code></pre></div>
 <hr />
 <h2 id="test-it"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Obtain Gateway IP</label><label for="__tabbed_3_2">Using a local k3d cluster</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GATEWAY_IP</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>gtw<span class="w"> </span>eg<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.addresses[0].value}&#39;</span><span class="k">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GATEWAY_IP</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>gtw<span class="w"> </span>eg<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.addresses[0].value}&#39;</span><span class="k">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>For <code>k3d</code>, use 127.0.0.1 as your GATEWAY_IP</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GATEWAY_IP</span><span class="o">=</span><span class="m">127</span>.0.0.1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GATEWAY_IP</span><span class="o">=</span><span class="m">127</span>.0.0.1
 </code></pre></div>
 </div>
 </div>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>curl<span class="w"> </span>-v<span class="w"> </span>http://<span class="nv">$GATEWAY_IP</span>/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>curl<span class="w"> </span>-v<span class="w"> </span>http://<span class="nv">$GATEWAY_IP</span>/
 </code></pre></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-15-10">10</a></span>
-<span class="normal"><a href="#__codelineno-15-11">11</a></span>
-<span class="normal"><a href="#__codelineno-15-12">12</a></span>
-<span class="normal"><a href="#__codelineno-15-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="go">*   Trying 34.121.222.176:80...</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="go">* Connected to 34.121.222.176 (34.121.222.176) port 80</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="go">&gt; GET / HTTP/1.1</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="go">&gt; Host: 34.121.222.176</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="go">&gt; User-Agent: curl/8.7.1</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="go">&gt; Accept: */*</span>
-<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="go">&gt;</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="go">* Request completely sent off</span>
-<a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="hll"><span class="go">&lt; HTTP/1.1 404 Not Found</span>
-</span><a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="go">&lt; date: Tue, 07 May 2024 23:39:35 GMT</span>
-<a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="go">&lt; content-length: 0</span>
-<a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="go">&lt;</span>
-<a id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="go">* Connection #0 to host 34.121.222.176 left intact</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span>
+<span class="normal"><a href="#__codelineno-16-12">12</a></span>
+<span class="normal"><a href="#__codelineno-16-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="go">*   Trying 34.121.222.176:80...</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="go">* Connected to 34.121.222.176 (34.121.222.176) port 80</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="go">&gt; GET / HTTP/1.1</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="go">&gt; Host: 34.121.222.176</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="go">&gt; User-Agent: curl/8.7.1</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="go">&gt; Accept: */*</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="go">&gt;</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="go">* Request completely sent off</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="hll"><span class="go">&lt; HTTP/1.1 404 Not Found</span>
+</span><a id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="go">&lt; date: Tue, 07 May 2024 23:39:35 GMT</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="go">&lt; content-length: 0</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12"></a><span class="go">&lt;</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13"></a><span class="go">* Connection #0 to host 34.121.222.176 left intact</span>
 </code></pre></div></td></tr></table></div>
 <p>Why do we get a 404 (Not Found)?</p>
 
