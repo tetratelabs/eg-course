@@ -1,25 +1,69 @@
 # Shared Gateway
 
-## TODO
-
-Rework this lab to be a complete start to end example:
-
-- deploy both apps, each to a separate namespace
-- deploy the shared gateway to its own namespace, configure `allowedRoutes`
-- define two routes, each in their namespaces
-- verify that both routes are attached to the gateway and functioning
-
 ---
 
-Deploy a second workload and a second route associated to the same gateway
+## Deploy the workloads
 
 ```shell
-kubectl apply -f apps/customers.yaml -f apps/web-frontend.yaml
+kubectl create ns httpbin
+```
+
+```shell
+kubectl label ns httpbin self-serve-ingress="true"
+```
+
+```shell
+kubectl apply -f apps/httpbin.yaml -n httpbin
+```
+
+Deploy a second workload:
+
+```shell
+kubectl create ns customers
+```
+
+```shell
+kubectl label ns customers self-serve-ingress="true"
+```
+
+```shell
+kubectl apply -f apps/customers.yaml -n customers
+```
+
+```shell
+kubectl apply -f apps/web-frontend.yaml -n customers
 ```
 
 ---
 
-## Configure the route
+
+## Deploy a [Gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/)
+
+```yaml linenums="1" hl_lines="13-18"
+--8<-- "shared-gw/gateway-http.yaml"
+```
+
+```shell
+kubectl apply -f shared-gw/gateway-http.yaml
+```
+
+Wait for the gateway to become available:
+
+```shell
+kubectl wait gtw/eg --for=condition=Programmed
+```
+
+---
+
+## Configure the routes
+
+```yaml linenums="1"
+--8<-- "shared-gw/httpbin-route.yaml"
+```
+
+```shell
+kubectl apply -f shared-gw/httpbin-route.yaml
+```
 
 ```yaml linenums="1"
 --8<-- "shared-gw/web-frontend-route.yaml"
@@ -33,7 +77,11 @@ kubectl apply -f shared-gw/web-frontend-route.yaml
 
 ## :white_check_mark: Verify
 
-Verify that the route is reachable:
+Verify that the routes are reachable:
+
+```shell
+curl http://httpbin.example.com/json --resolve httpbin.example.com:80:$GATEWAY_IP
+```
 
 
 ```shell

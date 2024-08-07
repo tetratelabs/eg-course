@@ -99,7 +99,7 @@ curl http://httpbin.example.com/json --resolve httpbin.example.com:80:$GATEWAY_I
 
 In the next section, you will be constructing an ingress configuration that takes into account multiple tenants using a shared gateway.
 
-In anticipation of configuring a shared gateway, delete the simple route and gateway that you built in this scenario:
+In anticipation of configuring a shared gateway using multiple tenants, delete the gateway, the workload, and the route from the scenario you just completed:
 
 ```shell
 kubectl delete httproute httpbin
@@ -107,4 +107,8 @@ kubectl delete httproute httpbin
 
 ```shell
 kubectl delete gtw eg
+```
+
+```shell
+kubectl delete -f apps/httpbin.yaml
 ```

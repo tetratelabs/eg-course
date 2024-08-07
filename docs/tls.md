@@ -36,7 +36,7 @@ kubectl apply -f tls/selfsigned-issuer.yaml
 
 ## Add an HTTPS listener
 
-Add an HTTPS listener for `httpbin.esuez.org` hostname on the gateway, configured to terminate TLS:
+Add an HTTPS listener for `httpbin.example.com` hostname on the gateway, configured to terminate TLS:
 
 ```yaml linenums="1" hl_lines="7 18-21"
 --8<-- "tls/gateway-add-https.yaml"
@@ -50,18 +50,9 @@ kubectl apply -f tls/gateway-add-https.yaml
 
 ## :white_check_mark: Test it
 
-[Access httpbin over TLS](https://httpbin.esuez.org/):
+Access `httpbin` over TLS:
 
-
-=== "Using DNS resolution"
-
-    ```shell
-    curl --insecure -v --head https://httpbin.esuez.org/
-    ```
-
-=== "Using `curl` name resolve flag"
-
-    ```shell
-    curl --insecure -v --head https://httpbin.esuez.org/ \
-       --resolve httpbin.esuez.org:443:$GATEWAY_IP
-    ```
+```shell
+curl --insecure -v --head https://httpbin.example.com/ \
+    --resolve httpbin.example.com:443:$GATEWAY_IP
+```

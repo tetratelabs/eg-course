@@ -11,11 +11,34 @@ spec:
   - name: http
     protocol: HTTP
     port: 80
-  - name: https
+    allowedRoutes:
+      namespaces:
+        from: Same
+  - name: https-httpbin
     protocol: HTTPS
     port: 443
-    hostname: httpbin.esuez.org
+    hostname: httpbin.example.com
     tls:
       mode: Terminate
       certificateRefs:
       - name: httpbin-cert
+    allowedRoutes:
+      namespaces:
+        from: Selector
+        selector:
+          matchLabels:
+            self-serve-ingress: "true"
+  - name: https-customers
+    protocol: HTTPS
+    port: 443
+    hostname: customers-frontend.example.com
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - name: customers-cert
+    allowedRoutes:
+      namespaces:
+        from: Selector
+        selector:
+          matchLabels:
+            self-serve-ingress: "true"
