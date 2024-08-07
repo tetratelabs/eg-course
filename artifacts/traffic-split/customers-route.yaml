@@ -5,7 +5,7 @@ metadata:
   name: customers
 spec:
   hostnames:
-  - customers.esuez.org
+  - customers.example.com
   parentRefs:
   - name: eg
   rules:

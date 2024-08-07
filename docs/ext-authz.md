@@ -37,7 +37,7 @@ kubectl apply -f ext-authz/security-policy.yaml
 Send a test request:
 
 ```shell
-curl -v -H "x-ext-authz: allow" http://httpbin.esuez.org/json --resolve httpbin.esuez.org:80:$GATEWAY_IP
+curl -v -H "x-ext-authz: allow" http://httpbin.example.com/json --resolve httpbin.example.com:80:$GATEWAY_IP
 ```
 
 The above request should succeed.

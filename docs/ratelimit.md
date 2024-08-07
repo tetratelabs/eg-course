@@ -33,21 +33,11 @@ kubectl apply -f ratelimit/simple.yaml
 
 Send four requests in succession, the fourth should be rate-limited:
 
-=== "Using DNS resolution"
-
-    ```shell
-    for i in {1..4}; do
-      curl --insecure --head https://httpbin.esuez.org/
-    done
-    ```
-
-=== "Using `curl` name resolve flag"
-
-    ```shell
-    for i in {1..4}; do
-      curl --insecure --head https://httpbin.esuez.org/ --resolve httpbin.esuez.org:443:$GATEWAY_IP
-    done
-    ```
+```shell
+for i in {1..4}; do
+  curl --insecure --head https://httpbin.example.com/ --resolve httpbin.example.com:443:$GATEWAY_IP
+done
+```
 
 Here is the captured output:
 
@@ -125,14 +115,14 @@ Below is a copy of the prettified JSON log line:
   "x-forwarded-for": "172.19.0.4",
   "user-agent": "curl/8.7.1",
   "x-request-id": "a5216e48-3243-42d7-b3f4-8af119efd232",
-  ":authority": "httpbin.esuez.org",
+  ":authority": "httpbin.example.com",
   "upstream_host": "-",
   "upstream_cluster": "httproute/default/httpbin/rule/0",
   "upstream_local_address": "-",
   "downstream_local_address": "10.42.0.21:10443",
   "downstream_remote_address": "172.19.0.4:59056",
-  "requested_server_name": "httpbin.esuez.org",
-  "route_name": "httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org"
+  "requested_server_name": "httpbin.example.com",
+  "route_name": "httproute/default/httpbin/rule/0/match/0/httpbin_example_com"
 }
 ```
 
@@ -156,41 +146,21 @@ kubectl apply -f ratelimit/distinct-users.yaml
 
 Sending multiple requests for the same user in succession will produce a result similar to the above simple example:
 
-=== "Using DNS resolution"
-
-    ```shell
-    for i in {1..4}; do
-      curl --insecure --head -H "x-user-id: eitan" https://httpbin.esuez.org/
-    done
-    ```
-
-=== "Using `curl` name resolve flag"
-
-    ```shell
-    for i in {1..4}; do
-      curl --insecure --head -H "x-user-id: eitan" https://httpbin.esuez.org/ \
-        --resolve httpbin.esuez.org:443:$GATEWAY_IP
-    done
-    ```
+```shell
+for i in {1..4}; do
+  curl --insecure --head -H "x-user-id: eitan" https://httpbin.example.com/ \
+    --resolve httpbin.example.com:443:$GATEWAY_IP
+done
+```
 
 Following that up with another set of requests from a different user demonstrates that each user has their own, separate rate limiting counter:
 
-=== "Using DNS resolution"
-
-    ```shell
-    for i in {1..4}; do
-      curl --insecure --head -H "x-user-id: johndoe" https://httpbin.esuez.org/
-    done
-    ```
-
-=== "Using `curl` name resolve flag"
-
-    ```shell
-    for i in {1..4}; do
-      curl --insecure --head -H "x-user-id: johndoe" https://httpbin.esuez.org/ \
-        --resolve httpbin.esuez.org:443:$GATEWAY_IP
-    done
-    ```
+```shell
+for i in {1..4}; do
+  curl --insecure --head -H "x-user-id: johndoe" https://httpbin.example.com/ \
+    --resolve httpbin.example.com:443:$GATEWAY_IP
+done
+```
 
 The curious may wish to inspect the translated configuration at the Envoy proxy:
 
@@ -212,19 +182,19 @@ envoy-gateway-system:
         name: default/eg/https
         virtualHosts:
         - domains:
-          - httpbin.esuez.org
-          name: default/eg/https/httpbin_esuez_org
+          - httpbin.example.com
+          name: default/eg/https/httpbin_example_com
           routes:
           - match:
               prefix: /
-            name: httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org
+            name: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
             route:
               cluster: httproute/default/httpbin/rule/0
               rateLimits:
               - actions:
                 - genericKey:
-                    descriptorKey: httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org
-                    descriptorValue: httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org
+                    descriptorKey: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
+                    descriptorValue: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
                 - requestHeaders:
                     descriptorKey: rule-0-match-0
                     headerName: x-user-id

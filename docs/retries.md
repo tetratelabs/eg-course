@@ -65,18 +65,10 @@ watch 'egctl x stats envoy-proxy -n envoy-gateway-system \
 
 In another terminal, call a failing endpoint:
 
-=== "Using DNS resolution"
-
-    ```shell
-    curl --insecure --head https://httpbin.example.com/status/500
-    ```
-
-=== "Using `curl` name resolve flag"
-
-    ```shell
-    curl --insecure --head https://httpbin.example.com/status/500 \
-      --resolve httpbin.example.com:443:$GATEWAY_IP
-    ```
+```shell
+curl --insecure --head https://httpbin.example.com/status/500 \
+  --resolve httpbin.example.com:443:$GATEWAY_IP
+```
 
 ---
 

@@ -32,22 +32,14 @@ The value of the `name` field on line 13 refers a secret containing an [`htpassw
 
 ## :white_check_mark: Test it
 
-[Access the application](https://httpbin.esuez.org/), or:
+[Access the application](https://httpbin.example.com/), or:
 
 1. Request without credentials return a 401 (Forbidden)
 
-    === "Using DNS resolution"
-
-        ```shell
-        curl --insecure --head https://httpbin.esuez.org/
-        ```
-
-    === "Using `curl` name resolve flag"
-
-        ```shell
-        curl --insecure --head https://httpbin.esuez.org/ \
-          --resolve httpbin.esuez.org:443:$GATEWAY_IP
-        ```
+    ```shell
+    curl --insecure --head https://httpbin.example.com/ \
+      --resolve httpbin.example.com:443:$GATEWAY_IP
+    ```
 
     ```console
     HTTP/2 401
@@ -58,18 +50,10 @@ The value of the `name` field on line 13 refers a secret containing an [`htpassw
 
 1. Authenticated requests succeed:
 
-    === "Using DNS resolution"
-
-        ```shell
-        curl --insecure --head --user eitan:correctpassword https://httpbin.esuez.org/
-        ```
-
-    === "Using `curl` name resolve flag"
-
-        ```shell
-        curl --insecure --head --user eitan:correctpassword https://httpbin.esuez.org/ \
-          --resolve httpbin.esuez.org:443:$GATEWAY_IP
-        ```
+    ```shell
+    curl --insecure --head --user eitan:correctpassword https://httpbin.example.com/ \
+      --resolve httpbin.example.com:443:$GATEWAY_IP
+    ```
 
     ```console
     HTTP/2 200
@@ -83,18 +67,10 @@ The value of the `name` field on line 13 refers a secret containing an [`htpassw
 
 1. Bad credentials produce a 401 (Forbidden):
 
-    === "Using DNS resolution"
-
-        ```shell
-        curl --insecure --head --user eitan:wrongpassword https://httpbin.esuez.org/
-        ```
-
-    === "Using `curl` name resolve flag"
-
-        ```shell
-        curl --insecure --head --user eitan:wrongpassword https://httpbin.esuez.org/ \
-          --resolve httpbin.esuez.org:443:$GATEWAY_IP
-        ```
+    ```shell
+    curl --insecure --head --user eitan:wrongpassword https://httpbin.example.com/ \
+      --resolve httpbin.example.com:443:$GATEWAY_IP
+    ```
 
     ```console
     HTTP/2 401
@@ -121,12 +97,12 @@ Here is sanitized output for the HTTPS listener:
 filterChains:
 - filterChainMatch:
     serverNames:
-    - httpbin.esuez.org
+    - httpbin.example.com
   filters:
   - name: envoy.filters.network.http_connection_manager
     typedConfig:
       httpFilters:
-      - name: envoy.filters.http.basic_auth_httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org
+      - name: envoy.filters.http.basic_auth_httproute/default/httpbin/rule/0/match/0/httpbin_example_com
         disabled: true
         typedConfig:
           '@type': type.googleapis.com/envoy.extensions.filters.http.basic_auth.v3.BasicAuth
@@ -170,12 +146,12 @@ envoy-gateway-system:
         name: default/eg/https
         virtualHosts:
         - domains:
-          - httpbin.esuez.org
-          name: default/eg/https/httpbin_esuez_org
+          - httpbin.example.com
+          name: default/eg/https/httpbin_example_com
           routes:
           - match:
               prefix: /
-            name: httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org
+            name: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
             route:
               cluster: httproute/default/httpbin/rule/0
               rateLimits:

@@ -15,7 +15,7 @@ The basic logic of the plugin is to inject arbitrary, configurable headers into 
 1. Send a test request to the `httpbin` route:
 
     ```shell
-     curl -v http://httpbin.esuez.org/json --resolve httpbin.esuez.org:80:$GATEWAY_IP
+     curl -v http://httpbin.example.com/json --resolve httpbin.example.com:80:$GATEWAY_IP
     ```
 
     The request should succeed, and return some json.
@@ -37,7 +37,7 @@ The basic logic of the plugin is to inject arbitrary, configurable headers into 
 1. Repeat the request:
 
     ```shell
-    curl -v http://httpbin.esuez.org/json --resolve httpbin.esuez.org:80:$GATEWAY_IP
+    curl -v http://httpbin.example.com/json --resolve httpbin.example.com:80:$GATEWAY_IP
     ```
 
     Note the response headers contain extra headers from the configuration of the wasm plugin.

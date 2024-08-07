@@ -10,7 +10,7 @@ The objective is to collect Gateway metrics with Prometheus and expose them thro
 
 ```shell
 while true; do
-  curl --head https://httpbin.esuez.org/json --resolve httpbin.esuez.org:443:$GATEWAY_IP
+  curl --head https://httpbin.example.com/json --resolve httpbin.example.com:443:$GATEWAY_IP
   sleep 0.5
 done
 ```

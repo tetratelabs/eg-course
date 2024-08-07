@@ -44,7 +44,7 @@ Send a number of test request to the `customers` route:
 
 ```shell
 for i in {1..10}; do
-  curl http://customers.esuez.org/ --resolve customers.esuez.org:80:$GATEWAY_IP
+  curl http://customers.example.com/ --resolve customers.example.com:80:$GATEWAY_IP
 done
 ```
 
