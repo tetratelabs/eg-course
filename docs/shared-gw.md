@@ -38,6 +38,12 @@ Wait for the gateway to become available:
 kubectl wait gtw/eg --for=condition=Programmed
 ```
 
+### Capture the Gateway IP address
+
+```shell
+export GATEWAY_IP=$(kubectl get gtw eg -n infra -o jsonpath='{.status.addresses[0].value}')
+```
+
 ## Deploy the workloads
 
 ### The `httpbin` app

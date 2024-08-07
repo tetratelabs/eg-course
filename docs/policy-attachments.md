@@ -93,7 +93,7 @@ kubectl apply -f policy-attachments/httpbin-policy.yaml
 ```shell
 egctl config envoy-proxy route -n envoy-gateway-system \
   -l gateway.envoyproxy.io/owning-gateway-name=eg \
-  -l gateway.envoyproxy.io/owning-gateway-namespace=default \
+  -l gateway.envoyproxy.io/owning-gateway-namespace=infra \
   -o yaml | bat -l yaml
 ```
 
@@ -103,21 +103,21 @@ Here is a sanitized copy of the captured output:
 
 ```yaml linenums="1" hl_lines="17-28"
 envoy-gateway-system:
-  envoy-default-eg-e41e7b31-c7657fcf5-gsgvs:
+  envoy-infra-eg-eade8e06-5f9f47c8bf-gwh4g:
     dynamicRouteConfigs:
     ...
     - routeConfig:
-        name: default/eg/https
+        name: infra/eg/https-httpbin
         virtualHosts:
         - domains:
           - httpbin.example.com
-          name: default/eg/https/httpbin_example_com
+          name: infra/eg/https-httpbin/httpbin_example_com
           routes:
           - match:
               prefix: /
-            name: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
+            name: httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com
             route:
-              cluster: httproute/default/httpbin/rule/0
+              cluster: httproute/httpbin/httpbin/rule/0
               retryPolicy:
                 hostSelectionRetryMaxAttempts: "5"
                 numRetries: 5
@@ -141,8 +141,8 @@ Specifically, the `envoy_cluster_upstream_rq_retry` metric:
 ```shell
 watch 'egctl x stats envoy-proxy -n envoy-gateway-system \
   -l gateway.envoyproxy.io/owning-gateway-name=eg \
-  -l gateway.envoyproxy.io/owning-gateway-namespace=default \
-  | grep "envoy_cluster_upstream_rq_retry{envoy_cluster_name=\"httproute/default/httpbin/rule/0\"}"'
+  -l gateway.envoyproxy.io/owning-gateway-namespace=infra \
+  | grep "envoy_cluster_upstream_rq_retry{envoy_cluster_name=\"httproute/httpbin/httpbin/rule/0\"}"'
 ```
 
 In another terminal, call a failing endpoint:
@@ -159,7 +159,7 @@ Another convenient way to get at the stats exposed by the Envoy proxy is through
 ```shell
 egctl x dashboard envoy-proxy -n envoy-gateway-system \
   -l gateway.envoyproxy.io/owning-gateway-name=eg \
-  -l gateway.envoyproxy.io/owning-gateway-namespace=default
+  -l gateway.envoyproxy.io/owning-gateway-namespace=infra
 ```
 
 Click on the `stats` endpoint and look for metrics with "retry" in their name.
@@ -171,37 +171,37 @@ Click on the `stats` endpoint and look for metrics with "retry" in their name.
 ```shell
 kubectl logs --tail 1 -n envoy-gateway-system \
   -l gateway.envoyproxy.io/owning-gateway-name=eg \
-  -l gateway.envoyproxy.io/owning-gateway-namespace=default | jq
+  -l gateway.envoyproxy.io/owning-gateway-namespace=infra | jq
 ```
 
 Below is a copy of the prettified JSON log line:
 
 ```json linenums="1" hl_lines="7"
 {
-    "start_time": "2024-05-07T21:28:06.447Z",
-    "method": "HEAD",
-    "x-envoy-origin-path": "/status/500",
-    "protocol": "HTTP/2",
-    "response_code": "500",
-    "response_flags": "URX",
-    "response_code_details": "via_upstream",
-    "connection_termination_details": "-",
-    "upstream_transport_failure_reason": "-",
-    "bytes_received": "0",
-    "bytes_sent": "0",
-    "duration": "1837",
-    "x-envoy-upstream-service-time": "-",
-    "x-forwarded-for": "136.49.247.103",
-    "user-agent": "curl/8.7.1",
-    "x-request-id": "f8d9ee84-0f3b-4bc8-a8b7-a023226704b9",
-    ":authority": "httpbin.example.com",
-    "upstream_host": "10.48.2.12:8080",
-    "upstream_cluster": "httproute/default/httpbin/rule/0",
-    "upstream_local_address": "10.48.0.13:36898",
-    "downstream_local_address": "10.48.0.13:10443",
-    "downstream_remote_address": "136.49.247.103:52999",
-    "requested_server_name": "httpbin.example.com",
-    "route_name": "httproute/default/httpbin/rule/0/match/0/httpbin_example_com"
+  "start_time": "2024-08-07T23:32:00.874Z",
+  "method": "HEAD",
+  "x-envoy-origin-path": "/status/500",
+  "protocol": "HTTP/2",
+  "response_code": "500",
+  "response_flags": "URX",
+  "response_code_details": "via_upstream",
+  "connection_termination_details": "-",
+  "upstream_transport_failure_reason": "-",
+  "bytes_received": "0",
+  "bytes_sent": "0",
+  "duration": "787",
+  "x-envoy-upstream-service-time": "-",
+  "x-forwarded-for": "172.19.0.1",
+  "user-agent": "curl/8.9.1",
+  "x-request-id": "fff65b4e-5a41-41fb-8a3e-fc9f33121059",
+  ":authority": "httpbin.example.com",
+  "upstream_host": "10.42.0.12:8080",
+  "upstream_cluster": "httproute/httpbin/httpbin/rule/0",
+  "upstream_local_address": "10.42.0.22:42978",
+  "downstream_local_address": "10.42.0.22:10443",
+  "downstream_remote_address": "172.19.0.1:60922",
+  "requested_server_name": "httpbin.example.com",
+  "route_name": "httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com"
 }
 ```
 
@@ -210,6 +210,6 @@ Note the [Envoy response flag](https://www.envoyproxy.io/docs/envoy/latest/confi
 
 ## Summary
 
-To configure retries, we had to resort to a BackingTrafficPolicy, an extension to the Gateway API.
+To configure retries, we had to resort to using a BackingTrafficPolicy, an extension to the Gateway API.
 In contrast, compare with [timeouts](https://gateway-api.sigs.k8s.io/api-types/httproute/?h=#timeouts-optional),
 which are configured directly on the HTTPRoute resource, since timeouts are a part of the Kubernetes Gateway API specification.
