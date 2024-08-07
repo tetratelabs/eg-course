@@ -1,12 +1,12 @@
 # HTTPS
 
-The objective is to configure the Gateway to serve `httpbin` over TLS.
+The objective of this scenario is to serve our applications over HTTPS.
 
 ---
 
 ## Deploy `cert-manager`
 
-We decide to let [cert-manager](https://cert-manager.io/docs/) manage certificates on our behalf.
+We decide to use [cert-manager](https://cert-manager.io/docs/) to generate and otherwise manage certificates.
 
 ```shell
 helm repo add jetstack https://charts.jetstack.io --force-update
@@ -25,11 +25,11 @@ helm upgrade --install --create-namespace --namespace cert-manager \
 ## Create a self-signed issuer
 
 ```yaml linenums="1"
---8<-- "tls/selfsigned-issuer.yaml"
+--8<-- "https/selfsigned-issuer.yaml"
 ```
 
 ```shell
-kubectl apply -f tls/selfsigned-issuer.yaml
+kubectl apply -f https/selfsigned-issuer.yaml
 ```
 
 ---
@@ -38,12 +38,12 @@ kubectl apply -f tls/selfsigned-issuer.yaml
 
 Add an HTTPS listener for `httpbin.example.com` hostname on the gateway, configured to terminate TLS:
 
-```yaml linenums="1" hl_lines="7 18-21"
---8<-- "tls/gateway-add-https.yaml"
+```yaml linenums="1" hl_lines="7 14-16 21-24 35-38"
+--8<-- "https/gateway-add-https.yaml"
 ```
 
 ```shell
-kubectl apply -f tls/gateway-add-https.yaml
+kubectl apply -f https/gateway-add-https.yaml
 ```
 
 ---
@@ -60,11 +60,11 @@ curl --insecure -v --head https://httpbin.example.com/ \
 ## Configure redirection
 
 ```yaml linenums="1" hl_lines="11 28"
---8<-- "tls/httpbin-to-https.yaml"
+--8<-- "https/httpbin-to-https.yaml"
 ```
 
 ```shell
-kubectl apply -f tls/httpbin-to-https.yaml
+kubectl apply -f https/httpbin-to-https.yaml
 ```
 
 ---
