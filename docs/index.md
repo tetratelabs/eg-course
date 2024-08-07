@@ -1,6 +1,6 @@
 # Introduction
 
-This is the companion site to Tetrate's Envoy Gateway course, which will be published in November.
+This is the companion site to Tetrate's Envoy Gateway course, which will be published on [Tetrate Academy](https://academy.tetrate.io/) in November 2024.
 
 
 ## Artifacts
