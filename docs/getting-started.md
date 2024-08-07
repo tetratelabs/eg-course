@@ -1,5 +1,13 @@
 # Getting started
 
+## Deploy a workload
+
+```shell
+kubectl apply -f apps/httpbin.yaml
+```
+
+---
+
 ## Deploy a [Gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/)
 
 ```yaml linenums="1"
@@ -60,15 +68,7 @@ Why do we get a 404 (Not Found)?
 
 ---
 
-## Deploy a workload
-
-```shell
-kubectl apply -f apps/httpbin.yaml
-```
-
----
-
-## Deploy an HTTPRoute to `httpbin`
+## Define an HTTPRoute to `httpbin`
 
 ```yaml linenums="1"
 --8<-- "getting-started/httpbin-route.yaml"

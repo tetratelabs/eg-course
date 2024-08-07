@@ -1,5 +1,14 @@
 # Shared Gateway
 
+## TODO
+
+Rework this lab to be a complete start to end example:
+
+- deploy both apps, each to a separate namespace
+- deploy the shared gateway to its own namespace, configure `allowedRoutes`
+- define two routes, each in their namespaces
+- verify that both routes are attached to the gateway and functioning
+
 ---
 
 Deploy a second workload and a second route associated to the same gateway
@@ -24,20 +33,12 @@ kubectl apply -f shared-gw/web-frontend-route.yaml
 
 ## :white_check_mark: Verify
 
-After the DNS entry is created, verify that [the route is reachable](http://customers-frontend.example.com/):
+Verify that the route is reachable:
 
 
-=== "Using DNS resolution"
-
-    ```shell
-    curl http://customers-frontend.example.com/
-    ```
-
-=== "Using `curl` name resolve flag"
-
-    ```shell
-    curl http://customers-frontend.example.com/ --resolve customers-frontend.example.com:80:$GATEWAY_IP
-    ```
+```shell
+curl http://customers-frontend.example.com/ --resolve customers-frontend.example.com:80:$GATEWAY_IP
+```
 
 ---
 

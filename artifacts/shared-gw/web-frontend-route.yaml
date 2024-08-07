@@ -5,7 +5,7 @@ metadata:
   name: web-frontend
 spec:
   hostnames:
-  - customers-frontend.esuez.org
+  - customers-frontend.example.com
   parentRefs:
   - name: eg
     namespace: infra
