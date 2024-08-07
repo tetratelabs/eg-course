@@ -19,7 +19,6 @@ nav:
   - getting-started.md
   - shared-gw.md
   - tls.md
-  - redirect.md
   - retries.md
   - ratelimit.md
   - auth.md
