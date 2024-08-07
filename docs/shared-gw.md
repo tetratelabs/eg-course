@@ -75,21 +75,6 @@ kubectl apply -f shared-gw/web-frontend-route.yaml
 
 ---
 
-## :white_check_mark: Verify
-
-Verify that the routes are reachable:
-
-```shell
-curl http://httpbin.example.com/json --resolve httpbin.example.com:80:$GATEWAY_IP
-```
-
-
-```shell
-curl http://customers-frontend.example.com/ --resolve customers-frontend.example.com:80:$GATEWAY_IP
-```
-
----
-
 ## Inspect route configuration
 
 ```shell
@@ -126,4 +111,19 @@ envoy-gateway-system:
             name: httproute/default/web-frontend/rule/0/match/0/customers-frontend_example_com
             route:
               cluster: httproute/default/web-frontend/rule/0
+```
+
+---
+
+## :white_check_mark: Verify
+
+Verify that the routes are reachable:
+
+```shell
+curl http://httpbin.example.com/json --resolve httpbin.example.com:80:$GATEWAY_IP
+```
+
+
+```shell
+curl http://customers-frontend.example.com/ --resolve customers-frontend.example.com:80:$GATEWAY_IP
 ```

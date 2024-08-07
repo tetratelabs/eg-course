@@ -1,4 +1,4 @@
-# Authentication
+# Basic Authentication
 
 Envoy Gateway supports a number of [distinct authentication mechanisms](https://gateway.envoyproxy.io/docs/api/extension_types/#securitypolicyspec), including JWT, OIDC, external authorization, and basic auth.
 
@@ -7,7 +7,7 @@ In this exercise, we keep things simple and demonstrate basic auth.
 Once more, we are dealing with a feature that is outside the current Gateway API specification, and so we use a [SecurityPolicy](https://gateway.envoyproxy.io/docs/api/extension_types/#securitypolicy) attachment against the route we wish to protect, which in this case is the `httpbin` route.
 
 ```yaml linenums="1" hl_lines="13"
---8<-- "auth/basic.yaml"
+--8<-- "basic-auth/auth-config.yaml"
 ```
 
 The value of the `name` field on line 13 refers a secret containing an [`htpasswd`](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) file.
@@ -27,7 +27,7 @@ The value of the `name` field on line 13 refers a secret containing an [`htpassw
 1. Apply the security policy:
 
     ```shell
-    kubectl apply -f auth/basic.yaml
+    kubectl apply -f basic-auth/auth-config.yaml
     ```
 
 ## :white_check_mark: Test it

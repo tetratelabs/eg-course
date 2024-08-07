@@ -22,7 +22,7 @@ nav:
   - policy-attachments.md
   - ratelimit.md
   - Security:
-    - auth.md
+    - basic-auth.md
     - ext-authz.md
     - oidc.md
   - Traffic management:

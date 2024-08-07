@@ -54,7 +54,53 @@ kubectl apply -f policy-attachments/httpbin-policy.yaml
 
 ---
 
-## Review the proxy's "stats"
+## :white_check_mark: Verify: Review the proxy configuration
+
+```shell
+egctl config envoy-proxy route -n envoy-gateway-system \
+  -l gateway.envoyproxy.io/owning-gateway-name=eg \
+  -l gateway.envoyproxy.io/owning-gateway-namespace=default \
+  -o yaml | bat -l yaml
+```
+
+Confirm that the routing configuration has been updated with the retry rule.
+
+Here is a sanitized copy of the captured output:
+
+```yaml linenums="1" hl_lines="17-28"
+envoy-gateway-system:
+  envoy-default-eg-e41e7b31-c7657fcf5-gsgvs:
+    dynamicRouteConfigs:
+    ...
+    - routeConfig:
+        name: default/eg/https
+        virtualHosts:
+        - domains:
+          - httpbin.example.com
+          name: default/eg/https/httpbin_example_com
+          routes:
+          - match:
+              prefix: /
+            name: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
+            route:
+              cluster: httproute/default/httpbin/rule/0
+              retryPolicy:
+                hostSelectionRetryMaxAttempts: "5"
+                numRetries: 5
+                perTryTimeout: 0.250s
+                retriableStatusCodes:
+                - 500
+                retryBackOff:
+                  baseInterval: 0.100s
+                  maxInterval: 10s
+                retryHostPredicate:
+                - name: envoy.retry_host_predicates.previous_hosts
+                retryOn: connect-failure,retriable-status-codes
+```
+
+---
+
+## :white_check_mark: Verify:  Review the proxy's "stats"
 
 Specifically, the `envoy_cluster_upstream_rq_retry` metric:
 
@@ -126,51 +172,6 @@ Below is a copy of the prettified JSON log line:
 ```
 
 Note the [Envoy response flag](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#config-access-log-format-response-flags) is URX: UpstreamRetryLimitExceeded.
-
-## :white_check_mark: Verify: Review the proxy configuration
-
-```shell
-egctl config envoy-proxy route -n envoy-gateway-system \
-  -l gateway.envoyproxy.io/owning-gateway-name=eg \
-  -l gateway.envoyproxy.io/owning-gateway-namespace=default \
-  -o yaml | bat -l yaml
-```
-
-Confirm that the routing configuration has been updated with the retry rule.
-
-Here is a sanitized copy of the captured output:
-
-```yaml linenums="1" hl_lines="17-28"
-envoy-gateway-system:
-  envoy-default-eg-e41e7b31-c7657fcf5-gsgvs:
-    dynamicRouteConfigs:
-    ...
-    - routeConfig:
-        name: default/eg/https
-        virtualHosts:
-        - domains:
-          - httpbin.example.com
-          name: default/eg/https/httpbin_example_com
-          routes:
-          - match:
-              prefix: /
-            name: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
-            route:
-              cluster: httproute/default/httpbin/rule/0
-              retryPolicy:
-                hostSelectionRetryMaxAttempts: "5"
-                numRetries: 5
-                perTryTimeout: 0.250s
-                retriableStatusCodes:
-                - 500
-                retryBackOff:
-                  baseInterval: 0.100s
-                  maxInterval: 10s
-                retryHostPredicate:
-                - name: envoy.retry_host_predicates.previous_hosts
-                retryOn: connect-failure,retriable-status-codes
-```
-
 
 
 ## Summary
