@@ -5,9 +5,10 @@ metadata:
   name: httpbin
 spec:
   hostnames:
-  - httpbin.esuez.org
+  - httpbin.example.com
   parentRefs:
   - name: eg
+    namespace: infra
   rules:
   - backendRefs:
     - name: httpbin

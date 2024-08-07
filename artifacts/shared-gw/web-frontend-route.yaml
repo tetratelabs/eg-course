@@ -8,6 +8,7 @@ spec:
   - customers-frontend.esuez.org
   parentRefs:
   - name: eg
+    namespace: infra
   rules:
   - backendRefs:
     - name: web-frontend

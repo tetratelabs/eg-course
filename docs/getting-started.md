@@ -94,3 +94,17 @@ curl http://httpbin.example.com/json --resolve httpbin.example.com:80:$GATEWAY_I
 
     It's a simple alternative to creating DNS entries that resolve hostnames to public IP addresses, and allows us to work with a purely local environment.
 
+
+## Next
+
+In the next section, you will be constructing an ingress configuration that takes into account multiple tenants using a shared gateway.
+
+In anticipation of configuring a shared gateway, delete the simple route and gateway that you built in this scenario:
+
+```shell
+kubectl delete httproute httpbin
+```
+
+```shell
+kubectl delete gtw eg
+```
