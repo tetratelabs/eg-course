@@ -8,7 +8,7 @@ The basic logic of the plugin is to inject arbitrary, configurable headers into 
 
 ## Context
 
-`httpbin` is already deployed to the `default` namespace and the [simple HttpRoute](simple-route.md) is already defined for it.
+`httpbin` is already deployed, along with a gateway (configured for HTTP), and a route (for hostname `httpbin.example.com`), matching the configuration from [_Getting started_](getting-started.md).
 
 ## Instructions
 

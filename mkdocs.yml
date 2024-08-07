@@ -19,7 +19,7 @@ nav:
   - getting-started.md
   - shared-gw.md
   - https.md
-  - retries.md
+  - policy-attachments.md
   - ratelimit.md
   - Security:
     - auth.md

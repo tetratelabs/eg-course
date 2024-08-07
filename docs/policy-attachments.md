@@ -1,12 +1,14 @@
 # Policy attachments
 
+Retries are an example of how EG extends the Kubernetes Gateway API using [Policy Attachments](https://gateway-api.sigs.k8s.io/reference/policy-attachment/).
+
+To understand policy attachments, we begin with an example of a feature that is part of the Kubernetes Gateway API:  [timeouts](https://gateway-api.sigs.k8s.io/api-types/httproute/?h=#timeouts-optional), and then turn our attention to [retries](https://gateway.envoyproxy.io/docs/tasks/traffic/retry/).
+
+---
+
 ## TODO
 
-Begin with an example of a feature that is a part of the k8s gw api:  timeouts.  See https://gateway-api.sigs.k8s.io/api-types/httproute/?h=#timeouts-optional
-
-Then contrast this with a feature that is not part of the API:  retries.
-
-Retries are an example of how EG extends the Kubernetes Gateway API using [Policy Attachments](https://gateway-api.sigs.k8s.io/reference/policy-attachment/).
+Codify a timeouts example: configure, then test.
 
 ---
 
@@ -43,11 +45,11 @@ gateway.networking.k8s.io/v1alpha2   UDPRoute
 ## Use [BackendTrafficPolicy](https://gateway.envoyproxy.io/docs/api/extension_types/#backendtrafficpolicy) to configure retries
 
 ```yaml linenums="1" hl_lines="12-24"
---8<-- "retries/httpbin-policy.yaml"
+--8<-- "policy-attachments/httpbin-policy.yaml"
 ```
 
 ```shell
-kubectl apply -f retries/httpbin-policy.yaml
+kubectl apply -f policy-attachments/httpbin-policy.yaml
 ```
 
 ---

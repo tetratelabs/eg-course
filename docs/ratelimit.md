@@ -1,5 +1,11 @@
 # Rate limiting
 
+Similar to [retries](policy-attachments.md),
+rate limiting is not part of the Kubernetes Gateway API specification,
+and is configured through Envoy Gateway's [BackendTrafficPolicy](https://gateway.envoyproxy.io/docs/api/extension_types/#backendtrafficpolicy) resource.
+
+The rate limit is associated with the HTTPRoute you wish to limit.
+
 ---
 
 ## Configuring EG for rate limiting
@@ -17,12 +23,6 @@ Follow those instructions to:
 1. Restart the `envoy-gateway` deployment
 
 ---
-
-Similar to [retries](retries.md),
-rate limiting is not part of the Kubernetes Gateway API specification,
-and is configured through Envoy Gateway's [BackendTrafficPolicy](https://gateway.envoyproxy.io/docs/api/extension_types/#backendtrafficpolicy) resource.
-
-The rate limit is associated with the HTTPRoute you wish to limit.
 
 ## Simple example
 
