@@ -1,5 +1,9 @@
 # Rate limiting
 
+## TODO
+
+- Incorporate instructions to deploy redis and to configure it as the rate limiting backend.
+
 !!! warning
 
     If during [setup](setup.md) you chose to install Envoy Gateway, then before you proceed with this lab, you will need to deploy Redis, and reconfigure Envoy Gateway with rate limiting pointing to the URL of the Redis instance you deployed.
