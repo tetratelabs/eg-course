@@ -1,4 +1,10 @@
-# Retries
+# Policy attachments
+
+## TODO
+
+Begin with an example of a feature that is a part of the k8s gw api:  timeouts.  See https://gateway-api.sigs.k8s.io/api-types/httproute/?h=#timeouts-optional
+
+Then contrast this with a feature that is not part of the API:  retries.
 
 Retries are an example of how EG extends the Kubernetes Gateway API using [Policy Attachments](https://gateway-api.sigs.k8s.io/reference/policy-attachment/).
 
@@ -62,14 +68,14 @@ In another terminal, call a failing endpoint:
 === "Using DNS resolution"
 
     ```shell
-    curl --insecure --head https://httpbin.esuez.org/status/500
+    curl --insecure --head https://httpbin.example.com/status/500
     ```
 
 === "Using `curl` name resolve flag"
 
     ```shell
-    curl --insecure --head https://httpbin.esuez.org/status/500 \
-      --resolve httpbin.esuez.org:443:$GATEWAY_IP
+    curl --insecure --head https://httpbin.example.com/status/500 \
+      --resolve httpbin.example.com:443:$GATEWAY_IP
     ```
 
 ---
@@ -114,14 +120,14 @@ Below is a copy of the prettified JSON log line:
     "x-forwarded-for": "136.49.247.103",
     "user-agent": "curl/8.7.1",
     "x-request-id": "f8d9ee84-0f3b-4bc8-a8b7-a023226704b9",
-    ":authority": "httpbin.esuez.org",
+    ":authority": "httpbin.example.com",
     "upstream_host": "10.48.2.12:8080",
     "upstream_cluster": "httproute/default/httpbin/rule/0",
     "upstream_local_address": "10.48.0.13:36898",
     "downstream_local_address": "10.48.0.13:10443",
     "downstream_remote_address": "136.49.247.103:52999",
-    "requested_server_name": "httpbin.esuez.org",
-    "route_name": "httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org"
+    "requested_server_name": "httpbin.example.com",
+    "route_name": "httproute/default/httpbin/rule/0/match/0/httpbin_example_com"
 }
 ```
 
@@ -149,12 +155,12 @@ envoy-gateway-system:
         name: default/eg/https
         virtualHosts:
         - domains:
-          - httpbin.esuez.org
-          name: default/eg/https/httpbin_esuez_org
+          - httpbin.example.com
+          name: default/eg/https/httpbin_example_com
           routes:
           - match:
               prefix: /
-            name: httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org
+            name: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
             route:
               cluster: httproute/default/httpbin/rule/0
               retryPolicy:
