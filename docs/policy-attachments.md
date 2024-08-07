@@ -6,13 +6,45 @@ To understand policy attachments, we begin with an example of a feature that is 
 
 ---
 
-## TODO
+## Timeouts
 
-Codify a timeouts example: configure, then test.
+The Kubernetes Gateway API supports configuring of timeouts.
+
+We can specify a total request timeout on the `httpbin` route of one second, as follows:
+
+```yaml linenums="1" hl_lines="17-18"
+--8<-- "policy-attachments/httpbin-route.yaml"
+```
+
+An HTTPS request to the `httpbin` application will continue to function:
+
+```shell
+curl --insecure https://httpbin.example.com/json \
+  --resolve httpbin.example.com:443:$GATEWAY_IP
+```
+
+On the other hand, targeting an endpoint with a delay of two (2) seconds results in a request timeout (504):
+
+```shell
+curl --insecure https://httpbin.example.com/delay/2 \
+  --resolve httpbin.example.com:443:$GATEWAY_IP
+```
+
+```console
+upstream request timeout
+```
+
+Configuring timeouts was simple an easy.
+
+Envoy is a proxy with more features than the Kubernetes Gateway API codifies.  The API however does provide guidance on how to formally extend its API via policy attachments.
+
+Let us look at how Envoy Gateway utilizes policy attachments to expose other features of the Envoy proxy.
 
 ---
 
 ## Review Gateway-related CRDs
+
+Inspect the gateway-related CRDs defined in your cluster:
 
 ```shell
 kubectl api-resources | grep gateway
@@ -39,6 +71,8 @@ gateway.networking.k8s.io/v1alpha2   TCPRoute
 gateway.networking.k8s.io/v1alpha2   TLSRoute
 gateway.networking.k8s.io/v1alpha2   UDPRoute
 ```
+
+Note the standard [Kubernetes Gateway API](https://gateway-api.sigs.k8s.io/reference/spec/) CRDs as well as [additional ones defined by the Envoy Gateway project](https://gateway.envoyproxy.io/docs/api/extension_types/).
 
 ---
 
