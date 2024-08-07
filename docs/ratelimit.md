@@ -1,15 +1,22 @@
 # Rate limiting
 
-## TODO
+---
 
-- Incorporate instructions to deploy redis and to configure it as the rate limiting backend.
+## Configuring EG for rate limiting
 
-!!! warning
+EG supports Envoy's [Global Rate limiting](https://www.envoyproxy.io/docs/envoy/v1.31.0/intro/arch_overview/other_features/global_rate_limiting.html) feature, which depends on a backing Redis instance to maintain shared state.
 
-    If during [setup](setup.md) you chose to install Envoy Gateway, then before you proceed with this lab, you will need to deploy Redis, and reconfigure Envoy Gateway with rate limiting pointing to the URL of the Redis instance you deployed.
+Before we can begin to exercise rate limiting, we need to deploy a Redis instance and configure EG with the Redis url.
 
-    Detailed instructions are available [here](https://gateway.envoyproxy.io/docs/tasks/traffic/global-rate-limit/).
+Detailed instructions are available [in the EG docs](https://gateway.envoyproxy.io/docs/tasks/traffic/global-rate-limit/#prerequisites).
 
+Follow those instructions to:
+
+1. Deploy Redis
+1. Update the `envoy-gateway-config` ConfigMap to specify the Redis backend url
+1. Restart the `envoy-gateway` deployment
+
+---
 
 Similar to [retries](retries.md),
 rate limiting is not part of the Kubernetes Gateway API specification,
