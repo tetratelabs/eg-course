@@ -6,6 +6,8 @@
 kubectl apply -f apps/httpbin.yaml
 ```
 
+[httpbin](https://httpbin.org/) is a well-known "simple HTTP request & response service" that exposes endpoints useful for testing different types of HTTP requests.
+
 ---
 
 ## Deploy a [Gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/)
@@ -24,6 +26,12 @@ Wait for the gateway to become available:
 kubectl wait gtw/eg --for=condition=Programmed
 ```
 
+`egctl` provides a command to display the status of gateways:
+
+```shell
+egctl x status gateway -v
+```
+
 ---
 
 ## :white_check_mark: Test it
@@ -34,7 +42,7 @@ export GATEWAY_IP=$(kubectl get gtw eg -o jsonpath='{.status.addresses[0].value}
 
 !!! note
 
-    When using a local k3d cluster, k3d will usually configure the loop back address 127.0.0.1 as your gateway IP address.  In that case, configure your GATEWAY_IP as follows:
+    When using a local k3d cluster, k3d will usually configure the loopback address (127.0.0.1) as the gateway IP address.  In that case, configure your GATEWAY_IP as follows:
 
     ```shell
     export GATEWAY_IP=127.0.0.1
@@ -90,7 +98,7 @@ curl http://httpbin.example.com/json --resolve httpbin.example.com:80:$GATEWAY_I
 
 !!! note
 
-    Above, we use `curl`'s `--resolve` flag to resolve the host name to the gateway IP address.  See [here](https://everything.curl.dev/usingcurl/connections/name.html#provide-a-custom-ip-address-for-a-name) for more details.
+    Above, we use [`curl`'s `--resolve` flag](https://everything.curl.dev/usingcurl/connections/name.html#provide-a-custom-ip-address-for-a-name) to resolve the host name to the gateway IP address.
 
     It's a simple alternative to creating DNS entries that resolve hostnames to public IP addresses, and allows us to work with a purely local environment.
 
