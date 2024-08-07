@@ -2,27 +2,15 @@
 
 ## Provision a cluster
 
-===+ "Locally with k3d"
+```shell
+--8<-- "setup/make-local-k3d-cluster"
+```
 
-    ```shell
-    --8<-- "setup/make-local-k3d-cluster"
-    ```
+```shell
+./setup/make-local-k3d-cluster
+```
 
-    ```shell
-    ./setup/make-local-k3d-cluster
-    ```
-
-    [About k3d](https://k3d.io/).
-
-=== "On GCP"
-
-    ```shell
-    --8<-- "setup/make-gke-cluster"
-    ```
-
-    ```shell
-    ./setup/make-gke-cluster
-    ```
+[About k3d](https://k3d.io/).
 
 ---
 
