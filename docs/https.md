@@ -1,4 +1,4 @@
-# TLS
+# HTTPS
 
 The objective is to configure the Gateway to serve `httpbin` over TLS.
 

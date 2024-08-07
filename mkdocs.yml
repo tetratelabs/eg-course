@@ -18,15 +18,19 @@ nav:
   - setup.md
   - getting-started.md
   - shared-gw.md
-  - tls.md
+  - https.md
   - retries.md
   - ratelimit.md
-  - auth.md
-  - traffic-split.md
-  - wasm.md
-  - ext-authz.md
-  - observability.md
-  - oidc.md
+  - Security:
+    - auth.md
+    - ext-authz.md
+    - oidc.md
+  - Traffic management:
+    - traffic-split.md
+  - Extensibility:
+    - wasm.md
+  - Observability:
+    - observability.md
   - takeaways.md
 markdown_extensions:
   - admonition

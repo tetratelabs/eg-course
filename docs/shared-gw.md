@@ -1,4 +1,4 @@
-# Shared Gateway
+# Shared Gateways
 
 ---
 
