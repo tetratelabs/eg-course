@@ -1,12 +1,22 @@
 # HTTPS
 
-The objective of this scenario is to serve our applications over HTTPS.
+The objective of this scenario is to serve application traffic over HTTPS.
+
+---
+
+## Design decisions
+
+- All traffic should be over HTTPS
+- All HTTP requests should be automatically redirected to HTTPS
+- App teams should not be able to define routes over HTTP
+- The platform team will manage the configuration of TLS termination for the application teams
+- App teams continue to have the ability to self-service routes against the shared gateway
+
+We decide to use [cert-manager](https://cert-manager.io/docs/) to generate and otherwise manage certificates.
 
 ---
 
 ## Deploy `cert-manager`
-
-We decide to use [cert-manager](https://cert-manager.io/docs/) to generate and otherwise manage certificates.
 
 ```shell
 helm repo add jetstack https://charts.jetstack.io --force-update
@@ -34,13 +44,23 @@ kubectl apply -f https/selfsigned-issuer.yaml
 
 ---
 
-## Add an HTTPS listener
+## Update the Gateway configuration
 
-Add an HTTPS listener for `httpbin.example.com` hostname on the gateway, configured to terminate TLS:
+Review the below updated Gateway configuration:
 
-```yaml linenums="1" hl_lines="7 14-16 21-24 35-38"
+```yaml linenums="1" hl_lines="8 15-17 22-25 36-39"
 --8<-- "https/gateway-add-https.yaml"
 ```
+
+Note the following:
+
+- In addition to the HTTP listener on port 80, we add HTTPS listeners on port 443 for both `httpbin` and the `customers` hostnames.
+- The HTTPS listeners are configured to terminate TLS and reference a certificate in Kubernetes secrets:  `httpbin-cert` for `httpbin` and `customers-cert` for the `customers` app.
+- The `allowedRoutes` configuration that allows app teams to self-service their own routes is now specified at the HTTPS listener level.
+- Routes can only be attached to the HTTP listener if they're defined in the _same_ namespace as the Gateway resource (`infra`).
+- The annotation on line eight (8) enlists `cert-manager`'s certificate issuer to generate the certificates and store them in the specified secrets.
+
+Apply the configuration:
 
 ```shell
 kubectl apply -f https/gateway-add-https.yaml
@@ -52,14 +72,25 @@ kubectl apply -f https/gateway-add-https.yaml
 
 Access `httpbin` over TLS:
 
-```shell
-curl --insecure -v --head https://httpbin.example.com/ \
-    --resolve httpbin.example.com:443:$GATEWAY_IP
-```
+- A verbose HEAD request showing the TLS handshake:
+
+    ```shell
+    curl --insecure -v --head https://httpbin.example.com/ \
+      --resolve httpbin.example.com:443:$GATEWAY_IP
+    ```
+
+- A call to the `/json` endpoint over https:
+
+    ```shell
+    curl --insecure https://httpbin.example.com/json \
+      --resolve httpbin.example.com:443:$GATEWAY_IP
+    ```
 
 ## Configure redirection
 
-```yaml linenums="1" hl_lines="11 28"
+The platform team is the only party with the permission to apply this routing rule, to redirect HTTP requests to HTTPS with a 301 (redirected) response code:
+
+```yaml linenums="1" hl_lines="12"
 --8<-- "https/httpbin-to-https.yaml"
 ```
 
@@ -98,3 +129,7 @@ Here is a copy of the captured output:
 <
 * Connection #0 to host httpbin.example.com left intact
 ```
+
+# Summary
+
+We now have an ingress configuration that functions over HTTPS using a shared gateway that accommodates the needs of both the platform team and multiple application teams.

@@ -164,3 +164,9 @@ curl http://httpbin.example.com/json --resolve httpbin.example.com:80:$GATEWAY_I
 ```shell
 curl http://customers-frontend.example.com/ --resolve customers-frontend.example.com:80:$GATEWAY_IP
 ```
+
+---
+
+## Summary
+
+With the Kubernetes Gateway API, have can achieve a separation of concerns, where the platform team can manage a shared gateway, while at the same time application teams can (with the permission of the platform team) define the routes for their applications.
