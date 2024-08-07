@@ -33,3 +33,17 @@ helm install eg oci://docker.io/envoyproxy/gateway-helm \
 ```shell
 kubectl apply -f setup/gateway-class.yaml
 ```
+
+---
+
+## Install the `egctl` CLI
+
+Envoy Gateway comes with its own command-line tool, [`egctl`](https://gateway.envoyproxy.io/docs/install/install-egctl/), which provides a variety of helpful subcommands that we explore in subsequent lessons.
+
+`egctl` can be installed in different ways:
+
+- From binaries (published with each release for different platforms).
+- Via an install script.
+- On MacOS, with the homebrew package manager.
+
+Installation instructions are available in the [Envoy Gateway documentation](https://gateway.envoyproxy.io/docs/install/install-egctl/).
