@@ -4,6 +4,5 @@ gcloud container clusters create my-k8s-cluster \
   --cluster-version latest \
   --machine-type n1-standard-2 \
   --num-nodes 3 \
-  --network default \
-  --scopes "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+  --network default
 

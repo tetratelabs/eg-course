@@ -1,9 +1,9 @@
-site_name: Exploring Envoy Gateway
+site_name: Envoy Gateway by Example
 theme:
   name: material
   logo: assets/tetrate-logo-white.png
   palette:
-    primary: teal
+    primary: purple
   features:
     - navigation.top
     - navigation.instant
@@ -16,19 +16,18 @@ theme:
 nav:
   - index.md
   - setup.md
-  - simple-route.md
+  - getting-started.md
   - shared-gw.md
   - tls.md
   - redirect.md
   - retries.md
   - ratelimit.md
   - auth.md
-  - Additional:
-    - traffic-split.md
-    - wasm.md
-    - ext-authz.md
-    - observability.md
-    - oidc.md
+  - traffic-split.md
+  - wasm.md
+  - ext-authz.md
+  - observability.md
+  - oidc.md
   - takeaways.md
 markdown_extensions:
   - admonition
@@ -62,6 +61,4 @@ plugins:
   - macros # https://mkdocs-macros-plugin.readthedocs.io/en/latest/
 extra:
   eg:
-    version: 1.1.0
-  teg:
     version: 1.1.0

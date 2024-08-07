@@ -24,19 +24,19 @@ kubectl apply -f shared-gw/web-frontend-route.yaml
 
 ## :white_check_mark: Verify
 
-After the DNS entry is created, verify that [the route is reachable](http://customers-frontend.esuez.org/):
+After the DNS entry is created, verify that [the route is reachable](http://customers-frontend.example.com/):
 
 
 === "Using DNS resolution"
 
     ```shell
-    curl http://customers-frontend.esuez.org/
+    curl http://customers-frontend.example.com/
     ```
 
 === "Using `curl` name resolve flag"
 
     ```shell
-    curl http://customers-frontend.esuez.org/ --resolve customers-frontend.esuez.org:80:$GATEWAY_IP
+    curl http://customers-frontend.example.com/ --resolve customers-frontend.example.com:80:$GATEWAY_IP
     ```
 
 ---
@@ -60,21 +60,21 @@ envoy-gateway-system:
         name: default/eg/http
         virtualHosts:
         - domains:
-          - httpbin.esuez.org
-          name: default/eg/http/httpbin_esuez_org
+          - httpbin.example.com
+          name: default/eg/http/httpbin_example_com
           routes:
           - match:
               prefix: /
-            name: httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org
+            name: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
             route:
               cluster: httproute/default/httpbin/rule/0
         - domains:
-          - customers-frontend.esuez.org
-          name: default/eg/http/customers-frontend_esuez_org
+          - customers-frontend.example.com
+          name: default/eg/http/customers-frontend_example_com
           routes:
           - match:
               prefix: /
-            name: httproute/default/web-frontend/rule/0/match/0/customers-frontend_esuez_org
+            name: httproute/default/web-frontend/rule/0/match/0/customers-frontend_example_com
             route:
               cluster: httproute/default/web-frontend/rule/0
 ```
