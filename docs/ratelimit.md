@@ -99,14 +99,14 @@ Above, note the `x-ratelimit-*` headers that inform us of the limit, the number 
 ```shell
 kubectl logs --tail 1 -n envoy-gateway-system \
   -l gateway.envoyproxy.io/owning-gateway-name=eg \
-  -l gateway.envoyproxy.io/owning-gateway-namespace=default | jq
+  -l gateway.envoyproxy.io/owning-gateway-namespace=infra | jq
 ```
 
 Below is a copy of the prettified JSON log line:
 
 ```json linenums="1" hl_lines="6-7"
 {
-  "start_time": "2024-05-09T00:44:06.909Z",
+  "start_time": "2024-08-08T00:21:14.929Z",
   "method": "HEAD",
   "x-envoy-origin-path": "/",
   "protocol": "HTTP/2",
@@ -117,19 +117,19 @@ Below is a copy of the prettified JSON log line:
   "upstream_transport_failure_reason": "-",
   "bytes_received": "0",
   "bytes_sent": "0",
-  "duration": "3",
+  "duration": "1",
   "x-envoy-upstream-service-time": "-",
-  "x-forwarded-for": "172.19.0.4",
-  "user-agent": "curl/8.7.1",
-  "x-request-id": "a5216e48-3243-42d7-b3f4-8af119efd232",
+  "x-forwarded-for": "172.19.0.1",
+  "user-agent": "curl/8.9.1",
+  "x-request-id": "04186347-7203-41d0-8b56-965bc32ef60a",
   ":authority": "httpbin.example.com",
   "upstream_host": "-",
-  "upstream_cluster": "httproute/default/httpbin/rule/0",
+  "upstream_cluster": "httproute/httpbin/httpbin/rule/0",
   "upstream_local_address": "-",
-  "downstream_local_address": "10.42.0.21:10443",
-  "downstream_remote_address": "172.19.0.4:59056",
+  "downstream_local_address": "10.42.0.22:10443",
+  "downstream_remote_address": "172.19.0.1:62217",
   "requested_server_name": "httpbin.example.com",
-  "route_name": "httproute/default/httpbin/rule/0/match/0/httpbin_example_com"
+  "route_name": "httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com"
 }
 ```
 
@@ -141,7 +141,7 @@ It is more common for individual users to each have their own limit.
 
 The below example adds a [rate limit selection condition](https://gateway.envoyproxy.io/docs/api/extension_types/#ratelimitselectcondition) to distinguish between users by http header name of `x-user-id`:
 
-```yaml linenums="1" hl_lines="15-18"
+```yaml linenums="1" hl_lines="16-19"
 --8<-- "ratelimit/distinct-users.yaml"
 ```
 
@@ -174,7 +174,7 @@ The curious may wish to inspect the translated configuration at the Envoy proxy:
 ```shell
 egctl config envoy-proxy route -n envoy-gateway-system \
   -l gateway.envoyproxy.io/owning-gateway-name=eg \
-  -l gateway.envoyproxy.io/owning-gateway-namespace=default \
+  -l gateway.envoyproxy.io/owning-gateway-namespace=infra \
   -o yaml | bat -l yaml
 ```
 
@@ -182,26 +182,26 @@ Here is a sanitized copy of the captured output:
 
 ```yaml linenums="1" hl_lines="17-24"
 envoy-gateway-system:
-  envoy-default-eg-e41e7b31-c7657fcf5-gsgvs:
+  envoy-infra-eg-eade8e06-5f9f47c8bf-gwh4g:
     dynamicRouteConfigs:
     - ...
     - routeConfig:
-        name: default/eg/https
+        name: infra/eg/https-httpbin
         virtualHosts:
         - domains:
           - httpbin.example.com
-          name: default/eg/https/httpbin_example_com
+          name: infra/eg/https-httpbin/httpbin_example_com
           routes:
           - match:
               prefix: /
-            name: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
+            name: httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com
             route:
-              cluster: httproute/default/httpbin/rule/0
+              cluster: httproute/httpbin/httpbin/rule/0
               rateLimits:
               - actions:
                 - genericKey:
-                    descriptorKey: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
-                    descriptorValue: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
+                    descriptorKey: httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com
+                    descriptorValue: httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com
                 - requestHeaders:
                     descriptorKey: rule-0-match-0
                     headerName: x-user-id
