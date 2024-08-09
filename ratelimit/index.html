@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../retries/">
+        <link rel="prev" href="../policy-attachments/">
       
       
-        <link rel="next" href="../auth/">
+        <link rel="next" href="../basic-auth/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Rate limiting - Exploring Envoy Gateway</title>
+        <title>Rate limiting - Envoy Gateway Fundamentals</title>
       
     
     
@@ -61,7 +61,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -86,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Exploring Envoy Gateway" class="md-header__button md-logo" aria-label="Exploring Envoy Gateway" data-md-component="logo">
+    <a href=".." title="Envoy Gateway Fundamentals" class="md-header__button md-logo" aria-label="Envoy Gateway Fundamentals" data-md-component="logo">
       
   <img src="../assets/tetrate-logo-white.png" alt="logo">
 
@@ -99,7 +99,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Exploring Envoy Gateway
+            Envoy Gateway Fundamentals
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -180,12 +180,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Exploring Envoy Gateway" class="md-nav__button md-logo" aria-label="Exploring Envoy Gateway" data-md-component="logo">
+    <a href=".." title="Envoy Gateway Fundamentals" class="md-nav__button md-logo" aria-label="Envoy Gateway Fundamentals" data-md-component="logo">
       
   <img src="../assets/tetrate-logo-white.png" alt="logo">
 
     </a>
-    Exploring Envoy Gateway
+    Envoy Gateway Fundamentals
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -221,7 +221,7 @@
         
   
   <span class="md-ellipsis">
-    Setup
+    Installation & setup
   </span>
   
 
@@ -237,11 +237,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../simple-route/" class="md-nav__link">
+      <a href="../getting-started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Simple routing
+    Getting started
   </span>
   
 
@@ -261,7 +261,7 @@
         
   
   <span class="md-ellipsis">
-    Shared Gateway
+    Shared Gateways
   </span>
   
 
@@ -277,11 +277,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../tls/" class="md-nav__link">
+      <a href="../https/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    TLS
+    HTTPS
   </span>
   
 
@@ -297,31 +297,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../redirect/" class="md-nav__link">
+      <a href="../policy-attachments/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Redirect HTTP to HTTPS
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../retries/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Retries
+    Policy attachments
   </span>
   
 
@@ -381,6 +361,15 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-eg-for-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring EG for rate limiting
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#simple-example" class="md-nav__link">
@@ -453,26 +442,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../auth/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Authentication
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
     
     
     
@@ -483,24 +452,24 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    Additional
+    Security
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
-            Additional
+            Security
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -511,32 +480,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../traffic-split/" class="md-nav__link">
+      <a href="../basic-auth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Traffic Splitting
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../wasm/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    WebAssembly
+    Basic Authentication
   </span>
   
 
@@ -567,71 +515,9 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../observability/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Observability
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../oidc/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    OIDC with Okta
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../takeaways/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Takeaways
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -661,6 +547,15 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-eg-for-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring EG for rate limiting
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#simple-example" class="md-nav__link">
@@ -735,15 +630,22 @@
 
 
 <h1 id="rate-limiting">Rate limiting<a class="headerlink" href="#rate-limiting" title="Permanent link">&para;</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If during <a href="../setup/">setup</a> you chose to install Envoy Gateway, then before you proceed with this lab, you will need to deploy Redis, and reconfigure Envoy Gateway with rate limiting pointing to the URL of the Redis instance you deployed.</p>
-<p>Detailed instructions are available <a href="https://gateway.envoyproxy.io/docs/tasks/traffic/global-rate-limit/">here</a>.</p>
-</div>
-<p>Similar to <a href="../retries/">retries</a>,
+<p>Similar to <a href="../policy-attachments/">retries</a>,
 rate limiting is not part of the Kubernetes Gateway API specification,
 and is configured through Envoy Gateway's <a href="https://gateway.envoyproxy.io/docs/api/extension_types/#backendtrafficpolicy">BackendTrafficPolicy</a> resource.</p>
 <p>The rate limit is associated with the HTTPRoute you wish to limit.</p>
+<hr />
+<h2 id="configuring-eg-for-rate-limiting">Configuring EG for rate limiting<a class="headerlink" href="#configuring-eg-for-rate-limiting" title="Permanent link">&para;</a></h2>
+<p>EG supports Envoy's <a href="https://www.envoyproxy.io/docs/envoy/v1.31.0/intro/arch_overview/other_features/global_rate_limiting.html">Global Rate limiting</a> feature, which depends on a backing Redis instance to maintain shared state.</p>
+<p>Before we can begin to exercise rate limiting, we need to deploy a Redis instance and configure EG with the Redis url.</p>
+<p>Detailed instructions are available <a href="https://gateway.envoyproxy.io/docs/tasks/traffic/global-rate-limit/#prerequisites">in the EG docs</a>.</p>
+<p>Follow those instructions to:</p>
+<ol>
+<li>Deploy Redis</li>
+<li>Update the <code>envoy-gateway-config</code> ConfigMap to specify the Redis backend url</li>
+<li>Restart the <code>envoy-gateway</code> deployment</li>
+</ol>
+<hr />
 <h2 id="simple-example">Simple example<a class="headerlink" href="#simple-example" title="Permanent link">&para;</a></h2>
 <p>Configure access to <code>httpbin</code> to be limited to three requests per minute:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
@@ -762,93 +664,139 @@ and is configured through Envoy Gateway's <a href="https://gateway.envoyproxy.io
 <span class="normal"><a href="#__codelineno-0-14">14</a></span>
 <span class="normal"><a href="#__codelineno-0-15">15</a></span>
 <span class="normal"><a href="#__codelineno-0-16">16</a></span>
-<span class="normal"><a href="#__codelineno-0-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nn">---</span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nn">---</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.envoyproxy.io/v1alpha1</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BackendTrafficPolicy</span><span class="w"> </span>
 <a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="nt">metadata</span><span class="p">:</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin-traffic-policy</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">  </span><span class="nt">targetRefs</span><span class="p">:</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">  </span><span class="nt">rateLimit</span><span class="p">:</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Global</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="nt">global</span><span class="p">:</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">      </span><span class="nt">rules</span><span class="p">:</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">limit</span><span class="p">:</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">          </span><span class="nt">requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">          </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Minute</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">  </span><span class="nt">targetRefs</span><span class="p">:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">  </span><span class="nt">rateLimit</span><span class="p">:</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Global</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">    </span><span class="nt">global</span><span class="p">:</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">      </span><span class="nt">rules</span><span class="p">:</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">limit</span><span class="p">:</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">          </span><span class="nt">requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">          </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Minute</span>
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>ratelimit/simple.yaml
 </code></pre></div>
 <h3 id="test-it"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h3>
 <p>Send four requests in succession, the fourth should be rate-limited:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Using DNS resolution</label><label for="__tabbed_1_2">Using <code>curl</code> name resolve flag</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>curl<span class="w"> </span>--insecure<span class="w"> </span>--head<span class="w"> </span>https://httpbin.esuez.org/
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>curl<span class="w"> </span>--insecure<span class="w"> </span>--head<span class="w"> </span>https://httpbin.example.com/<span class="w"> </span>--resolve<span class="w"> </span>httpbin.example.com:443:<span class="nv">$GATEWAY_IP</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">done</span>
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>curl<span class="w"> </span>--insecure<span class="w"> </span>--head<span class="w"> </span>https://httpbin.esuez.org/<span class="w"> </span>--resolve<span class="w"> </span>httpbin.esuez.org:443:<span class="nv">$GATEWAY_IP</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">done</span>
-</code></pre></div>
-</div>
-</div>
-</div>
 <p>Here is the captured output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="go">HTTP/2 200</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">server: gunicorn/19.9.0</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">date: Tue, 07 May 2024 22:33:12 GMT</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="go">content-type: text/html; charset=utf-8</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="go">content-length: 9593</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="go">access-control-allow-origin: *</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="go">access-control-allow-credentials: true</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="go">x-ratelimit-limit: 3, 3;w=60</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="go">x-ratelimit-remaining: 2</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="go">x-ratelimit-reset: 48</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="go">HTTP/2 200</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="go">server: gunicorn/19.9.0</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="go">date: Tue, 07 May 2024 22:33:12 GMT</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="go">content-type: text/html; charset=utf-8</span>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="go">content-length: 9593</span>
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="go">access-control-allow-origin: *</span>
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="go">access-control-allow-credentials: true</span>
-<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="go">x-ratelimit-limit: 3, 3;w=60</span>
-<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="go">x-ratelimit-remaining: 1</span>
-<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="go">x-ratelimit-reset: 48</span>
-<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>
-<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="go">HTTP/2 200</span>
-<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="go">server: gunicorn/19.9.0</span>
-<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="go">date: Tue, 07 May 2024 22:33:12 GMT</span>
-<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="go">content-type: text/html; charset=utf-8</span>
-<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="go">content-length: 9593</span>
-<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="go">access-control-allow-origin: *</span>
-<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="go">access-control-allow-credentials: true</span>
-<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="go">x-ratelimit-limit: 3, 3;w=60</span>
-<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="go">x-ratelimit-remaining: 0</span>
-<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="go">x-ratelimit-reset: 48</span>
-<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>
-<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="go">HTTP/2 429</span>
-<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="go">x-envoy-ratelimited: true</span>
-<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="go">x-ratelimit-limit: 3, 3;w=60</span>
-<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="go">x-ratelimit-remaining: 0</span>
-<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="go">x-ratelimit-reset: 48</span>
-<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="go">date: Tue, 07 May 2024 22:33:12 GMT</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="go">HTTP/2 200</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">server: gunicorn/19.9.0</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">date: Tue, 07 May 2024 22:33:12 GMT</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">content-type: text/html; charset=utf-8</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">content-length: 9593</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="go">access-control-allow-origin: *</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="go">access-control-allow-credentials: true</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="go">x-ratelimit-limit: 3, 3;w=60</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="go">x-ratelimit-remaining: 2</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="go">x-ratelimit-reset: 48</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="go">HTTP/2 200</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="go">server: gunicorn/19.9.0</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="go">date: Tue, 07 May 2024 22:33:12 GMT</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="go">content-type: text/html; charset=utf-8</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="go">content-length: 9593</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="go">access-control-allow-origin: *</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="go">access-control-allow-credentials: true</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="go">x-ratelimit-limit: 3, 3;w=60</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="go">x-ratelimit-remaining: 1</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="go">x-ratelimit-reset: 48</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="go">HTTP/2 200</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="go">server: gunicorn/19.9.0</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="go">date: Tue, 07 May 2024 22:33:12 GMT</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="go">content-type: text/html; charset=utf-8</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="go">content-length: 9593</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="go">access-control-allow-origin: *</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="go">access-control-allow-credentials: true</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="go">x-ratelimit-limit: 3, 3;w=60</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="go">x-ratelimit-remaining: 0</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="go">x-ratelimit-reset: 48</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="go">HTTP/2 429</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="go">x-envoy-ratelimited: true</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="go">x-ratelimit-limit: 3, 3;w=60</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="go">x-ratelimit-remaining: 0</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="go">x-ratelimit-reset: 48</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="go">date: Tue, 07 May 2024 22:33:12 GMT</span>
 </code></pre></div>
 <p>Above, note the <code>x-ratelimit-*</code> headers that inform us of the limit, the number of requests remaining, and the amount of time (in seconds) until the corresponding counter is reset.</p>
 <hr />
 <h2 id="verify-tail-the-gateway-logs"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Verify: Tail the gateway logs<a class="headerlink" href="#verify-tail-the-gateway-logs" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>default<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>infra<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
 </code></pre></div>
 <p>Below is a copy of the prettified JSON log line:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span>
+<span class="normal"><a href="#__codelineno-5-23">23</a></span>
+<span class="normal"><a href="#__codelineno-5-24">24</a></span>
+<span class="normal"><a href="#__codelineno-5-25">25</a></span>
+<span class="normal"><a href="#__codelineno-5-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;start_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-08-08T00:21:14.929Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HEAD&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">  </span><span class="nt">&quot;x-envoy-origin-path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">  </span><span class="nt">&quot;protocol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HTTP/2&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="hll"><span class="w">  </span><span class="nt">&quot;response_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;429&quot;</span><span class="p">,</span>
+</span><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="hll"><span class="w">  </span><span class="nt">&quot;response_flags&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RL&quot;</span><span class="p">,</span>
+</span><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">  </span><span class="nt">&quot;response_code_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;request_rate_limited&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">  </span><span class="nt">&quot;connection_termination_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">  </span><span class="nt">&quot;upstream_transport_failure_reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="w">  </span><span class="nt">&quot;bytes_received&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="w">  </span><span class="nt">&quot;bytes_sent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="w">  </span><span class="nt">&quot;duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="w">  </span><span class="nt">&quot;x-envoy-upstream-service-time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="w">  </span><span class="nt">&quot;x-forwarded-for&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.19.0.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="w">  </span><span class="nt">&quot;user-agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;curl/8.9.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="w">  </span><span class="nt">&quot;x-request-id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;04186347-7203-41d0-8b56-965bc32ef60a&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="w">  </span><span class="nt">&quot;:authority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httpbin.example.com&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="w">  </span><span class="nt">&quot;upstream_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a><span class="w">  </span><span class="nt">&quot;upstream_cluster&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httproute/httpbin/httpbin/rule/0&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="w">  </span><span class="nt">&quot;upstream_local_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="w">  </span><span class="nt">&quot;downstream_local_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.42.0.22:10443&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23"></a><span class="w">  </span><span class="nt">&quot;downstream_remote_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.19.0.1:62217&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24"></a><span class="w">  </span><span class="nt">&quot;requested_server_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httpbin.example.com&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25"></a><span class="w">  </span><span class="nt">&quot;route_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com&quot;</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Note the <a href="https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#config-access-log-format-response-flags">Envoy response flag</a> is RL: RateLimited.</p>
+<h2 id="rate-limit-distinct-users">Rate limit distinct users<a class="headerlink" href="#rate-limit-distinct-users" title="Permanent link">&para;</a></h2>
+<p>It is more common for individual users to each have their own limit.</p>
+<p>The below example adds a <a href="https://gateway.envoyproxy.io/docs/api/extension_types/#ratelimitselectcondition">rate limit selection condition</a> to distinguish between users by http header name of <code>x-user-id</code>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
@@ -870,176 +818,98 @@ and is configured through Envoy Gateway's <a href="https://gateway.envoyproxy.io
 <span class="normal"><a href="#__codelineno-6-19">19</a></span>
 <span class="normal"><a href="#__codelineno-6-20">20</a></span>
 <span class="normal"><a href="#__codelineno-6-21">21</a></span>
-<span class="normal"><a href="#__codelineno-6-22">22</a></span>
-<span class="normal"><a href="#__codelineno-6-23">23</a></span>
-<span class="normal"><a href="#__codelineno-6-24">24</a></span>
-<span class="normal"><a href="#__codelineno-6-25">25</a></span>
-<span class="normal"><a href="#__codelineno-6-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="p">{</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">  </span><span class="nt">&quot;start_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-05-09T00:44:06.909Z&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HEAD&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">  </span><span class="nt">&quot;x-envoy-origin-path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">  </span><span class="nt">&quot;protocol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HTTP/2&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="hll"><span class="w">  </span><span class="nt">&quot;response_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;429&quot;</span><span class="p">,</span>
-</span><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="hll"><span class="w">  </span><span class="nt">&quot;response_flags&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RL&quot;</span><span class="p">,</span>
-</span><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">  </span><span class="nt">&quot;response_code_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;request_rate_limited&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">  </span><span class="nt">&quot;connection_termination_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">  </span><span class="nt">&quot;upstream_transport_failure_reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">  </span><span class="nt">&quot;bytes_received&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">  </span><span class="nt">&quot;bytes_sent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="w">  </span><span class="nt">&quot;duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">  </span><span class="nt">&quot;x-envoy-upstream-service-time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="w">  </span><span class="nt">&quot;x-forwarded-for&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.19.0.4&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="w">  </span><span class="nt">&quot;user-agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;curl/8.7.1&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="w">  </span><span class="nt">&quot;x-request-id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a5216e48-3243-42d7-b3f4-8af119efd232&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="w">  </span><span class="nt">&quot;:authority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httpbin.esuez.org&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="w">  </span><span class="nt">&quot;upstream_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="w">  </span><span class="nt">&quot;upstream_cluster&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httproute/default/httpbin/rule/0&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-21" name="__codelineno-6-21"></a><span class="w">  </span><span class="nt">&quot;upstream_local_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-22" name="__codelineno-6-22"></a><span class="w">  </span><span class="nt">&quot;downstream_local_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.42.0.21:10443&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-23" name="__codelineno-6-23"></a><span class="w">  </span><span class="nt">&quot;downstream_remote_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.19.0.4:59056&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-24" name="__codelineno-6-24"></a><span class="w">  </span><span class="nt">&quot;requested_server_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httpbin.esuez.org&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-25" name="__codelineno-6-25"></a><span class="w">  </span><span class="nt">&quot;route_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org&quot;</span>
-<a id="__codelineno-6-26" name="__codelineno-6-26"></a><span class="p">}</span>
+<span class="normal"><a href="#__codelineno-6-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nn">---</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.envoyproxy.io/v1alpha1</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BackendTrafficPolicy</span><span class="w"> </span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin-traffic-policy</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">  </span><span class="nt">targetRefs</span><span class="p">:</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">  </span><span class="nt">rateLimit</span><span class="p">:</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Global</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">    </span><span class="nt">global</span><span class="p">:</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="w">      </span><span class="nt">rules</span><span class="p">:</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">clientSelectors</span><span class="p">:</span>
+</span><a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="hll"><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">headers</span><span class="p">:</span>
+</span><a id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="hll"><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Distinct</span>
+</span><a id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="hll"><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-user-id</span>
+</span><a id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="w">        </span><span class="nt">limit</span><span class="p">:</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21"></a><span class="w">          </span><span class="nt">requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22"></a><span class="w">          </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Minute</span>
 </code></pre></div></td></tr></table></div>
-<p>Note the <a href="https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#config-access-log-format-response-flags">Envoy response flag</a> is RL: RateLimited.</p>
-<h2 id="rate-limit-distinct-users">Rate limit distinct users<a class="headerlink" href="#rate-limit-distinct-users" title="Permanent link">&para;</a></h2>
-<p>It is more common for individual users to each have their own limit.</p>
-<p>The below example adds a <a href="https://gateway.envoyproxy.io/docs/api/extension_types/#ratelimitselectcondition">rate limit selection condition</a> to distinguish between users by http header name of <code>x-user-id</code>:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-7-10">10</a></span>
-<span class="normal"><a href="#__codelineno-7-11">11</a></span>
-<span class="normal"><a href="#__codelineno-7-12">12</a></span>
-<span class="normal"><a href="#__codelineno-7-13">13</a></span>
-<span class="normal"><a href="#__codelineno-7-14">14</a></span>
-<span class="normal"><a href="#__codelineno-7-15">15</a></span>
-<span class="normal"><a href="#__codelineno-7-16">16</a></span>
-<span class="normal"><a href="#__codelineno-7-17">17</a></span>
-<span class="normal"><a href="#__codelineno-7-18">18</a></span>
-<span class="normal"><a href="#__codelineno-7-19">19</a></span>
-<span class="normal"><a href="#__codelineno-7-20">20</a></span>
-<span class="normal"><a href="#__codelineno-7-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nn">---</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.envoyproxy.io/v1alpha1</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BackendTrafficPolicy</span><span class="w"> </span>
-<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="nt">metadata</span><span class="p">:</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin-traffic-policy</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">  </span><span class="nt">targetRefs</span><span class="p">:</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="w">  </span><span class="nt">rateLimit</span><span class="p">:</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Global</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="w">    </span><span class="nt">global</span><span class="p">:</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="w">      </span><span class="nt">rules</span><span class="p">:</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">clientSelectors</span><span class="p">:</span>
-</span><a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="hll"><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">headers</span><span class="p">:</span>
-</span><a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="hll"><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Distinct</span>
-</span><a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="hll"><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-user-id</span>
-</span><a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="w">        </span><span class="nt">limit</span><span class="p">:</span>
-<a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="w">          </span><span class="nt">requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
-<a id="__codelineno-7-21" name="__codelineno-7-21"></a><span class="w">          </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Minute</span>
-</code></pre></div></td></tr></table></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>ratelimit/distinct-users.yaml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>ratelimit/distinct-users.yaml
 </code></pre></div>
 <h3 id="test-it_1"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Test it<a class="headerlink" href="#test-it_1" title="Permanent link">&para;</a></h3>
 <p>Sending multiple requests for the same user in succession will produce a result similar to the above simple example:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Using DNS resolution</label><label for="__tabbed_2_2">Using <code>curl</code> name resolve flag</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>curl<span class="w"> </span>--insecure<span class="w"> </span>--head<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;x-user-id: eitan&quot;</span><span class="w"> </span>https://httpbin.esuez.org/
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">done</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>curl<span class="w"> </span>--insecure<span class="w"> </span>--head<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;x-user-id: eitan&quot;</span><span class="w"> </span>https://httpbin.example.com/<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span>--resolve<span class="w"> </span>httpbin.example.com:443:<span class="nv">$GATEWAY_IP</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">done</span>
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>curl<span class="w"> </span>--insecure<span class="w"> </span>--head<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;x-user-id: eitan&quot;</span><span class="w"> </span>https://httpbin.esuez.org/<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span>--resolve<span class="w"> </span>httpbin.esuez.org:443:<span class="nv">$GATEWAY_IP</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">done</span>
-</code></pre></div>
-</div>
-</div>
-</div>
 <p>Following that up with another set of requests from a different user demonstrates that each user has their own, separate rate limiting counter:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Using DNS resolution</label><label for="__tabbed_3_2">Using <code>curl</code> name resolve flag</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>curl<span class="w"> </span>--insecure<span class="w"> </span>--head<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;x-user-id: johndoe&quot;</span><span class="w"> </span>https://httpbin.esuez.org/
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">done</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>curl<span class="w"> </span>--insecure<span class="w"> </span>--head<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;x-user-id: johndoe&quot;</span><span class="w"> </span>https://httpbin.example.com/<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span>--resolve<span class="w"> </span>httpbin.example.com:443:<span class="nv">$GATEWAY_IP</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">done</span>
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span>curl<span class="w"> </span>--insecure<span class="w"> </span>--head<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;x-user-id: johndoe&quot;</span><span class="w"> </span>https://httpbin.esuez.org/<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span>--resolve<span class="w"> </span>httpbin.esuez.org:443:<span class="nv">$GATEWAY_IP</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">done</span>
-</code></pre></div>
-</div>
-</div>
-</div>
 <p>The curious may wish to inspect the translated configuration at the Envoy proxy:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>egctl<span class="w"> </span>config<span class="w"> </span>envoy-proxy<span class="w"> </span>route<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>default<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span>-o<span class="w"> </span>yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>bat<span class="w"> </span>-l<span class="w"> </span>yaml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>egctl<span class="w"> </span>config<span class="w"> </span>envoy-proxy<span class="w"> </span>route<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>infra<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>-o<span class="w"> </span>yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>bat<span class="w"> </span>-l<span class="w"> </span>yaml
 </code></pre></div>
 <p>Here is a sanitized copy of the captured output:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-14-10">10</a></span>
-<span class="normal"><a href="#__codelineno-14-11">11</a></span>
-<span class="normal"><a href="#__codelineno-14-12">12</a></span>
-<span class="normal"><a href="#__codelineno-14-13">13</a></span>
-<span class="normal"><a href="#__codelineno-14-14">14</a></span>
-<span class="normal"><a href="#__codelineno-14-15">15</a></span>
-<span class="normal"><a href="#__codelineno-14-16">16</a></span>
-<span class="normal"><a href="#__codelineno-14-17">17</a></span>
-<span class="normal"><a href="#__codelineno-14-18">18</a></span>
-<span class="normal"><a href="#__codelineno-14-19">19</a></span>
-<span class="normal"><a href="#__codelineno-14-20">20</a></span>
-<span class="normal"><a href="#__codelineno-14-21">21</a></span>
-<span class="normal"><a href="#__codelineno-14-22">22</a></span>
-<span class="normal"><a href="#__codelineno-14-23">23</a></span>
-<span class="normal"><a href="#__codelineno-14-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="nt">envoy-gateway-system</span><span class="p">:</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">  </span><span class="nt">envoy-default-eg-e41e7b31-c7657fcf5-gsgvs</span><span class="p">:</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">    </span><span class="nt">dynamicRouteConfigs</span><span class="p">:</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">routeConfig</span><span class="p">:</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default/eg/https</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="w">        </span><span class="nt">virtualHosts</span><span class="p">:</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">domains</span><span class="p">:</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin.esuez.org</span>
-<a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default/eg/https/httpbin_esuez_org</span>
-<a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="w">          </span><span class="nt">routes</span><span class="p">:</span>
-<a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
-<a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="w">              </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
-<a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org</span>
-<a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="w">            </span><span class="nt">route</span><span class="p">:</span>
-<a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="w">              </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/default/httpbin/rule/0</span>
-<a id="__codelineno-14-17" name="__codelineno-14-17"></a><span class="hll"><span class="w">              </span><span class="nt">rateLimits</span><span class="p">:</span>
-</span><a id="__codelineno-14-18" name="__codelineno-14-18"></a><span class="hll"><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">actions</span><span class="p">:</span>
-</span><a id="__codelineno-14-19" name="__codelineno-14-19"></a><span class="hll"><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">genericKey</span><span class="p">:</span>
-</span><a id="__codelineno-14-20" name="__codelineno-14-20"></a><span class="hll"><span class="w">                    </span><span class="nt">descriptorKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org</span>
-</span><a id="__codelineno-14-21" name="__codelineno-14-21"></a><span class="hll"><span class="w">                    </span><span class="nt">descriptorValue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org</span>
-</span><a id="__codelineno-14-22" name="__codelineno-14-22"></a><span class="hll"><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">requestHeaders</span><span class="p">:</span>
-</span><a id="__codelineno-14-23" name="__codelineno-14-23"></a><span class="hll"><span class="w">                    </span><span class="nt">descriptorKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rule-0-match-0</span>
-</span><a id="__codelineno-14-24" name="__codelineno-14-24"></a><span class="hll"><span class="w">                    </span><span class="nt">headerName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-user-id</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span>
+<span class="normal"><a href="#__codelineno-11-16">16</a></span>
+<span class="normal"><a href="#__codelineno-11-17">17</a></span>
+<span class="normal"><a href="#__codelineno-11-18">18</a></span>
+<span class="normal"><a href="#__codelineno-11-19">19</a></span>
+<span class="normal"><a href="#__codelineno-11-20">20</a></span>
+<span class="normal"><a href="#__codelineno-11-21">21</a></span>
+<span class="normal"><a href="#__codelineno-11-22">22</a></span>
+<span class="normal"><a href="#__codelineno-11-23">23</a></span>
+<span class="normal"><a href="#__codelineno-11-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="nt">envoy-gateway-system</span><span class="p">:</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="w">  </span><span class="nt">envoy-infra-eg-eade8e06-5f9f47c8bf-gwh4g</span><span class="p">:</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w">    </span><span class="nt">dynamicRouteConfigs</span><span class="p">:</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">routeConfig</span><span class="p">:</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infra/eg/https-httpbin</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="w">        </span><span class="nt">virtualHosts</span><span class="p">:</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">domains</span><span class="p">:</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin.example.com</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infra/eg/https-httpbin/httpbin_example_com</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="w">          </span><span class="nt">routes</span><span class="p">:</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="w">              </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15"></a><span class="w">            </span><span class="nt">route</span><span class="p">:</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16"></a><span class="w">              </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/httpbin/httpbin/rule/0</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17"></a><span class="hll"><span class="w">              </span><span class="nt">rateLimits</span><span class="p">:</span>
+</span><a id="__codelineno-11-18" name="__codelineno-11-18"></a><span class="hll"><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">actions</span><span class="p">:</span>
+</span><a id="__codelineno-11-19" name="__codelineno-11-19"></a><span class="hll"><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">genericKey</span><span class="p">:</span>
+</span><a id="__codelineno-11-20" name="__codelineno-11-20"></a><span class="hll"><span class="w">                    </span><span class="nt">descriptorKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com</span>
+</span><a id="__codelineno-11-21" name="__codelineno-11-21"></a><span class="hll"><span class="w">                    </span><span class="nt">descriptorValue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com</span>
+</span><a id="__codelineno-11-22" name="__codelineno-11-22"></a><span class="hll"><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">requestHeaders</span><span class="p">:</span>
+</span><a id="__codelineno-11-23" name="__codelineno-11-23"></a><span class="hll"><span class="w">                    </span><span class="nt">descriptorKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rule-0-match-0</span>
+</span><a id="__codelineno-11-24" name="__codelineno-11-24"></a><span class="hll"><span class="w">                    </span><span class="nt">headerName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-user-id</span>
 </span></code></pre></div></td></tr></table></div>
 
 
@@ -1076,7 +946,7 @@ and is configured through Envoy Gateway's <a href="https://gateway.envoyproxy.io
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../retries/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Retries">
+          <a href="../policy-attachments/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Policy attachments">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1086,20 +956,20 @@ and is configured through Envoy Gateway's <a href="https://gateway.envoyproxy.io
                 Previous
               </span>
               <div class="md-ellipsis">
-                Retries
+                Policy attachments
               </div>
             </div>
           </a>
         
         
           
-          <a href="../auth/" class="md-footer__link md-footer__link--next" aria-label="Next: Authentication">
+          <a href="../basic-auth/" class="md-footer__link md-footer__link--next" aria-label="Next: Basic Authentication">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Authentication
+                Basic Authentication
               </div>
             </div>
             <div class="md-footer__button md-icon">

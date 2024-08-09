@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../simple-route/">
+        <link rel="prev" href="../getting-started/">
       
       
-        <link rel="next" href="../tls/">
+        <link rel="next" href="../https/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Shared Gateway - Exploring Envoy Gateway</title>
+        <title>Shared Gateways - Envoy Gateway Fundamentals</title>
       
     
     
@@ -61,7 +61,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shared-gateway" class="md-skip">
+        <a href="#shared-gateways" class="md-skip">
           Skip to content
         </a>
       
@@ -86,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Exploring Envoy Gateway" class="md-header__button md-logo" aria-label="Exploring Envoy Gateway" data-md-component="logo">
+    <a href=".." title="Envoy Gateway Fundamentals" class="md-header__button md-logo" aria-label="Envoy Gateway Fundamentals" data-md-component="logo">
       
   <img src="../assets/tetrate-logo-white.png" alt="logo">
 
@@ -99,13 +99,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Exploring Envoy Gateway
+            Envoy Gateway Fundamentals
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Shared Gateway
+              Shared Gateways
             
           </span>
         </div>
@@ -180,12 +180,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Exploring Envoy Gateway" class="md-nav__button md-logo" aria-label="Exploring Envoy Gateway" data-md-component="logo">
+    <a href=".." title="Envoy Gateway Fundamentals" class="md-nav__button md-logo" aria-label="Envoy Gateway Fundamentals" data-md-component="logo">
       
   <img src="../assets/tetrate-logo-white.png" alt="logo">
 
     </a>
-    Exploring Envoy Gateway
+    Envoy Gateway Fundamentals
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -221,7 +221,7 @@
         
   
   <span class="md-ellipsis">
-    Setup
+    Installation & setup
   </span>
   
 
@@ -237,11 +237,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../simple-route/" class="md-nav__link">
+      <a href="../getting-started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Simple routing
+    Getting started
   </span>
   
 
@@ -270,7 +270,7 @@
           
   
   <span class="md-ellipsis">
-    Shared Gateway
+    Shared Gateways
   </span>
   
 
@@ -281,7 +281,7 @@
         
   
   <span class="md-ellipsis">
-    Shared Gateway
+    Shared Gateways
   </span>
   
 
@@ -303,9 +303,84 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configure-the-route" class="md-nav__link">
+  <a href="#design-and-conventions" class="md-nav__link">
     <span class="md-ellipsis">
-      Configure the route
+      Design and conventions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-the-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy the Gateway
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy the Gateway">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-the-gateway-ip-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capture the Gateway IP address
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-the-workloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy the workloads
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy the workloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-httpbin-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      The httpbin app
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-customers-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      The customers app
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure the routes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspect-route-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspect route configuration
     </span>
   </a>
   
@@ -321,9 +396,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#inspect-route-configuration" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      Inspect route configuration
+      Summary
     </span>
   </a>
   
@@ -344,11 +419,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../tls/" class="md-nav__link">
+      <a href="../https/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    TLS
+    HTTPS
   </span>
   
 
@@ -364,31 +439,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../redirect/" class="md-nav__link">
+      <a href="../policy-attachments/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Redirect HTTP to HTTPS
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../retries/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Retries
+    Policy attachments
   </span>
   
 
@@ -423,26 +478,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../auth/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Authentication
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
     
     
     
@@ -453,24 +488,24 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    Additional
+    Security
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
-            Additional
+            Security
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -481,32 +516,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../traffic-split/" class="md-nav__link">
+      <a href="../basic-auth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Traffic Splitting
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../wasm/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    WebAssembly
+    Basic Authentication
   </span>
   
 
@@ -537,71 +551,9 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../observability/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Observability
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../oidc/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    OIDC with Okta
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../takeaways/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Takeaways
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -633,9 +585,84 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configure-the-route" class="md-nav__link">
+  <a href="#design-and-conventions" class="md-nav__link">
     <span class="md-ellipsis">
-      Configure the route
+      Design and conventions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-the-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy the Gateway
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy the Gateway">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-the-gateway-ip-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capture the Gateway IP address
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-the-workloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy the workloads
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy the workloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-httpbin-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      The httpbin app
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-customers-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      The customers app
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure the routes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspect-route-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspect route configuration
     </span>
   </a>
   
@@ -651,9 +678,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#inspect-route-configuration" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      Inspect route configuration
+      Summary
     </span>
   </a>
   
@@ -674,13 +701,18 @@
                   
 
 
-<h1 id="shared-gateway">Shared Gateway<a class="headerlink" href="#shared-gateway" title="Permanent link">&para;</a></h1>
+<h1 id="shared-gateways">Shared Gateways<a class="headerlink" href="#shared-gateways" title="Permanent link">&para;</a></h1>
+<p>One important aspect of the Kubernetes Gateway API is its ability to accommodate multiple personas.  Cluster operators typically provision and control gateways, but application teams want the ability self-service routes to their backend applications.</p>
+<p>In this scenario, we explore two teams each deploying distinct applications to separate namespaces who have the ability to specify their own routes against a shared gateway managed by the operations team.</p>
 <hr />
-<p>Deploy a second workload and a second route associated to the same gateway</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>apps/customers.yaml<span class="w"> </span>-f<span class="w"> </span>apps/web-frontend.yaml
+<h2 id="design-and-conventions">Design and conventions<a class="headerlink" href="#design-and-conventions" title="Permanent link">&para;</a></h2>
+<p>The platform team decides to deploy their gateway to the <code>infra</code> namespace, and defines a convention whereby the ability to attach routes to the gateway can be given to application teams when their application namespaces are labeled with <code>self-serve-ingress=true</code>.</p>
+<hr />
+<h2 id="deploy-the-gateway">Deploy the <a href="https://gateway-api.sigs.k8s.io/api-types/gateway/">Gateway</a><a class="headerlink" href="#deploy-the-gateway" title="Permanent link">&para;</a></h2>
+<p>Create the namespace:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>ns<span class="w"> </span>infra
 </code></pre></div>
-<hr />
-<h2 id="configure-the-route">Configure the route<a class="headerlink" href="#configure-the-route" title="Permanent link">&para;</a></h2>
+<p>Provision the gateway:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
@@ -694,71 +726,177 @@
 <span class="normal"><a href="#__codelineno-1-11">11</a></span>
 <span class="normal"><a href="#__codelineno-1-12">12</a></span>
 <span class="normal"><a href="#__codelineno-1-13">13</a></span>
-<span class="normal"><a href="#__codelineno-1-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nn">---</span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nn">---</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gateway</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="nt">metadata</span><span class="p">:</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-frontend</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">  </span><span class="nt">hostnames</span><span class="p">:</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">customers-frontend.esuez.org</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">backendRefs</span><span class="p">:</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-frontend</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infra</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">  </span><span class="nt">gatewayClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">  </span><span class="nt">listeners</span><span class="p">:</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTP</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="hll"><span class="w">    </span><span class="nt">allowedRoutes</span><span class="p">:</span>
+</span><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="hll"><span class="w">      </span><span class="nt">namespaces</span><span class="p">:</span>
+</span><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="hll"><span class="w">        </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Selector</span>
+</span><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="hll"><span class="w">        </span><span class="nt">selector</span><span class="p">:</span>
+</span><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="hll"><span class="w">          </span><span class="nt">matchLabels</span><span class="p">:</span>
+</span><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="hll"><span class="w">            </span><span class="nt">self-serve-ingress</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Above, note the <code>allowedRoutes</code> section which allows the attachment of routes from namespaces with the corresponding label.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>shared-gw/gateway-http.yaml
+</code></pre></div>
+<p>Wait for the gateway to become available:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>gtw/eg<span class="w"> </span>--for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span>Programmed
+</code></pre></div>
+<h3 id="capture-the-gateway-ip-address">Capture the Gateway IP address<a class="headerlink" href="#capture-the-gateway-ip-address" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GATEWAY_IP</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>gtw<span class="w"> </span>eg<span class="w"> </span>-n<span class="w"> </span>infra<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.addresses[0].value}&#39;</span><span class="k">)</span>
+</code></pre></div>
+<h2 id="deploy-the-workloads">Deploy the workloads<a class="headerlink" href="#deploy-the-workloads" title="Permanent link">&para;</a></h2>
+<h3 id="the-httpbin-app">The <code>httpbin</code> app<a class="headerlink" href="#the-httpbin-app" title="Permanent link">&para;</a></h3>
+<p>First, create and label the namespace (we assume RBAC is in place to allow only operators to do this):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>ns<span class="w"> </span>httpbin
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>label<span class="w"> </span>ns<span class="w"> </span>httpbin<span class="w"> </span>self-serve-ingress<span class="o">=</span><span class="s2">&quot;true&quot;</span>
+</code></pre></div>
+<p>Next, deploy the application:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>apps/httpbin.yaml<span class="w"> </span>-n<span class="w"> </span>httpbin
+</code></pre></div>
+<h3 id="the-customers-app">The <code>customers</code> app<a class="headerlink" href="#the-customers-app" title="Permanent link">&para;</a></h3>
+<p>Create the <code>customers</code> namespace:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>ns<span class="w"> </span>customers
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>label<span class="w"> </span>ns<span class="w"> </span>customers<span class="w"> </span>self-serve-ingress<span class="o">=</span><span class="s2">&quot;true&quot;</span>
+</code></pre></div>
+<p>This app consists of two separate deployments:  the <code>customers</code> service and the <code>web-frontend</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>apps/customers.yaml<span class="w"> </span>-n<span class="w"> </span>customers
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>apps/web-frontend.yaml<span class="w"> </span>-n<span class="w"> </span>customers
+</code></pre></div>
+<hr />
+<h2 id="configure-the-routes">Configure the routes<a class="headerlink" href="#configure-the-routes" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="nn">---</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="w">  </span><span class="nt">hostnames</span><span class="p">:</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin.example.com</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infra</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">backendRefs</span><span class="p">:</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000</span>
 </code></pre></div></td></tr></table></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>shared-gw/web-frontend-route.yaml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>shared-gw/httpbin-route.yaml
+</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span>
+<span class="normal"><a href="#__codelineno-14-15">15</a></span>
+<span class="normal"><a href="#__codelineno-14-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="nn">---</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-frontend</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">customers</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="w">  </span><span class="nt">hostnames</span><span class="p">:</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">customers-frontend.example.com</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infra</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">backendRefs</span><span class="p">:</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-frontend</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>shared-gw/web-frontend-route.yaml
+</code></pre></div>
+<hr />
+<h2 id="inspect-route-configuration">Inspect route configuration<a class="headerlink" href="#inspect-route-configuration" title="Permanent link">&para;</a></h2>
+<p>Review the <code>status</code> section of the shared gateway (named <code>eg</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>-n<span class="w"> </span>infra<span class="w"> </span>gtw<span class="w"> </span>eg<span class="w"> </span>-o<span class="w"> </span>yaml
+</code></pre></div>
+<p>Under <code>listeners</code>, verify that the number of attached routes is two (2).</p>
+<p>Next, use <code>egctl</code> to inspect the <code>route</code> section of the Envoy configuration:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>egctl<span class="w"> </span>config<span class="w"> </span>envoy-proxy<span class="w"> </span>route<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>infra<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span>-o<span class="w"> </span>yaml
+</code></pre></div>
+<p>Here is a slightly sanitized copy of the captured output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nt">envoy-gateway-system</span><span class="p">:</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="nt">envoy-infra-eg-eade8e06-84c7dd49d-rwdpk</span><span class="p">:</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="nt">dynamicRouteConfigs</span><span class="p">:</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">routeConfig</span><span class="p">:</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infra/eg/http</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">        </span><span class="nt">virtualHosts</span><span class="p">:</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">domains</span><span class="p">:</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin.example.com</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infra/eg/http/httpbin_example_com</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">          </span><span class="nt">routes</span><span class="p">:</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">              </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">            </span><span class="nt">route</span><span class="p">:</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">              </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/httpbin/httpbin/rule/0</span>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">domains</span><span class="p">:</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">customers-frontend.example.com</span>
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infra/eg/http/customers-frontend_example_com</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="w">          </span><span class="nt">routes</span><span class="p">:</span>
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="w">              </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/customers/web-frontend/rule/0/match/0/customers-frontend_example_com</span>
+<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="w">            </span><span class="nt">route</span><span class="p">:</span>
+<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a><span class="w">              </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/customers/web-frontend/rule/0</span>
 </code></pre></div>
 <hr />
 <h2 id="verify"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
-<p>After the DNS entry is created, verify that <a href="http://customers-frontend.esuez.org/">the route is reachable</a>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Using DNS resolution</label><label for="__tabbed_1_2">Using <code>curl</code> name resolve flag</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>http://customers-frontend.esuez.org/
+<p>Verify that the routes are reachable:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>curl<span class="w"> </span>http://httpbin.example.com/json<span class="w"> </span>--resolve<span class="w"> </span>httpbin.example.com:80:<span class="nv">$GATEWAY_IP</span>
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl<span class="w"> </span>http://customers-frontend.esuez.org/<span class="w"> </span>--resolve<span class="w"> </span>customers-frontend.esuez.org:80:<span class="nv">$GATEWAY_IP</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>curl<span class="w"> </span>http://customers-frontend.example.com/<span class="w"> </span>--resolve<span class="w"> </span>customers-frontend.example.com:80:<span class="nv">$GATEWAY_IP</span>
 </code></pre></div>
-</div>
-</div>
-</div>
 <hr />
-<h2 id="inspect-route-configuration">Inspect route configuration<a class="headerlink" href="#inspect-route-configuration" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>egctl<span class="w"> </span>config<span class="w"> </span>envoy-proxy<span class="w"> </span>route<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>default<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>-o<span class="w"> </span>yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>bat<span class="w"> </span>-l<span class="w"> </span>yaml
-</code></pre></div>
-<p>Here is a slightly sanitized copy of the captured output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">envoy-gateway-system</span><span class="p">:</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">envoy-default-eg-e41e7b31-59b4dd766f-sf78k</span><span class="p">:</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">dynamicRouteConfigs</span><span class="p">:</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">routeConfig</span><span class="p">:</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default/eg/http</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="nt">virtualHosts</span><span class="p">:</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">domains</span><span class="p">:</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin.esuez.org</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default/eg/http/httpbin_esuez_org</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">          </span><span class="nt">routes</span><span class="p">:</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">              </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/default/httpbin/rule/0/match/0/httpbin_esuez_org</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">            </span><span class="nt">route</span><span class="p">:</span>
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">              </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/default/httpbin/rule/0</span>
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">domains</span><span class="p">:</span>
-<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">customers-frontend.esuez.org</span>
-<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default/eg/http/customers-frontend_esuez_org</span>
-<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">          </span><span class="nt">routes</span><span class="p">:</span>
-<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
-<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">              </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
-<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/default/web-frontend/rule/0/match/0/customers-frontend_esuez_org</span>
-<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">            </span><span class="nt">route</span><span class="p">:</span>
-<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">              </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/default/web-frontend/rule/0</span>
-</code></pre></div>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>With the Kubernetes Gateway API, have can achieve a separation of concerns, where the platform team can manage a shared gateway, while at the same time application teams can (with the permission of the platform team) define the routes for their applications.</p>
 
 
 
@@ -794,7 +932,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../simple-route/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Simple routing">
+          <a href="../getting-started/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting started">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -804,20 +942,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Simple routing
+                Getting started
               </div>
             </div>
           </a>
         
         
           
-          <a href="../tls/" class="md-footer__link md-footer__link--next" aria-label="Next: TLS">
+          <a href="../https/" class="md-footer__link md-footer__link--next" aria-label="Next: HTTPS">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                TLS
+                HTTPS
               </div>
             </div>
             <div class="md-footer__button md-icon">

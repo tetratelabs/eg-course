@@ -1,0 +1,1022 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../https/">
+      
+      
+        <link rel="next" href="../ratelimit/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
+    
+    
+      
+        <title>Policy attachments - Envoy Gateway Fundamentals</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#policy-attachments" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Envoy Gateway Fundamentals" class="md-header__button md-logo" aria-label="Envoy Gateway Fundamentals" data-md-component="logo">
+      
+  <img src="../assets/tetrate-logo-white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Envoy Gateway Fundamentals
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Policy attachments
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Envoy Gateway Fundamentals" class="md-nav__button md-logo" aria-label="Envoy Gateway Fundamentals" data-md-component="logo">
+      
+  <img src="../assets/tetrate-logo-white.png" alt="logo">
+
+    </a>
+    Envoy Gateway Fundamentals
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation & setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shared-gw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shared Gateways
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../https/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Policy attachments
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Policy attachments
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#timeouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Timeouts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-gateway-related-crds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Review Gateway-related CRDs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-backendtrafficpolicy-to-configure-retries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use BackendTrafficPolicy to configure retries
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-review-the-proxy-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify: Review the proxy configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-review-the-proxys-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify: Review the proxy's "stats"
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-tail-the-gateway-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify: Tail the gateway logs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ratelimit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rate limiting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ext-authz/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    External Authorization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#timeouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Timeouts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-gateway-related-crds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Review Gateway-related CRDs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-backendtrafficpolicy-to-configure-retries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use BackendTrafficPolicy to configure retries
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-review-the-proxy-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify: Review the proxy configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-review-the-proxys-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify: Review the proxy's "stats"
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-tail-the-gateway-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify: Tail the gateway logs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="policy-attachments">Policy attachments<a class="headerlink" href="#policy-attachments" title="Permanent link">&para;</a></h1>
+<p>Retries are an example of how EG extends the Kubernetes Gateway API using <a href="https://gateway-api.sigs.k8s.io/reference/policy-attachment/">Policy Attachments</a>.</p>
+<p>To understand policy attachments, we begin with an example of a feature that is part of the Kubernetes Gateway API:  <a href="https://gateway-api.sigs.k8s.io/api-types/httproute/?h=#timeouts-optional">timeouts</a>, and then turn our attention to <a href="https://gateway.envoyproxy.io/docs/tasks/traffic/retry/">retries</a>.</p>
+<hr />
+<h2 id="timeouts">Timeouts<a class="headerlink" href="#timeouts" title="Permanent link">&para;</a></h2>
+<p>The Kubernetes Gateway API supports configuring of timeouts.</p>
+<p>We can specify a total request timeout on the <code>httpbin</code> route of one second, as follows:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nn">---</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">  </span><span class="nt">hostnames</span><span class="p">:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin.example.com</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infra</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">backendRefs</span><span class="p">:</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="hll"><span class="w">    </span><span class="nt">timeouts</span><span class="p">:</span>
+</span><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="hll"><span class="w">      </span><span class="nt">request</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1s</span>
+</span></code></pre></div></td></tr></table></div>
+<p>An HTTPS request to the <code>httpbin</code> application will continue to function:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>--insecure<span class="w"> </span>https://httpbin.example.com/json<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--resolve<span class="w"> </span>httpbin.example.com:443:<span class="nv">$GATEWAY_IP</span>
+</code></pre></div>
+<p>On the other hand, targeting an endpoint with a delay of two (2) seconds results in a request timeout (504):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>--insecure<span class="w"> </span>https://httpbin.example.com/delay/2<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--resolve<span class="w"> </span>httpbin.example.com:443:<span class="nv">$GATEWAY_IP</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="go">upstream request timeout</span>
+</code></pre></div>
+<p>Configuring timeouts was simple an easy.</p>
+<p>Envoy is a proxy with more features than the Kubernetes Gateway API codifies.  The API however does provide guidance on how to formally extend its API via policy attachments.</p>
+<p>Let us look at how Envoy Gateway utilizes policy attachments to expose other features of the Envoy proxy.</p>
+<hr />
+<h2 id="review-gateway-related-crds">Review Gateway-related CRDs<a class="headerlink" href="#review-gateway-related-crds" title="Permanent link">&para;</a></h2>
+<p>Inspect the gateway-related CRDs defined in your cluster:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>api-resources<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>gateway
+</code></pre></div>
+<p>Here is a slightly sanitized copy of the captured output:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       Backend</span>
+</span><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       BackendTrafficPolicy</span>
+</span><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       ClientTrafficPolicy</span>
+</span><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       EnvoyExtensionPolicy</span>
+</span><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       EnvoyPatchPolicy</span>
+</span><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       EnvoyProxy</span>
+</span><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="hll"><span class="go">gateway.envoyproxy.io/v1alpha1       SecurityPolicy</span>
+</span><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="go">gateway.networking.k8s.io/v1alpha2   BackendLBPolicy</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="go">gateway.networking.k8s.io/v1alpha3   BackendTLSPolicy</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="go">gateway.networking.k8s.io/v1         GatewayClass</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="go">gateway.networking.k8s.io/v1         Gateway</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="go">gateway.networking.k8s.io/v1         GRPCRoute</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="go">gateway.networking.k8s.io/v1         HTTPRoute</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="go">gateway.networking.k8s.io/v1beta1    ReferenceGrant</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="go">gateway.networking.k8s.io/v1alpha2   TCPRoute</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="go">gateway.networking.k8s.io/v1alpha2   TLSRoute</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="go">gateway.networking.k8s.io/v1alpha2   UDPRoute</span>
+</code></pre></div></td></tr></table></div>
+<p>Note the standard <a href="https://gateway-api.sigs.k8s.io/reference/spec/">Kubernetes Gateway API</a> CRDs as well as <a href="https://gateway.envoyproxy.io/docs/api/extension_types/">additional ones defined by the Envoy Gateway project</a>.</p>
+<hr />
+<h2 id="use-backendtrafficpolicy-to-configure-retries">Use <a href="https://gateway.envoyproxy.io/docs/api/extension_types/#backendtrafficpolicy">BackendTrafficPolicy</a> to configure retries<a class="headerlink" href="#use-backendtrafficpolicy-to-configure-retries" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span>
+<span class="normal"><a href="#__codelineno-6-21">21</a></span>
+<span class="normal"><a href="#__codelineno-6-22">22</a></span>
+<span class="normal"><a href="#__codelineno-6-23">23</a></span>
+<span class="normal"><a href="#__codelineno-6-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nn">---</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.envoyproxy.io/v1alpha1</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BackendTrafficPolicy</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin-traffic-policy</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">  </span><span class="nt">targetRefs</span><span class="p">:</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="hll"><span class="w">  </span><span class="nt">retry</span><span class="p">:</span>
+</span><a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="hll"><span class="w">    </span><span class="nt">numRetries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</span><a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="hll"><span class="w">    </span><span class="nt">perRetry</span><span class="p">:</span>
+</span><a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="hll"><span class="w">      </span><span class="nt">backOff</span><span class="p">:</span>
+</span><a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="hll"><span class="w">        </span><span class="nt">baseInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100ms</span>
+</span><a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="hll"><span class="w">        </span><span class="nt">maxInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+</span><a id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="hll"><span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">250ms</span>
+</span><a id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="hll"><span class="w">    </span><span class="nt">retryOn</span><span class="p">:</span>
+</span><a id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="hll"><span class="w">      </span><span class="nt">httpStatusCodes</span><span class="p">:</span>
+</span><a id="__codelineno-6-21" name="__codelineno-6-21"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+</span><a id="__codelineno-6-22" name="__codelineno-6-22"></a><span class="hll"><span class="w">      </span><span class="nt">triggers</span><span class="p">:</span>
+</span><a id="__codelineno-6-23" name="__codelineno-6-23"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connect-failure</span>
+</span><a id="__codelineno-6-24" name="__codelineno-6-24"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">retriable-status-codes</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>policy-attachments/httpbin-policy.yaml
+</code></pre></div>
+<hr />
+<h2 id="verify-review-the-proxy-configuration"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Verify: Review the proxy configuration<a class="headerlink" href="#verify-review-the-proxy-configuration" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>egctl<span class="w"> </span>config<span class="w"> </span>envoy-proxy<span class="w"> </span>route<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>infra<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span>-o<span class="w"> </span>yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>bat<span class="w"> </span>-l<span class="w"> </span>yaml
+</code></pre></div>
+<p>Confirm that the routing configuration has been updated with the retry rule.</p>
+<p>Here is a sanitized copy of the captured output:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span>
+<span class="normal"><a href="#__codelineno-9-27">27</a></span>
+<span class="normal"><a href="#__codelineno-9-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="nt">envoy-gateway-system</span><span class="p">:</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span><span class="nt">envoy-infra-eg-eade8e06-5f9f47c8bf-gwh4g</span><span class="p">:</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="nt">dynamicRouteConfigs</span><span class="p">:</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">routeConfig</span><span class="p">:</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infra/eg/https-httpbin</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">        </span><span class="nt">virtualHosts</span><span class="p">:</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">domains</span><span class="p">:</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin.example.com</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infra/eg/https-httpbin/httpbin_example_com</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="w">          </span><span class="nt">routes</span><span class="p">:</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="w">              </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="w">            </span><span class="nt">route</span><span class="p">:</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="w">              </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httproute/httpbin/httpbin/rule/0</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="hll"><span class="w">              </span><span class="nt">retryPolicy</span><span class="p">:</span>
+</span><a id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="hll"><span class="w">                </span><span class="nt">hostSelectionRetryMaxAttempts</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;5&quot;</span>
+</span><a id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="hll"><span class="w">                </span><span class="nt">numRetries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</span><a id="__codelineno-9-20" name="__codelineno-9-20"></a><span class="hll"><span class="w">                </span><span class="nt">perTryTimeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.250s</span>
+</span><a id="__codelineno-9-21" name="__codelineno-9-21"></a><span class="hll"><span class="w">                </span><span class="nt">retriableStatusCodes</span><span class="p">:</span>
+</span><a id="__codelineno-9-22" name="__codelineno-9-22"></a><span class="hll"><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+</span><a id="__codelineno-9-23" name="__codelineno-9-23"></a><span class="hll"><span class="w">                </span><span class="nt">retryBackOff</span><span class="p">:</span>
+</span><a id="__codelineno-9-24" name="__codelineno-9-24"></a><span class="hll"><span class="w">                  </span><span class="nt">baseInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.100s</span>
+</span><a id="__codelineno-9-25" name="__codelineno-9-25"></a><span class="hll"><span class="w">                  </span><span class="nt">maxInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+</span><a id="__codelineno-9-26" name="__codelineno-9-26"></a><span class="hll"><span class="w">                </span><span class="nt">retryHostPredicate</span><span class="p">:</span>
+</span><a id="__codelineno-9-27" name="__codelineno-9-27"></a><span class="hll"><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">envoy.retry_host_predicates.previous_hosts</span>
+</span><a id="__codelineno-9-28" name="__codelineno-9-28"></a><span class="hll"><span class="w">                </span><span class="nt">retryOn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connect-failure,retriable-status-codes</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="verify-review-the-proxys-stats"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Verify:  Review the proxy's "stats"<a class="headerlink" href="#verify-review-the-proxys-stats" title="Permanent link">&para;</a></h2>
+<p>Specifically, the <code>envoy_cluster_upstream_rq_retry</code> metric:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>watch<span class="w"> </span><span class="s1">&#39;egctl x stats envoy-proxy -n envoy-gateway-system \</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="s1">  -l gateway.envoyproxy.io/owning-gateway-name=eg \</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="s1">  -l gateway.envoyproxy.io/owning-gateway-namespace=infra \</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="s1">  | grep &quot;envoy_cluster_upstream_rq_retry{envoy_cluster_name=\&quot;httproute/httpbin/httpbin/rule/0\&quot;}&quot;&#39;</span>
+</code></pre></div>
+<p>In another terminal, call a failing endpoint:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>curl<span class="w"> </span>--insecure<span class="w"> </span>--head<span class="w"> </span>https://httpbin.example.com/status/500<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>--resolve<span class="w"> </span>httpbin.example.com:443:<span class="nv">$GATEWAY_IP</span>
+</code></pre></div>
+<hr />
+<p>Another convenient way to get at the stats exposed by the Envoy proxy is through the <a href="https://www.envoyproxy.io/docs/envoy/latest/operations/admin">Envoy admin interface</a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>egctl<span class="w"> </span>x<span class="w"> </span>dashboard<span class="w"> </span>envoy-proxy<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>infra
+</code></pre></div>
+<p>Click on the <code>stats</code> endpoint and look for metrics with "retry" in their name.</p>
+<hr />
+<h2 id="verify-tail-the-gateway-logs"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Verify: Tail the gateway logs<a class="headerlink" href="#verify-tail-the-gateway-logs" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-name<span class="o">=</span>eg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span>-l<span class="w"> </span>gateway.envoyproxy.io/owning-gateway-namespace<span class="o">=</span>infra<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</code></pre></div>
+<p>Below is a copy of the prettified JSON log line:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span>
+<span class="normal"><a href="#__codelineno-14-15">15</a></span>
+<span class="normal"><a href="#__codelineno-14-16">16</a></span>
+<span class="normal"><a href="#__codelineno-14-17">17</a></span>
+<span class="normal"><a href="#__codelineno-14-18">18</a></span>
+<span class="normal"><a href="#__codelineno-14-19">19</a></span>
+<span class="normal"><a href="#__codelineno-14-20">20</a></span>
+<span class="normal"><a href="#__codelineno-14-21">21</a></span>
+<span class="normal"><a href="#__codelineno-14-22">22</a></span>
+<span class="normal"><a href="#__codelineno-14-23">23</a></span>
+<span class="normal"><a href="#__codelineno-14-24">24</a></span>
+<span class="normal"><a href="#__codelineno-14-25">25</a></span>
+<span class="normal"><a href="#__codelineno-14-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="p">{</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">  </span><span class="nt">&quot;start_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-08-07T23:32:00.874Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HEAD&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">  </span><span class="nt">&quot;x-envoy-origin-path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/status/500&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">  </span><span class="nt">&quot;protocol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HTTP/2&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">  </span><span class="nt">&quot;response_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;500&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="hll"><span class="w">  </span><span class="nt">&quot;response_flags&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;URX&quot;</span><span class="p">,</span>
+</span><a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="w">  </span><span class="nt">&quot;response_code_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;via_upstream&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="w">  </span><span class="nt">&quot;connection_termination_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="w">  </span><span class="nt">&quot;upstream_transport_failure_reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="w">  </span><span class="nt">&quot;bytes_received&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="w">  </span><span class="nt">&quot;bytes_sent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="w">  </span><span class="nt">&quot;duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;787&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="w">  </span><span class="nt">&quot;x-envoy-upstream-service-time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="w">  </span><span class="nt">&quot;x-forwarded-for&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.19.0.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="w">  </span><span class="nt">&quot;user-agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;curl/8.9.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17"></a><span class="w">  </span><span class="nt">&quot;x-request-id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fff65b4e-5a41-41fb-8a3e-fc9f33121059&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18"></a><span class="w">  </span><span class="nt">&quot;:authority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httpbin.example.com&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19"></a><span class="w">  </span><span class="nt">&quot;upstream_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.42.0.12:8080&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-20" name="__codelineno-14-20"></a><span class="w">  </span><span class="nt">&quot;upstream_cluster&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httproute/httpbin/httpbin/rule/0&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21"></a><span class="w">  </span><span class="nt">&quot;upstream_local_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.42.0.22:42978&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22"></a><span class="w">  </span><span class="nt">&quot;downstream_local_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.42.0.22:10443&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23"></a><span class="w">  </span><span class="nt">&quot;downstream_remote_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.19.0.1:60922&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-24" name="__codelineno-14-24"></a><span class="w">  </span><span class="nt">&quot;requested_server_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httpbin.example.com&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25"></a><span class="w">  </span><span class="nt">&quot;route_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com&quot;</span>
+<a id="__codelineno-14-26" name="__codelineno-14-26"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Note the <a href="https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#config-access-log-format-response-flags">Envoy response flag</a> is URX: UpstreamRetryLimitExceeded.</p>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>To configure retries, we had to resort to using a BackingTrafficPolicy, an extension to the Gateway API.
+In contrast, compare with <a href="https://gateway-api.sigs.k8s.io/api-types/httproute/?h=#timeouts-optional">timeouts</a>,
+which are configured directly on the HTTPRoute resource, since timeouts are a part of the Kubernetes Gateway API specification.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../https/" class="md-footer__link md-footer__link--prev" aria-label="Previous: HTTPS">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                HTTPS
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../ratelimit/" class="md-footer__link md-footer__link--next" aria-label="Next: Rate limiting">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Rate limiting
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top", "navigation.instant", "navigation.tracking", "navigation.footer", "navigation.expand", "content.code.annotate", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.081f42fc.min.js"></script>
+      
+    
+  </body>
+</html>
