@@ -21,9 +21,9 @@ nav:
   - https.md
   - policy-attachments.md
   - ratelimit.md
-#  - Security:
-#    - basic-auth.md
-#    - ext-authz.md
+  - Security:
+    - basic-auth.md
+    - ext-authz.md
 #    - oidc.md
 #  - Traffic management:
 #    - traffic-split.md

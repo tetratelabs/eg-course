@@ -6,10 +6,10 @@ This scenario demonstrates how Envoy's [external authorization filter](https://w
 
 We will use the [Ext Authz service sample](https://github.com/istio/istio/tree/master/samples/extauthz) from the Istio distribution.
 
-Deploy the service:
+Deploy the service to the `httpbin` namespace:
 
 ```shell
-kubectl apply -f ext-authz/ext-authz.yaml
+kubectl apply -f ext-authz/ext-authz.yaml -n httpbin
 ```
 
 ## The contract
@@ -43,3 +43,15 @@ curl -v -H "x-ext-authz: allow" http://httpbin.example.com/json --resolve httpbi
 The above request should succeed.
 
 Absence of the header, or header value that is not "allow" will return a 403.
+
+## Discussion
+
+Above, we chose to deploy the `ext-authz` service in the same namespace where our route and security policies reside, so the service was resolved relative to that "local" namespace.
+
+If we had opted to deploy the `ext-authz` service to another namespace, say the `default` namespace, not only would we have had to revise the security policy to reference the service in that namespace (add a `namespace` field to the `backendRef`), but in addition the owner of the target (`default`) namespace would have to give us permission to do so via a [ReferenceGrant](https://gateway-api.sigs.k8s.io/api-types/referencegrant/):
+
+```yaml linenums="1"
+--8<-- "ext-authz/ref-grant.yaml"
+```
+
+See if you can revise the implementation accordingly.
