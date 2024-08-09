@@ -21,7 +21,7 @@ The value of the `name` field on line 13 refers a secret containing an [`htpassw
 1. Create the secret from the generated file:
 
     ```shell
-    kubectl create secret generic httpbin-users --from-file=.htpasswd
+    kubectl create secret generic -n httpbin httpbin-users --from-file=.htpasswd
     ```
 
 1. Apply the security policy:
@@ -86,7 +86,7 @@ We can look at the Envoy listeners configuration and inspect the HTTP connection
 ```shell
 egctl config envoy-proxy listener -n envoy-gateway-system \
   -l gateway.envoyproxy.io/owning-gateway-name=eg \
-  -l gateway.envoyproxy.io/owning-gateway-namespace=default \
+  -l gateway.envoyproxy.io/owning-gateway-namespace=infra \
   -o yaml | bat -l yaml
 ```
 
@@ -102,27 +102,16 @@ filterChains:
   - name: envoy.filters.network.http_connection_manager
     typedConfig:
       httpFilters:
-      - name: envoy.filters.http.basic_auth_httproute/default/httpbin/rule/0/match/0/httpbin_example_com
+      - name: envoy.filters.http.basic_auth
         disabled: true
         typedConfig:
           '@type': type.googleapis.com/envoy.extensions.filters.http.basic_auth.v3.BasicAuth
           users:
             inlineBytes: W3JlZGFjdGVkXQ==
       - name: envoy.filters.http.ratelimit
-        typedConfig:
-          '@type': type.googleapis.com/envoy.extensions.filters.http.ratelimit.v3.RateLimit
-          domain: default/eg/https
-          enableXRatelimitHeaders: DRAFT_VERSION_03
-          rateLimitService:
-            grpcService:
-              envoyGrpc:
-                clusterName: ratelimit_cluster
-            transportApiVersion: V3
+        ...
       - name: envoy.filters.http.router
-        typedConfig:
-          '@type': type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
-          suppressEnvoyHeaders: true
-  ...
+        ...
 ```
 
 The basic auth filter is configured at the level of the listener, but disabled there.
@@ -131,7 +120,7 @@ Since the authentication rule is applied at the route level, we need to look at 
 ```shell
 egctl config envoy-proxy route -n envoy-gateway-system \
   -l gateway.envoyproxy.io/owning-gateway-name=eg \
-  -l gateway.envoyproxy.io/owning-gateway-namespace=default \
+  -l gateway.envoyproxy.io/owning-gateway-namespace=infra \
   -o yaml | bat -l yaml
 ```
 
@@ -139,21 +128,21 @@ Here is the salient part of the output:
 
 ```yaml linenums="1" hl_lines="19-23"
 envoy-gateway-system:
-  envoy-default-eg-e41e7b31-c7657fcf5-tmsdt:
+  envoy-infra-eg-eade8e06-5f9f47c8bf-gwh4g:
     dynamicRouteConfigs:
     ...
     - routeConfig:
-        name: default/eg/https
+        name: infra/eg/https-httpbin
         virtualHosts:
         - domains:
           - httpbin.example.com
-          name: default/eg/https/httpbin_example_com
+          name: infra/eg/https-httpbin/httpbin_example_com
           routes:
           - match:
               prefix: /
-            name: httproute/default/httpbin/rule/0/match/0/httpbin_example_com
+            name: httproute/httpbin/httpbin/rule/0/match/0/httpbin_example_com
             route:
-              cluster: httproute/default/httpbin/rule/0
+              cluster: httproute/httpbin/httpbin/rule/0
               rateLimits:
               ...
             typedPerFilterConfig:
