@@ -35,7 +35,7 @@ kubectl apply -f shared-gw/gateway-http.yaml
 Wait for the gateway to become available:
 
 ```shell
-kubectl wait gtw/eg --for=condition=Programmed
+kubectl wait gtw/eg -n infra --for=condition=Programmed
 ```
 
 ### Capture the Gateway IP address
