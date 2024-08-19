@@ -824,6 +824,7 @@
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https/httpbin-to-https.yaml
 </code></pre></div>
+<p>To learn more about HTTPRoute rules and specifically filters, see the <a href="https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteRule">relevant section in the Gateway API documentation</a>.</p>
 <hr />
 <h2 id="test"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Test<a class="headerlink" href="#test" title="Permanent link">&para;</a></h2>
 <p>Verify that you get a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301">301 response</a> when curling the http endpoint:</p>
