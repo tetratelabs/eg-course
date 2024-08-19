@@ -98,6 +98,8 @@ The platform team is the only party with the permission to apply this routing ru
 kubectl apply -f https/httpbin-to-https.yaml
 ```
 
+To learn more about HTTPRoute rules and specifically filters, see the [relevant section in the Gateway API documentation](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteRule).
+
 ---
 
 ## :white_check_mark: Test
