@@ -88,7 +88,7 @@ Access `httpbin` over TLS:
 
 ## Configure redirection
 
-The platform team is the only party with the permission to apply this routing rule, to redirect HTTP requests to HTTPS with a 301 (redirected) response code:
+The platform team is the only party with the permission to apply this routing rule, to redirect HTTP requests to HTTPS with a [301 (redirected) response code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301):
 
 ```yaml linenums="1" hl_lines="12"
 --8<-- "https/httpbin-to-https.yaml"
