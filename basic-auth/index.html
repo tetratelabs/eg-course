@@ -587,7 +587,7 @@
 <p><a href="https://httpbin.example.com/">Access the application</a>, or:</p>
 <ol>
 <li>
-<p>Request without credentials return a 401 (Forbidden)</p>
+<p>Request without credentials return a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401">401</a> (Unauthorized)</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl<span class="w"> </span>--insecure<span class="w"> </span>--head<span class="w"> </span>https://httpbin.example.com/<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--resolve<span class="w"> </span>httpbin.example.com:443:<span class="nv">$GATEWAY_IP</span>
 </code></pre></div>

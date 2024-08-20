@@ -733,7 +733,11 @@ and is configured through Envoy Gateway's <a href="https://gateway.envoyproxy.io
 <a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="go">x-ratelimit-reset: 48</span>
 <a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="go">date: Tue, 07 May 2024 22:33:12 GMT</span>
 </code></pre></div>
-<p>Above, note the <code>x-ratelimit-*</code> headers that inform us of the limit, the number of requests remaining, and the amount of time (in seconds) until the corresponding counter is reset.</p>
+<p>Above, note:</p>
+<ul>
+<li>the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429">429</a> (too many requests) response code on the fourth request, and</li>
+<li>the <code>x-ratelimit-*</code> headers that inform us of the limit, the number of requests remaining, and the amount of time (in seconds) until the corresponding counter is reset.</li>
+</ul>
 <hr />
 <h2 id="verify-tail-the-gateway-logs"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /> Verify: Tail the gateway logs<a class="headerlink" href="#verify-tail-the-gateway-logs" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
