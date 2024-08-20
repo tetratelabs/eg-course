@@ -34,7 +34,7 @@ The value of the `name` field on line 13 refers a secret containing an [`htpassw
 
 [Access the application](https://httpbin.example.com/), or:
 
-1. Request without credentials return a 401 (Forbidden)
+1. Request without credentials return a [401](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401) (Unauthorized)
 
     ```shell
     curl --insecure --head https://httpbin.example.com/ \

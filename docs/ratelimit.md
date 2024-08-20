@@ -90,7 +90,10 @@ x-ratelimit-reset: 48
 date: Tue, 07 May 2024 22:33:12 GMT
 ```
 
-Above, note the `x-ratelimit-*` headers that inform us of the limit, the number of requests remaining, and the amount of time (in seconds) until the corresponding counter is reset.
+Above, note:
+
+- the [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (too many requests) response code on the fourth request, and
+- the `x-ratelimit-*` headers that inform us of the limit, the number of requests remaining, and the amount of time (in seconds) until the corresponding counter is reset.
 
 ---
 
