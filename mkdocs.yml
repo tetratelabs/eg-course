@@ -24,13 +24,13 @@ nav:
   - Security:
     - basic-auth.md
     - ext-authz.md
-#    - oidc.md
-#  - Traffic management:
-#    - traffic-split.md
-#  - Extensibility:
-#    - wasm.md
-#  - Observability:
-#    - observability.md
+    - oidc.md
+  - Traffic management:
+    - traffic-split.md
+  - Extensibility:
+    - wasm.md
+  - Observability:
+    - observability.md
 #  - takeaways.md
 markdown_extensions:
   - admonition

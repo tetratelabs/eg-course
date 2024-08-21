@@ -10,7 +10,7 @@ The objective is to collect Gateway metrics with Prometheus and expose them thro
 
 ```shell
 while true; do
-  curl --head https://httpbin.example.com/json --resolve httpbin.example.com:443:$GATEWAY_IP
+  curl --insecure --head https://httpbin.example.com/json --resolve httpbin.example.com:443:$GATEWAY_IP
   sleep 0.5
 done
 ```
@@ -49,10 +49,10 @@ Visit [localhost:3000](http://localhost:3000) and login to grafana using `admin:
 
 You will find four distinct dashboards:
 
-- envoy global: monitor envoy proxy
-- envoy gateway global: monitor envoy gateway
-- envoy clusters: envoy proxy metrics with cluster/service-level granularity
-- resources monitor: monitor resource utilization of Envoy and Envoy Gateway
+- Envoy Global: monitor Envoy proxies (data plane)
+- Envoy Gateway Global: monitor Envoy Gateway (control plane)
+- Envoy Clusters: Envoy proxy metrics with cluster/service-level granularity (data plane)
+- Resources Monitor: monitor resource utilization of Envoy proxies and Envoy Gateway
 
 ## Ad-hoc query metrics
 
