@@ -17,7 +17,36 @@ done
 
 ---
 
+## Viewing proxy metrics directly with `egctl`
+
+The `egctl` CLI provides an experimental `stats` subcommand for displaying metrics exposed by an Envoy proxy instance.
+
+We used this command in a previous lab to watch the upstream retries metric (`envoy_cluster_upstream_rq_retry`).
+
+Using labels to identify the proxy we wish to target, we can obtain its metrics with the following command:
+
+```shell
+egctl x stats envoy-proxy \
+  -l gateway.envoyproxy.io/owning-gateway-name=eg \
+  -l gateway.envoyproxy.io/owning-gateway-namespace=infra \
+  -n envoy-gateway-system
+```
+
+We can use the `--type=clusters` option to display metrics that are specific to Envoy clusters (upstream services) defined in its configuration:
+
+```shell
+egctl x stats envoy-proxy \
+  -l gateway.envoyproxy.io/owning-gateway-name=eg \
+  -l gateway.envoyproxy.io/owning-gateway-namespace=infra \
+  -n envoy-gateway-system \
+  --type clusters
+```
+
+---
+
 ## Deploy Observability tools
+
+The Envoy Gateway project goes a step further, and provides a helm chart that makes it easy to ingest those metrics into Prometheus, and monitor our proxies through Grafana dashboards.
 
 The following command will deploy all necessary observability tools to the `monitoring` namespace, including prometheus and grafana:
 
