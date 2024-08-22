@@ -1,4 +1,4 @@
-# Observability
+# Monitor Envoy Gateway with Grafana
 
 The following content is distilled from the [Envoy Gateway docs](https://gateway.envoyproxy.io/docs/tasks/observability/grafana-integration/).
 
